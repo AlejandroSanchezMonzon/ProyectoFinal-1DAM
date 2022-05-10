@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.UUID;
 
 public class Pedido {
+    //TODO ¿Debería ser reactivo?
     private UUID uuid;
     private int id;
-    private double precio;
+    private double total;
     private String metodoPago;
-    private List<IVenta> compra;
-    private Cliente cliente;
+    private List<LineaPedido> compra;
+    private PersonaRegistrada cliente;
     private Localizador mesa;
 }
