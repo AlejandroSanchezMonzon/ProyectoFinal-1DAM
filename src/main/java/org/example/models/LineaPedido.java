@@ -17,11 +17,9 @@ public class LineaPedido {
         return producto;
     }
 
-
     public int getCantidad() {
         return cantidad;
     }
-
 
     public double getPrecio() {
         return precio;

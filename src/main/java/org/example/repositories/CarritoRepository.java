@@ -2,17 +2,14 @@ package org.example.repositories;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.example.models.Carrito;
-
+import org.example.models.ItemCarrito;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public class CarritoRepository implements ICarritoRepository {
     private static CarritoRepository instance;
 
-    private final ObservableList<Carrito> items = FXCollections.observableArrayList();
+    private final ObservableList<ItemCarrito> items = FXCollections.observableArrayList();
 
     private CarritoRepository() {
     }
@@ -25,12 +22,7 @@ public class CarritoRepository implements ICarritoRepository {
     }
 
     @Override
-    public Optional<List<Carrito>> findAll() throws SQLException {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<ObservableList<Carrito>> findAllObservable(){
+    public Optional<ObservableList<ItemCarrito>> findAll()throws SQLException{
         if(items.isEmpty()) {
             return Optional.empty();
         }
@@ -38,24 +30,30 @@ public class CarritoRepository implements ICarritoRepository {
     }
 
     @Override
-    public Optional<Carrito> findById(UUID uuid) throws SQLException {
+    public Optional<ItemCarrito> findById(String uuid) throws SQLException {
+        for(ItemCarrito item: items){
+            if(item.getUuid().equals(uuid)){
+                return Optional.of(item);
+            }
+        }
         return Optional.empty();
     }
 
     @Override
-    public Carrito save(Carrito entity) throws SQLException {
+    public ItemCarrito save(ItemCarrito entity) throws SQLException {
         items.add(entity);
         return entity;
     }
 
     @Override
-    public Carrito update(Carrito entity) throws SQLException {
-        //TODO: items.update(entity);
+    public ItemCarrito update(ItemCarrito entity) throws SQLException {
+        int index = items.indexOf(entity);
+        items.set(index, entity);
         return entity;
     }
 
     @Override
-    public Carrito delete(Carrito entity) throws SQLException {
+    public ItemCarrito delete(ItemCarrito entity) throws SQLException {
         items.remove(entity);
         return entity;
     }
@@ -68,7 +66,7 @@ public class CarritoRepository implements ICarritoRepository {
     @Override
     public double getTotal() {
         var total = 0.0f;
-        for(Carrito carrito: items){
+        for(ItemCarrito carrito: items){
             total += carrito.getPrecio();
         }
         return total;

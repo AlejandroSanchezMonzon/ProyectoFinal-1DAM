@@ -1,17 +1,18 @@
 package org.example.repositories;
 
+import javafx.collections.ObservableList;
+
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Optional;
 
-public interface ICRUDRepository <T, ID> {
+public interface ICRUDObservable<T,ID> {
     /**
-     * Devuelve Optional de una lista de todos los elementos del repositorio
+     * Devuelve Optional de una lista observable de todos los elementos del repositorio
      *
      * @return Lista de elementos
      * @throws SQLException Si hay algún error en la base de datos
      */
-    Optional<List<T>> findAll() throws SQLException;
+    Optional<ObservableList<T>> findAll() throws SQLException;
 
     /**
      * Devuelve un Optional del elemento dado un id
@@ -47,4 +48,11 @@ public interface ICRUDRepository <T, ID> {
      * @throws SQLException Si hay algún error en la base de datos
      */
     T delete(T entity) throws SQLException;
+
+    /**
+     * Elimina todos los elementos del repositorio
+     *
+     * @throws SQLException Si hay algún error en la base de datos
+     */
+    public void deleteAll() throws SQLException;
 }
