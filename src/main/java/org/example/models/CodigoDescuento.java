@@ -1,14 +1,22 @@
 package org.example.models;
 
-import java.util.UUID;
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 public class CodigoDescuento {
-    private final String uuid = UUID.randomUUID().toString();
-    private final String codigo;
-    private final float porcentajeDescuento;
+    private final SimpleStringProperty codigo;
+    private final SimpleFloatProperty porcentajeDescuento;
 
     public CodigoDescuento(String codigo, float porcentajeDescuento) {
-        this.codigo = codigo;
-        this.porcentajeDescuento = porcentajeDescuento;
+        this.codigo = new SimpleStringProperty(codigo);
+        this.porcentajeDescuento = new SimpleFloatProperty(porcentajeDescuento);
+    }
+
+    public String getCodigo() {
+        return codigo.get();
+    }
+
+    public float getPorcentajeDescuento() {
+        return porcentajeDescuento.get();
     }
 }

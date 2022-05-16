@@ -1,5 +1,8 @@
 package org.example.models;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 import java.util.UUID;
 
 public class PersonaRegistrada {
@@ -42,6 +45,7 @@ public class PersonaRegistrada {
     public Tipo getTipo() {
         return tipo;
     }
+
 
     @Override
     public String toString() {

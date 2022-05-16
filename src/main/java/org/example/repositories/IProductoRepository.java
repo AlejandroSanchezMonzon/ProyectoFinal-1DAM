@@ -2,7 +2,6 @@ package org.example.repositories;
 
 import org.example.models.Producto;
 
-import java.util.UUID;
 
-public interface IProductoRepository extends ICRUDRepository<Producto, UUID> {
+public interface IProductoRepository extends ICRUDObservable<Producto, String> {
 }

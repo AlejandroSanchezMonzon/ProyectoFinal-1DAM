@@ -4,14 +4,16 @@ import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Carrito {
+public class ItemCarrito {
+    private final SimpleStringProperty uuid;
     private final SimpleStringProperty nombre;
     private final SimpleStringProperty imagen;
     private final SimpleFloatProperty precio;
     private final SimpleIntegerProperty cantidad;
     private double total;
 
-    public Carrito(String nombre, String imagen, float precio, int cantidad) {
+    public ItemCarrito(String uuid, String nombre, String imagen, float precio, int cantidad) {
+        this.uuid = new SimpleStringProperty(uuid);
         this.nombre = new SimpleStringProperty(nombre);
         this.imagen = new SimpleStringProperty(imagen);
         this.precio = new SimpleFloatProperty(precio);
@@ -19,6 +21,9 @@ public class Carrito {
         this.total = precio * cantidad;
     }
 
+    public String getUuid() {
+        return uuid.get();
+    }
     public String getNombre() {
         return nombre.get();
     }
