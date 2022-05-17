@@ -1,6 +1,7 @@
-package org.example.repositories;
+package es.dam.repositories;
 
-import org.example.models.*;
+import es.dam.mcdam.models.*;
+import es.dam.mcdam.repositories.PedidoRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

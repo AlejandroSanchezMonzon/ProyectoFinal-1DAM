@@ -1,11 +1,11 @@
-package org.example.repositories;
+package es.dam.mcdam.repositories;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.example.managers.DataBaseManager;
-import org.example.models.CodigoDescuento;
-import org.example.models.PersonaRegistrada;
-import org.example.models.Producto;
+import es.dam.mcdam.managers.DataBaseManager;
+import es.dam.mcdam.models.CodigoDescuento;
+import es.dam.mcdam.models.PersonaRegistrada;
+import es.dam.mcdam.models.Producto;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -82,7 +82,7 @@ public class ProductoRepository implements IProductoRepository {
         String sql = "INSERT INTO producto (uuid, nombre, precio, imagen, descripcion, disponible, codigoDescuento) VALUES (?, ?, ?, ?, ?, ?, ?)";
         db.open();
         //TODO ¿Problemas con el UUID?
-        var rs = db.insert(sql, entity.getUuid(), entity.getNombre(), entity.getPrecio(), entity.getImagen(), entity.getDescripcion(), entity.isDisponible(), entity.getCodigoDescuento());
+        var rs = db.insert(sql, entity.getUuid(), entity.getNombre(), entity.getPrecio(), entity.getImagen(), entity.getDescripcion(), entity.getDisponible(), entity.getCodigoDescuento());
         db.close();
         repository.add(entity);
         return entity;
@@ -94,7 +94,7 @@ public class ProductoRepository implements IProductoRepository {
         String sql = "UPDATE producto SET uuid = ?, nombre = ?, precio = ?, imagen = ?, descripcion = ?, disponible = ?, codigoDescuento = ?)";
         db.open();
         //TODO ¿Problemas con el UUID?
-        var rs = db.update(sql, entity.getUuid(), entity.getNombre(), entity.getPrecio(), entity.getImagen(), entity.getDescripcion(), entity.isDisponible(), entity.getCodigoDescuento());
+        var rs = db.update(sql, entity.getUuid(), entity.getNombre(), entity.getPrecio(), entity.getImagen(), entity.getDescripcion(), entity.getDisponible(), entity.getCodigoDescuento());
 
         db.close();
         repository.set(index, entity);

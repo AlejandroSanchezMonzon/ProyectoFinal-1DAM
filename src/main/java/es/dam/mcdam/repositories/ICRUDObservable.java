@@ -1,4 +1,5 @@
-package org.example.repositories;
+package es.dam.mcdam.repositories;
+
 
 import javafx.collections.ObservableList;
 

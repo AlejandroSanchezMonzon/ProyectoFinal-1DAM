@@ -1,14 +1,14 @@
-package org.example.managers;
+package es.dam.mcdam.managers;
 
-import es.joseluisgs.agenda.AgendaApplication;
-import es.joseluisgs.agenda.controllers.AcercaDeController;
-import es.joseluisgs.agenda.controllers.AgendaController;
-import es.joseluisgs.agenda.controllers.EstadisticasViewController;
-import es.joseluisgs.agenda.controllers.PersonaEditarViewController;
-import es.joseluisgs.agenda.models.Persona;
-import es.joseluisgs.agenda.utils.Properties;
-import es.joseluisgs.agenda.utils.Resources;
-import es.joseluisgs.agenda.views.Views;
+import es.dam.mcdam.AgendaApplication;
+import es.dam.mcdam.controllers.AcercaDeController;
+import es.dam.mcdam.controllers.AgendaController;
+import es.dam.mcdam.controllers.EstadisticasViewController;
+import es.dam.mcdam.controllers.PersonaEditarViewController;
+import es.dam.mcdam.models.Persona;
+import es.dam.mcdam.utils.Properties;
+import es.dam.mcdam.utils.Resources;
+import es.dam.mcdam.views.Views;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -51,7 +51,7 @@ public class SceneManager {
         return instance;
     }
 
-    public void changeScene(Node node, Views view) throws IOException {
+    public void changeScene(Node node, View view) throws IOException {
         logger.info("Loading scene " + view.get());
         Stage stage = (Stage) node.getScene().getWindow();
         //oldStage.hide(); // Oculto la anterior

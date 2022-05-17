@@ -1,6 +1,6 @@
-package org.example.services;
+package es.dam.mcdam.services;
 
-import org.example.models.PersonaRegistrada;
+import es.dam.mcdam.models.PersonaRegistrada;
 
 public interface IBackupJSON extends Backup<PersonaRegistrada> {
 

@@ -1,4 +1,4 @@
-package org.example.models;
+package es.dam.mcdam.models;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleFloatProperty;

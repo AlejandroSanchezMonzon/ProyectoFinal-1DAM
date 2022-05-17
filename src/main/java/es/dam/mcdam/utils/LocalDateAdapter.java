@@ -1,4 +1,4 @@
-package org.example.utils;
+package es.dam.mcdam.utils;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;

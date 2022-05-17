@@ -1,4 +1,4 @@
-package org.example.services;
+package es.dam.mcdam.services;
 
 public class Storage {
 }

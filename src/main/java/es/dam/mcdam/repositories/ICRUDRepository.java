@@ -1,4 +1,4 @@
-package org.example.repositories;
+package es.dam.mcdam.repositories;
 
 import java.sql.SQLException;
 import java.util.List;

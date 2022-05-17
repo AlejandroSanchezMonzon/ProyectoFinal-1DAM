@@ -1,4 +1,4 @@
-package org.example.models;
+package es.dam.mcdam.models;
 
 import java.util.List;
 import java.util.UUID;

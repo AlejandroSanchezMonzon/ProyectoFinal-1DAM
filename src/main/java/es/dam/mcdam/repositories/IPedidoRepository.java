@@ -1,6 +1,6 @@
-package org.example.repositories;
+package es.dam.mcdam.repositories;
 
-import org.example.models.Pedido;
+import es.dam.mcdam.models.Pedido;
 
 public interface IPedidoRepository extends ICRUDObservable<Pedido, String> {
 }

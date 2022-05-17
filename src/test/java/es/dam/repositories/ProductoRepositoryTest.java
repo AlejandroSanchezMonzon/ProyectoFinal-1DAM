@@ -1,7 +1,8 @@
-package org.example.repositories;
+package es.dam.repositories;
 
-import org.example.models.CodigoDescuento;
-import org.example.models.Producto;
+import es.dam.mcdam.models.CodigoDescuento;
+import es.dam.mcdam.models.Producto;
+import es.dam.mcdam.repositories.ProductoRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

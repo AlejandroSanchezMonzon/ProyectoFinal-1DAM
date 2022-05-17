@@ -1,6 +1,6 @@
-package org.example.repositories;
+package es.dam.mcdam.repositories;
 
-import org.example.models.CodigoDescuento;
+import es.dam.mcdam.models.CodigoDescuento;
 
 public interface ICodigoDescuentoRepository extends ICRUDObservable<CodigoDescuento, String> {
 }

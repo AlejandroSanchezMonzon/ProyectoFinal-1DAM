@@ -1,8 +1,8 @@
-package org.example.managers;
-import es.joseluisgs.agenda.utils.Properties;
+package es.dam.mcdam.managers;
+import es.dam.mcdam.utils.Properties;
 import lombok.NonNull;
 import org.apache.ibatis.jdbc.ScriptRunner;
-import org.example.utils.Properties;
+import es.dam.mcdam.utils.Properties;
 
 import java.io.*;
 import java.sql.*;

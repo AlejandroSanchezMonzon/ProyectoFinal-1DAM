@@ -1,8 +1,8 @@
-package org.example.repositories;
+package es.dam.mcdam.repositories;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.example.models.ItemCarrito;
+import es.dam.mcdam.models.ItemCarrito;
 import java.sql.SQLException;
 import java.util.Optional;
 

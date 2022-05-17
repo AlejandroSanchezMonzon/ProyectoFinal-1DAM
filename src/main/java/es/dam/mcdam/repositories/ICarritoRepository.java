@@ -1,6 +1,6 @@
-package org.example.repositories;
+package es.dam.mcdam.repositories;
 
-import org.example.models.ItemCarrito;
+import es.dam.mcdam.models.ItemCarrito;
 
 
 public interface ICarritoRepository extends ICRUDObservable<ItemCarrito, String> {

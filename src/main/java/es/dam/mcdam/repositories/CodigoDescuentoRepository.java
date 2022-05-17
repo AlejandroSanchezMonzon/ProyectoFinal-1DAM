@@ -1,9 +1,9 @@
-package org.example.repositories;
+package es.dam.mcdam.repositories;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.example.managers.DataBaseManager;
-import org.example.models.*;
+import es.dam.mcdam.managers.DataBaseManager;
+import es.dam.mcdam.models.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

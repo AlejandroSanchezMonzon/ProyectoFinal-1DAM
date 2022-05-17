@@ -1,6 +1,7 @@
-package org.example.repositories;
+package es.dam.repositories;
 
-import org.example.models.ItemCarrito;
+import es.dam.mcdam.models.ItemCarrito;
+import es.dam.mcdam.repositories.CarritoRepository;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;

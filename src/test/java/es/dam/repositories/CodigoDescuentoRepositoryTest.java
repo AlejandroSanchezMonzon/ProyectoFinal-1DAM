@@ -1,6 +1,7 @@
-package org.example.repositories;
+package es.dam.repositories;
 
-import org.example.models.CodigoDescuento;
+import es.dam.mcdam.models.CodigoDescuento;
+import es.dam.mcdam.repositories.CodigoDescuentoRepository;
 import org.junit.jupiter.api.*;
 
 import java.sql.SQLException;

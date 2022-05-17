@@ -1,7 +1,8 @@
-package org.example.repositories;
+package es.dam.repositories;
 
-import org.example.models.PersonaRegistrada;
-import org.example.models.Tipo;
+import es.dam.mcdam.models.PersonaRegistrada;
+import es.dam.mcdam.models.Tipo;
+import es.dam.mcdam.repositories.PersonaRegistradaRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

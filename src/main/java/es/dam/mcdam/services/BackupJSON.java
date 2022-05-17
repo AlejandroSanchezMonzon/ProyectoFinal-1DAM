@@ -1,9 +1,9 @@
-package org.example.services;
+package es.dam.mcdam.services;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import org.example.models.PersonaRegistrada;
+import es.dam.mcdam.models.PersonaRegistrada;
 import org.example.utils.LocalDateAdapter;
 
 import java.io.File;

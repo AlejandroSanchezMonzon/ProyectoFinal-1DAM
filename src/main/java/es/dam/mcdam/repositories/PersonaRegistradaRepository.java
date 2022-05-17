@@ -1,11 +1,11 @@
-package org.example.repositories;
+package es.dam.mcdam.repositories;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.example.managers.DataBaseManager;
-import org.example.models.PersonaRegistrada;
-import org.example.models.Producto;
-import org.example.models.Tipo;
+import es.dam.mcdam.managers.DataBaseManager;
+import es.dam.mcdam.models.PersonaRegistrada;
+import es.dam.mcdam.models.Producto;
+import es.dam.mcdam.models.Tipo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
