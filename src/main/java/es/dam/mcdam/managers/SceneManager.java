@@ -1,7 +1,7 @@
 package es.dam.mcdam.managers;
 
 import es.dam.mcdam.AgendaApplication;
-import es.dam.mcdam.controllers.AcercaDeController;
+import es.dam.mcdam.controllers.AcercaDeViewController;
 import es.dam.mcdam.controllers.AgendaController;
 import es.dam.mcdam.controllers.EstadisticasViewController;
 import es.dam.mcdam.controllers.PersonaEditarViewController;
@@ -107,7 +107,7 @@ public class SceneManager {
         stage.setTitle("Acerca de");
         stage.setResizable(false);
         // Le hacemos los setters a los elementos del controlador
-        fxmlLoader.<AcercaDeController>getController().setDialogStage(stage);
+        fxmlLoader.<AcercaDeViewController>getController().setDialogStage(stage);
         stage.setScene(scene);
         logger.info("Scene AcercaDe loaded");
         stage.showAndWait();
