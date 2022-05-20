@@ -5,16 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d705b7f-b2ef-45dd-bff7-00acb68db3d9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/AppMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/AppMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/utils/Formatters.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/images/carritocompra.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/images/enproceso.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/images/helado.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/images/mcauto.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/images/ubicacion.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/stash-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/splash-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/acercade-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/acercade-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/consultaadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/consultaadministrador-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/edicionadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/edicionadministrador-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/iniciosesion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/iniciosesion.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/menuadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/menuadministrador-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/procesopago-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/procesopago-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/registrarse.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/registrarse.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +30,34 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="featureAlejandro" />
+                    <option name="lastUsedInstant" value="1652863214" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1652863210" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="29FIm5JjYbmEMuLmuNvVoy6FqSO" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -39,12 +66,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="advanced.settings" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+  }
+}</component>
   <component name="RunManager">
     <configuration name="AppMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="es.dam.mcdam.AppMain" />
@@ -75,6 +101,9 @@
       <updated>1652702563190</updated>
       <workItem from="1652702566714" duration="2000" />
       <workItem from="1652772981034" duration="602000" />
+      <workItem from="1652948944245" duration="1235000" />
+      <workItem from="1653028260429" duration="844000" />
+      <workItem from="1653029124441" duration="438000" />
     </task>
     <servers />
   </component>
