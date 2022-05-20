@@ -1,4 +1,4 @@
-package es.dam.mcdam.Utils;
+package es.dam.Utils;
 
 import es.dam.mcdam.utils.Utils;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +19,21 @@ public class UtilsTest {
                 () -> assertFalse(Utils.isEmail(emailIncorrecto)),
                 () -> assertFalse(Utils.isEmail(emailIncorrecto2))
         );
-
     }
+
+    @Test
+    public void isTarjetaCreditoTest(){
+        String tarjeta = "9382918439289203";
+        String tarjetaIncorrecto = "098709870987098";
+        String tarjetaIncorrecto2 = "12341234123412341";
+        String tarjetaIncorrecto3 = "F234123412341234";
+        assertAll(
+                () -> assertTrue(Utils.isTarjetaCredito(tarjeta)),
+                () -> assertFalse(Utils.isTarjetaCredito(tarjetaIncorrecto)),
+                () -> assertFalse(Utils.isTarjetaCredito(tarjetaIncorrecto2)),
+                () -> assertFalse(Utils.isTarjetaCredito(tarjetaIncorrecto3))
+        );
+    }
+    
 
 }

@@ -1,6 +1,13 @@
 package es.dam.mcdam.utils;
 
+import java.io.File;
+
 public class Properties {
+
+    //Base de datos
+    private static final String APP_PATH = System.getProperty("user.dir");
+    public static final String DB_DIR = APP_PATH + File.separator + "db";
+    public static final String DB_FILE = DB_DIR + File.separator + "mcdamsql.sql";
 
     //General
     public static final String APP_TITLE = "MCDAM";

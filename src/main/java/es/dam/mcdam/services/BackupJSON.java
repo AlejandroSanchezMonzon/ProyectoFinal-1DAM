@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import es.dam.mcdam.models.PersonaRegistrada;
-import org.example.utils.LocalDateAdapter;
+import es.dam.mcdam.utils.LocalDateAdapter;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,7 +1,7 @@
 package es.dam.mcdam.controllers;
 
 import es.dam.mcdam.managers.DataBaseManager;
-import es.dam.mcdam.managers.SceneManager;
+
 import javafx.stage.Stage;
 
 import java.io.IOException;
