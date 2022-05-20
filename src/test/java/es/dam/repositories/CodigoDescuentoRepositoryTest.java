@@ -11,16 +11,16 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Código de descuento Test")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CodigoDescuentoRepositoryTest {
+
     private final CodigoDescuentoRepository codigoDescuentoRepository = CodigoDescuentoRepository.getInstance();
-
-
     private final CodigoDescuento pTest1 = new CodigoDescuento("A111",30.00f);
     private final CodigoDescuento pTest1V2 = new CodigoDescuento("A111",60.00f);
     private final CodigoDescuento pTest2 = new CodigoDescuento("B222",40.00f);
     private final CodigoDescuento pTest3 = new CodigoDescuento("C333",50.00f);
 
     @BeforeAll
-    void setUp() throws SQLException {
+    static void setUp() throws SQLException {
+        final CodigoDescuentoRepository codigoDescuentoRepository = CodigoDescuentoRepository.getInstance();
         codigoDescuentoRepository.deleteAll();
     }
 

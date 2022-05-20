@@ -12,4 +12,16 @@ public class Utils {
         return email.matches(regex);
     }
 
+    public static boolean isTarjetaCredito(String tarjeta){
+        String regex = "^[0-9]{16}$";
+        return tarjeta.matches(regex);
+    }
+
+    public static boolean isPassword(String password){
+        String regex = ".{8,}";
+        return password.matches(regex);
+    }
+
+
+
 }
