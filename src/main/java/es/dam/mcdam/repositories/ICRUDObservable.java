@@ -8,12 +8,12 @@ import java.util.Optional;
 
 public interface ICRUDObservable<T,ID> {
     /**
-     * Devuelve Optional de una lista observable de todos los elementos del repositorio
+     * Devuelve una lista observable de todos los elementos del repositorio
      *
      * @return Lista de elementos
      * @throws SQLException Si hay algún error en la base de datos
      */
-    Optional<ObservableList<T>> findAll() throws SQLException;
+    ObservableList<T> findAll() throws SQLException;
 
     /**
      * Devuelve un Optional del elemento dado un id

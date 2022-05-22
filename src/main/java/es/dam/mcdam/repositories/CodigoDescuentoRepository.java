@@ -28,7 +28,7 @@ public class CodigoDescuentoRepository implements ICodigoDescuentoRepository{
     }
 
     @Override
-    public Optional<ObservableList<CodigoDescuento>> findAll() throws SQLException {
+    public ObservableList<CodigoDescuento> findAll() throws SQLException {
         String sql = "SELECT * FROM codigoDescuento";
         db.open();
         ResultSet rs = db.select(sql).orElseThrow(() -> new SQLException("Error al obtener todos los códigos de descuento"));
@@ -43,9 +43,9 @@ public class CodigoDescuentoRepository implements ICodigoDescuentoRepository{
         }
         db.close();
         if (repository.isEmpty()) {
-            return Optional.empty();
+            System.out.println("Aún no hay datos en este repositorio.");
         }
-        return Optional.of(repository);
+        return repository;
     }
 
     @Override

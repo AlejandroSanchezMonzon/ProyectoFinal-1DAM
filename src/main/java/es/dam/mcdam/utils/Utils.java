@@ -1,6 +1,7 @@
 package es.dam.mcdam.utils;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class Utils {
     public static void openBrowser(String url) throws IOException {
@@ -20,6 +21,11 @@ public class Utils {
     public static boolean isPassword(String password){
         String regex = ".{8,}";
         return password.matches(regex);
+    }
+    public static Optional<String> getFileExtension(String filename) {
+        return Optional.ofNullable(filename)
+                .filter(f -> f.contains("."))
+                .map(f -> f.substring(filename.lastIndexOf(".") + 1));
     }
 
 

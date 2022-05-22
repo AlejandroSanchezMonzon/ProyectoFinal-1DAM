@@ -35,10 +35,10 @@ class PedidoRepositoryTest {
             UUID.randomUUID().toString(), "Maria", "maria@gmail.com", "maria1234", Tipo.USER
     );
 
-    private final Pedido pTest1 = new Pedido(UUID.randomUUID().toString(),4.50f,"CRÉDITO", compra1, cliente1,  new Localizador());
-    private final Pedido pTest1V2 = new Pedido(UUID.randomUUID().toString(),3.50f,"CRÉDITO", compra1V2, cliente1,  new Localizador());
-    private final Pedido pTest2 = new Pedido(UUID.randomUUID().toString(),5.50f,"METÁLICO", compra2, cliente1,  new Localizador());
-    private final Pedido pTest3 = new Pedido(UUID.randomUUID().toString(),5.50f,"CRÉDITO", compra1, cliente2,  new Localizador());
+    private final Pedido pTest1 = new Pedido(UUID.randomUUID().toString(),4.50f,"CRÉDITO", compra1, cliente1);
+    private final Pedido pTest1V2 = new Pedido(UUID.randomUUID().toString(),3.50f,"CRÉDITO", compra1V2, cliente1);
+    private final Pedido pTest2 = new Pedido(UUID.randomUUID().toString(),5.50f,"METÁLICO", compra2, cliente1);
+    private final Pedido pTest3 = new Pedido(UUID.randomUUID().toString(),5.50f,"CRÉDITO", compra1, cliente2);
 
 
     @BeforeAll
@@ -82,8 +82,7 @@ class PedidoRepositoryTest {
                     () -> assertEquals(pTest1.getTotal(), res.getTotal()),
                     () -> assertEquals(pTest1.getMetodoPago(), res.getMetodoPago()),
                     () -> assertEquals(pTest1.getCompra(), res.getCompra()),
-                    () -> assertEquals(pTest1.getCliente(), res.getCliente()),
-                    () -> assertEquals(pTest1.getMesa(), res.getMesa())
+                    () -> assertEquals(pTest1.getCliente(), res.getCliente())
             );
         }catch (Exception e){
             fail();
@@ -100,8 +99,7 @@ class PedidoRepositoryTest {
                     () -> assertEquals(pTest1.getTotal(), res.getTotal()),
                     () -> assertEquals(pTest1.getMetodoPago(), res.getMetodoPago()),
                     () -> assertEquals(pTest1.getCompra(), res.getCompra()),
-                    () -> assertEquals(pTest1.getCliente(), res.getCliente()),
-                    () -> assertEquals(pTest1.getMesa(), res.getMesa())
+                    () -> assertEquals(pTest1.getCliente(), res.getCliente())
             );
         }catch (Exception e){
             fail();
@@ -121,8 +119,7 @@ class PedidoRepositoryTest {
                     () -> assertEquals(pTest1.getTotal(), res.getTotal()),
                     () -> assertEquals(pTest1.getMetodoPago(), res.getMetodoPago()),
                     () -> assertEquals(pTest1.getCompra(), res.getCompra()),
-                    () -> assertEquals(pTest1.getCliente(), res.getCliente()),
-                    () -> assertEquals(pTest1.getMesa(), res.getMesa())
+                    () -> assertEquals(pTest1.getCliente(), res.getCliente())
             );
         }catch (Exception e){
             fail();
@@ -141,8 +138,7 @@ class PedidoRepositoryTest {
                     () -> assertEquals(pTest1.getTotal(), res.getTotal()),
                     () -> assertEquals(pTest1.getMetodoPago(), res.getMetodoPago()),
                     () -> assertEquals(pTest1.getCompra(), res.getCompra()),
-                    () -> assertEquals(pTest1.getCliente(), res.getCliente()),
-                    () -> assertEquals(pTest1.getMesa(), res.getMesa())
+                    () -> assertEquals(pTest1.getCliente(), res.getCliente())
             );
         }catch (Exception e){
             fail();

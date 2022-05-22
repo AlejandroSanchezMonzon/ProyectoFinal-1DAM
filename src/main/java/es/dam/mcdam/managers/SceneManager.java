@@ -1,11 +1,14 @@
 package es.dam.mcdam.managers;
 
-import es.dam.mcdam.AgendaApplication;
+import es.dam.mcdam.AppController;
 import es.dam.mcdam.controllers.AcercaDeViewController;
-import es.dam.mcdam.controllers.AgendaController;
-import es.dam.mcdam.controllers.EstadisticasViewController;
-import es.dam.mcdam.controllers.PersonaEditarViewController;
-import es.dam.mcdam.models.Persona;
+import es.dam.mcdam.controllers.ConsultaAdministradorViewController;
+import es.dam.mcdam.controllers.EdicionAdministradorViewController;
+import es.dam.mcdam.controllers.McDAMController;
+import es.dam.mcdam.controllers.MenuAdministradorViewController;
+import es.dam.mcdam.controllers.ProcesoPagoViewController;
+import es.dam.mcdam.models.PersonaRegistrada;
+import es.dam.mcdam.models.Producto;
 import es.dam.mcdam.utils.Properties;
 import es.dam.mcdam.utils.Resources;
 import es.dam.mcdam.views.Views;
@@ -70,13 +73,13 @@ public class SceneManager {
         Scene scene = new Scene(fxmlLoader.load(), Properties.APP_WIDTH, Properties.APP_HEIGHT);
         Stage stage = new Stage();
         stage.setResizable(true);
-        stage.getIcons().add(new Image(Resources.get(AgendaApplication.class, Properties.APP_ICON)));
+        stage.getIcons().add(new Image(Resources.get(AppController.class, Properties.APP_ICON)));
         stage.setTitle(Properties.APP_TITLE);
         stage.initStyle(StageStyle.DECORATED);
         logger.info("Scene Main loaded");
         // Por si salimos
         stage.setOnCloseRequest(event -> {
-            fxmlLoader.<AgendaController>getController().onSalirAction();
+            fxmlLoader.<McDAMController>getController().onSalirAction();
         });
         stage.setScene(scene);
         mainStage = stage;
@@ -86,9 +89,9 @@ public class SceneManager {
     public void initSplash(Stage stage) throws IOException, InterruptedException {
         Platform.setImplicitExit(false);
         logger.info("Iniciando Splash");
-        FXMLLoader fxmlLoader = new FXMLLoader(AgendaApplication.class.getResource(Views.SPLASH.get()));
+        FXMLLoader fxmlLoader = new FXMLLoader(AppController.class.getResource(Views.SPLASH.get()));
         Scene scene = new Scene(fxmlLoader.load(), Properties.SPLASH_WIDTH, Properties.SPLASH_HEIGHT);
-        stage.getIcons().add(new Image(Resources.get(AgendaApplication.class, Properties.APP_ICON)));
+        stage.getIcons().add(new Image(Resources.get(AppController.class, Properties.APP_ICON)));
         stage.setTitle(Properties.APP_TITLE);
         stage.setResizable(false);
         stage.setScene(scene);
@@ -99,7 +102,7 @@ public class SceneManager {
 
     public void initAcercaDe() throws IOException {
         logger.info("Iniciando AcercaDe");
-        FXMLLoader fxmlLoader = new FXMLLoader(AgendaApplication.class.getResource(Views.ACERCADE.get()));
+        FXMLLoader fxmlLoader = new FXMLLoader(AppController.class.getResource(Views.ACERCADE.get()));
         Scene scene = new Scene(fxmlLoader.load(), Properties.ACERCADE_WIDTH, Properties.ACERCADE_HEIGHT);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -113,9 +116,9 @@ public class SceneManager {
         stage.showAndWait();
     }
 
-    public boolean initPersonaEditar(boolean editarModo, Persona persona) throws IOException {
+    public boolean initPersonaEditar(boolean editarModo, PersonaRegistrada persona) throws IOException {
         logger.info("Iniciando PersonaEditar");
-        FXMLLoader fxmlLoader = new FXMLLoader(AgendaApplication.class.getResource(Views.PERSONAEDITAR.get()));
+        FXMLLoader fxmlLoader = new FXMLLoader(AppController.class.getResource(Views.PERSONAEDITAR.get()));
         Scene scene = new Scene(fxmlLoader.load(), Properties.PERSONAEDIT_WIDTH, Properties.PERSONAEDITAR_HEIGHT);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -123,7 +126,7 @@ public class SceneManager {
         stage.setTitle(editarModo ? "Editar Persona" : "Nueva Persona");
         stage.setResizable(false);
         // Le hacemos los setters a los elementos del controlador
-        PersonaEditarViewController controller = fxmlLoader.getController();
+        EdicionAdministradorViewController controller = fxmlLoader.getController();
         controller.setDialogStage(stage);
         controller.setEditarModo(editarModo);
         controller.setPersona(persona);
@@ -133,9 +136,29 @@ public class SceneManager {
         return controller.isAceptarClicked();
     }
 
-    public void initEstadisticas(List<Persona> personas) throws IOException {
+    public boolean initProductoEditar(boolean editarModo, Producto producto) throws IOException {
+        logger.info("Iniciando PersonaEditar");
+        FXMLLoader fxmlLoader = new FXMLLoader(AppController.class.getResource(Views.PERSONAEDITAR.get()));
+        Scene scene = new Scene(fxmlLoader.load(), Properties.PERSONAEDIT_WIDTH, Properties.PERSONAEDITAR_HEIGHT);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        //stage.initOwner(mainStage); // -importante con windows modal
+        stage.setTitle(editarModo ? "Editar producto" : "Nuevo producto");
+        stage.setResizable(false);
+        // Le hacemos los setters a los elementos del controlador
+        EdicionAdministradorViewController controller = fxmlLoader.getController();
+        controller.setDialogStage(stage);
+        controller.setEditarModo(editarModo);
+        controller.setPersona(producto);
+        stage.setScene(scene);
+        logger.info("Scene ProductoEditar loaded");
+        stage.showAndWait();
+        return controller.isAceptarClicked();
+    }
+
+    public void initEstadisticas(List<PersonaRegistrada> personas) throws IOException {
         logger.info("Iniciando Estadisticas");
-        FXMLLoader fxmlLoader = new FXMLLoader(AgendaApplication.class.getResource(Views.ESTADISTICAS.get()));
+        FXMLLoader fxmlLoader = new FXMLLoader(AppController.class.getResource(Views.ESTADISTICAS.get()));
         Scene scene = new Scene(fxmlLoader.load(), Properties.ESTADISTICAS_WIDTH, Properties.ESTADISTICAS_HEIGHT);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);

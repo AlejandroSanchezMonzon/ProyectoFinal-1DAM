@@ -5,15 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d705b7f-b2ef-45dd-bff7-00acb68db3d9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/acercade-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/acercade-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/McDAM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/McDAM.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/AcercaDeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/AcercaDeViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/AcercaDeViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ConsultaAdministradorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ConsultaAdministradorViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/EdicionAdministradorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/EdicionAdministradorViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/managers/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/managers/SceneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/models/EstadoMesa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/models/Localizador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/models/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/models/Pedido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/models/Producto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/models/Producto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/CarritoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/CarritoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/CodigoDescuentoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/CodigoDescuentoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ICRUDObservable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ICRUDObservable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/PedidoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/PedidoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/PersonaRegistradaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/PersonaRegistradaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ProductoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ProductoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/services/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/services/Storage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/utils/Properties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/utils/Properties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/consultaadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/consultaadministrador-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/edicionadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/edicionadministrador-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/iniciosesion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/iniciosesion.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/menuadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/menuadministrador-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/procesopago-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/procesopago-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/registrarse.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/registrarse.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/es/dam/repositories/PedidoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/es/dam/repositories/PedidoRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +82,11 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
   <component name="RunManager">
@@ -104,6 +122,10 @@
       <workItem from="1652948944245" duration="1235000" />
       <workItem from="1653028260429" duration="844000" />
       <workItem from="1653029124441" duration="438000" />
+      <workItem from="1653033549748" duration="864000" />
+      <workItem from="1653036754404" duration="307000" />
+      <workItem from="1653230376440" duration="387000" />
+      <workItem from="1653230791392" duration="14795000" />
     </task>
     <servers />
   </component>
