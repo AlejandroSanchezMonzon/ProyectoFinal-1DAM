@@ -1,24 +1,45 @@
 package es.dam.mcdam;
 
+import es.dam.mcdam.controllers.SplashController;
+import es.dam.mcdam.managers.DataBaseManager;
+import es.dam.mcdam.managers.SceneManager;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Optional;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class AppMain extends Application {
+    static Logger logger = LogManager.getLogger(AppMain.class);
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource("splash-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("McDAM - App Oficial");
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
+    public void start(Stage stage) throws IOException, InterruptedException {
+        SceneManager sceneManager = SceneManager.getInstance(AppMain.class);
+        sceneManager.initSplash(stage);
+    }
+
+    private static void checkServer() {
+        System.out.println("Comprobamos la conexión al Servidor BD");
+        DataBaseManager controller = DataBaseManager.getInstance();
+        try {
+            controller.open();
+            Optional<ResultSet> rs = controller.select("SELECT 'Hello world'");
+            if (rs.isPresent()) {
+                rs.get().next();
+                controller.close();
+                logger.info("Conexión correcta a la Base de Datos");
+            }
+        } catch (SQLException e) {
+            logger.error("Error al conectar al servidor de Base de Datos: " + e.getMessage());
+            System.exit(1);
+        }
     }
 
     public static void main(String[] args) {
+        checkserver();
         launch();
     }
 }

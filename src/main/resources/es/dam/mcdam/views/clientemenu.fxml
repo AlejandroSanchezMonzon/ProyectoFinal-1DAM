@@ -77,13 +77,14 @@
                               </ListView>
                            </children>
                         </VBox>
-                        <TableView prefHeight="0.0" prefWidth="391.0">
+                        <TableView prefHeight="348.0" prefWidth="391.0">
                           <columns>
-                            <TableColumn prefWidth="279.2000305056572" text="Producto" />
-                            <TableColumn minWidth="0.0" prefWidth="111.199951171875" text="Cantidad" />
+                            <TableColumn minWidth="0.0" prefWidth="230.79999083280563" text="Producto" />
+                              <TableColumn maxWidth="293.4000129699707" prefWidth="71.39994812011719" text="Precio" />
+                            <TableColumn minWidth="0.0" prefWidth="89.4000244140625" text="Cantidad" />
                           </columns>
                            <HBox.margin>
-                              <Insets bottom="73.0" />
+                              <Insets bottom="109.5" />
                            </HBox.margin>
                         </TableView>
                      </children>
@@ -118,5 +119,6 @@
             </Button>
          </children>
       </AnchorPane>
+      <Label fx:id="precio" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="485.0" />
    </children>
 </AnchorPane>

@@ -35,5 +35,8 @@ public class McDAMController {
         }
     }
 
+    public void onSalirAction() {
+    }
+
     //TODO: Iniciar la escena y extender la clase de la aplicacion
 }

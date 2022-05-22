@@ -5,15 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d705b7f-b2ef-45dd-bff7-00acb68db3d9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/SplashController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/acercade-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/acercade-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/AppMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/AppMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/AcercaDeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/AcercaDeViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/AcercaDeViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/McDAMController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/McDAMController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/managers/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/managers/SceneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/utils/Properties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/utils/Properties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/clientemenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/clientemenu.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/consultaadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/consultaadministrador-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/edicionadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/edicionadministrador-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/iniciosesion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/iniciosesion.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/menuadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/menuadministrador-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/procesopago-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/procesopago-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/registrarse.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/registrarse.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,6 +106,9 @@
       <workItem from="1652948944245" duration="1235000" />
       <workItem from="1653028260429" duration="844000" />
       <workItem from="1653029124441" duration="438000" />
+      <workItem from="1653035266462" duration="692000" />
+      <workItem from="1653036061993" duration="1465000" />
+      <workItem from="1653216990581" duration="2667000" />
     </task>
     <servers />
   </component>

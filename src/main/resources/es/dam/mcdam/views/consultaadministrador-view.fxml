@@ -22,7 +22,7 @@
                                         <Image url="@../icons/admin.png" />
                                     </image>
                                 </ImageView>
-                                <Label prefHeight="40.0" prefWidth="150.0" text="Menú de consultas de pedidos y de usuarios registrados" textFill="#b2b2b2" wrapText="true">
+                                <Label prefHeight="39.0" prefWidth="249.0" text="Menú de consultas de pedidos y de usuarios registrados" textFill="#b2b2b2" wrapText="true">
                                     <HBox.margin>
                                         <Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
                                     </HBox.margin>
