@@ -8,8 +8,11 @@ public enum Views {
     MAIN("views/iniciosesion.fxml"),
     MENUADMIN("views/menuadministrador.fxml"),
     PROCESOPAGO("views/procesopago-view.fxml"),
+
     REGISTRARSE("views/registrarse-view.fxml"),
-    SPLASH("views/splash-view.fxml");
+    SPLASH("views/splash-view.fxml"),
+    ACTUALIZARCODIGO("views/actualizarcodigo-view.fxml"),
+    ACTUALIZARPRODUCTO("views/actualizarproducto-view.fxml");
 
     private final String view;
 
