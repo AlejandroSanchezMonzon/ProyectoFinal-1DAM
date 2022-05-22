@@ -5,13 +5,14 @@ import es.dam.mcdam.managers.DataBaseManager;
 import es.dam.mcdam.managers.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
+
 
 public class AppMain extends Application {
     static Logger logger = LogManager.getLogger(AppMain.class);
@@ -39,7 +40,7 @@ public class AppMain extends Application {
     }
 
     public static void main(String[] args) {
-        checkserver();
+        checkServer();
         launch();
     }
 }

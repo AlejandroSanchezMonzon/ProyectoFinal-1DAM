@@ -1,0 +1,36 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS "codigoDescuento";
+CREATE TABLE IF NOT EXISTS "codigoDescuento" (
+	"codigo"	TEXT,
+	"porcendesc"	INTEGER,
+	PRIMARY KEY("codigo")
+);
+DROP TABLE IF EXISTS "pedido";
+CREATE TABLE IF NOT EXISTS "pedido" (
+	"metodopago"	TEXT,
+	"uuid"	TEXT,
+	"precio"	TEXT,
+	"compra"	TEXT,
+	"cliente"	TEXT,
+	"localizador"	INTEGER,
+	PRIMARY KEY("uuid")
+);
+DROP TABLE IF EXISTS "personaRegistrada";
+CREATE TABLE IF NOT EXISTS "personaRegistrada" (
+	"nombre"	TEXT,
+	"uuid"	TEXT,
+	"correo"	TEXT,
+	"contraseña"	TEXT,
+	"tipo"	TEXT,
+	PRIMARY KEY("uuid")
+);
+DROP TABLE IF EXISTS "productos";
+CREATE TABLE IF NOT EXISTS "productos" (
+	"nombre"	TEXT,
+	"uuid"	TEXT,
+	"descripcion"	TEXT,
+	"disponibilidad"	TEXT,
+	"coddescuento"	INTEGER,
+	PRIMARY KEY("uuid")
+);
+COMMIT;

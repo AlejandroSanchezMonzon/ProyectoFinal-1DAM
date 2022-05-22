@@ -3,10 +3,6 @@ package es.dam.mcdam.managers;
 import es.dam.mcdam.AppMain;
 import es.dam.mcdam.controllers.AcercaDeViewController;
 import es.dam.mcdam.controllers.McDAMController;
-import es.dam.mcdam.controllers.EstadisticasViewController;
-import es.dam.mcdam.controllers.McDAMController;
-import es.dam.mcdam.controllers.PersonaEditarViewController;
-import es.dam.mcdam.models.Producto;
 import es.dam.mcdam.utils.Properties;
 import es.dam.mcdam.utils.Resources;
 import es.dam.mcdam.views.Views;
@@ -25,8 +21,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
+
 
 public class SceneManager {
     private static SceneManager instance;
@@ -89,12 +84,40 @@ public class SceneManager {
         logger.info("Iniciando Splash");
         FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.SPLASH.get()));
         Scene scene = new Scene(fxmlLoader.load(), Properties.SPLASH_WIDTH, Properties.SPLASH_HEIGHT);
-        stage.getIcons().add(new Image(Resources.get(AppMain.class, Properties.APP_LOGO)));
+        stage.getIcons().add(new Image(Resources.get(AppMain.class, Properties.APP_ICON)));
         stage.setTitle(Properties.APP_TITLE);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
         logger.info("Scene Splash loaded");
+        stage.show();
+    }
+
+    public void initMenuCliente() throws IOException {
+        logger.info("Iniciando Menu Cliente");
+        FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.MENUCLIENTE.get()));
+        Scene scene = new Scene(fxmlLoader.load(), Properties.MENUCLIENTE_WIDTH, Properties.MENUCLIENTE_HEIGHT);
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.getIcons().add(new Image(Resources.get(AppMain.class, Properties.APP_ICON)));
+        stage.setTitle(Properties.APP_TITLE);
+        stage.initStyle(StageStyle.DECORATED);
+        logger.info("Scene Menu Cliente loaded");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void initMenuAdmin() throws IOException {
+        logger.info("Iniciando Menu Admin");
+        FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.MENUADMIN.get()));
+        Scene scene = new Scene(fxmlLoader.load(), Properties.MENUADMIN_WIDTH, Properties.MENUADMIN_HEIGHT);
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.getIcons().add(new Image(Resources.get(AppMain.class, Properties.APP_ICON)));
+        stage.setTitle(Properties.APP_TITLE);
+        stage.initStyle(StageStyle.DECORATED);
+        logger.info("Scene Menu Admin loaded");
+        stage.setScene(scene);
         stage.show();
     }
 
@@ -114,40 +137,5 @@ public class SceneManager {
         stage.showAndWait();
     }
 
-    public boolean initPersonaEditar(boolean editarModo, Producto producto) throws IOException {
-        logger.info("Iniciando PersonaEditar");
-        FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.PERSONAEDITAR.get()));
-        Scene scene = new Scene(fxmlLoader.load(), Properties.PERSONAEDIT_WIDTH, Properties.PERSONAEDITAR_HEIGHT);
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        //stage.initOwner(mainStage); // -importante con windows modal
-        stage.setTitle(editarModo ? "Editar Persona" : "Nueva Persona");
-        stage.setResizable(false);
-        // Le hacemos los setters a los elementos del controlador
-        PersonaEditarViewController controller = fxmlLoader.getController();
-        controller.setDialogStage(stage);
-        controller.setEditarModo(editarModo);
-        controller.setPersona(persona);
-        stage.setScene(scene);
-        logger.info("Scene PersonaEditar loaded");
-        stage.showAndWait();
-        return controller.isAceptarClicked();
-    }
 
-    public void initEstadisticas(List<Producto> productos) throws IOException {
-        logger.info("Iniciando Estadisticas");
-        FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.ESTADISTICAS.get()));
-        Scene scene = new Scene(fxmlLoader.load(), Properties.ESTADISTICAS_WIDTH, Properties.ESTADISTICAS_HEIGHT);
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(mainStage); // -importante con windows modal
-        stage.setTitle("Estadisticas");
-        stage.setResizable(false);
-        // Le hacemos los setters a los elementos del controlador
-        EstadisticasViewController controller = fxmlLoader.getController();
-        controller.setPersonData(productos);
-        stage.setScene(scene);
-        logger.info("Scene Estadisticas loaded");
-        stage.showAndWait();
-    }
 }

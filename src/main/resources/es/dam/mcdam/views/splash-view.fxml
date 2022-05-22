@@ -8,7 +8,7 @@
    <children>
       <ImageView fx:id="logo" fitHeight="198.0" fitWidth="277.0" layoutX="185.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="185.61671447753906" AnchorPane.topAnchor="67.0">
          <image>
-            <Image url="@../images/mcdamsinfondo.png" />
+            <Image url="@../images/logo.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="63.0" fitWidth="79.0" layoutX="268.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="269.0" AnchorPane.topAnchor="265.0">
