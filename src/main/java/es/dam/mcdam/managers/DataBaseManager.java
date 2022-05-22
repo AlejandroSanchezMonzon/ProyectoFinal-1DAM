@@ -8,15 +8,9 @@ import java.io.*;
 import java.sql.*;
 import java.util.Optional;
 
-/**
- * Manejador de Bases de Datos Relacionales
- *
- * @author Jose Luis González Sánchez
- * @version 1.0
- */
+
 public class DataBaseManager {
     private static DataBaseManager controller;
-    // No leemos de propiedades
     private final boolean fromProperties = false;
     private String serverUrl;
     private String serverPort;

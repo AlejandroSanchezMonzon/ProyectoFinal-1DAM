@@ -32,20 +32,17 @@ public class LoginViewController {
                 SceneManager sceneManager = SceneManager.get();
                 if(comprobarTipoUsuario(identificacion.getText())) {
                     try{
-                        sceneManager.initMenuCliente();
+                        sceneManager.initMenuAdmin();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 }else{
                     try{
-                        sceneManager.initMenuAdmin();
+                        sceneManager.initMenuCliente();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-
                 }
-
-
             }
         }catch(SQLException e){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -53,10 +50,7 @@ public class LoginViewController {
                 alert.setHeaderText("Error al validar los datos");
                 alert.setContentText(e.getMessage());
             }
-
     }
-
-
 
     private boolean comprobarDatos(String usuario, String contraseña) throws SQLException {
         String sql = "SELECT nombre, contraseña FROM personaRegistrada WHERE nombre = ? AND contraseña = ?";
@@ -68,16 +62,17 @@ public class LoginViewController {
 
     private boolean comprobarTipoUsuario(String usuario) throws SQLException {
         String sql = "SELECT tipo FROM personaRegistrada WHERE nombre = ?";
+        boolean isAdmin = false;
         db.open();
         var result = db.select(sql, usuario).orElseThrow(() -> new SQLException("Error al comprobar los datos."));
         while (result.next()) {
             if (result.getString("tipo").equals("ADMIN")) {
-                return true;
+                isAdmin = true;
             } else {
-                return false;
+                isAdmin = false;
             }
         }
         db.close();
-        return false;
+        return isAdmin;
     }
 }

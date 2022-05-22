@@ -21,7 +21,7 @@
             </ImageView>
             <VBox prefHeight="211.0" prefWidth="130.0">
                <children>
-                  <Label text="Acerca de ...">
+                  <Label text="Acerca de...">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" top="10.0" />
                      </VBox.margin>

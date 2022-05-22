@@ -4,6 +4,7 @@ import es.dam.mcdam.utils.Properties;
 import es.dam.mcdam.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -24,6 +25,8 @@ public class AcercaDeViewController {
     private ImageView githubIcon;
     @FXML
     private Hyperlink githubLink;
+    @FXML
+    private Button validar;
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
@@ -38,6 +41,8 @@ public class AcercaDeViewController {
         githubLink.setText(Properties.ACERCADE_LINK);
 
         githubLink.setOnAction(event -> openGitHub());
+
+        validar.setOnAction(event -> aceptarOnClick());
     }
 
     private void openGitHub() {
