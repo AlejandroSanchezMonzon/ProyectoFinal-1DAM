@@ -28,7 +28,7 @@ public class PedidoRepository implements IPedidoRepository{
     }
 
     @Override
-    public Optional<ObservableList<Pedido>> findAll() throws SQLException {
+    public ObservableList<Pedido> findAll() throws SQLException {
         String sql = "SELECT * FROM pedido";
         db.open();
         ResultSet rs = db.select(sql).orElseThrow(() -> new SQLException("Error al obtener todos los pedidos"));
@@ -40,16 +40,15 @@ public class PedidoRepository implements IPedidoRepository{
                             rs.getFloat("total"),
                             rs.getString("metodoPago"),
                             (java.util.List<LineaPedido>)rs.getObject("compra"),
-                            (PersonaRegistrada) rs.getObject("cliente"),
-                            (Localizador) rs.getObject("mesa")
+                            (PersonaRegistrada) rs.getObject("cliente")
                     )
             );
         }
         db.close();
         if (repository.isEmpty()) {
-            return Optional.empty();
+            System.out.println("Aún no hay  datos en este repositorio");
         }
-        return Optional.of(repository);
+        return repository;
     }
 
     @Override
@@ -63,8 +62,7 @@ public class PedidoRepository implements IPedidoRepository{
                     rs.getFloat("total"),
                     rs.getString("metodoPago"),
                     (java.util.List<LineaPedido>)rs.getObject("compra"),
-                    (PersonaRegistrada) rs.getObject("cliente"),
-                    (Localizador) rs.getObject("mesa")
+                    (PersonaRegistrada) rs.getObject("cliente")
             );
             return Optional.of(pedido);
         }
@@ -74,10 +72,10 @@ public class PedidoRepository implements IPedidoRepository{
 
     @Override
     public Pedido save(Pedido entity) throws SQLException {
-        String sql = "INSERT INTO pedido (uuid, total, metodoPago, compra, cliente, mesa) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO pedido (uuid, total, metodoPago, compra, cliente) VALUES (?, ?, ?, ?, ?)";
         db.open();
         //TODO ¿Problemas con el UUID?
-        var rs = db.insert(sql, entity.getUuid(), entity.getTotal(), entity.getMetodoPago(), entity.getCompra(), entity.getCliente(), entity.getMesa())
+        var rs = db.insert(sql, entity.getUuid(), entity.getTotal(), entity.getMetodoPago(), entity.getCompra(), entity.getCliente())
                 .orElseThrow(() -> new SQLException("Error al salvar el pedido: " + entity.toString()));
         db.close();
         repository.add(entity);
@@ -87,10 +85,10 @@ public class PedidoRepository implements IPedidoRepository{
     @Override
     public Pedido update(Pedido entity) throws SQLException {
         int index = repository.indexOf(entity);
-        String sql = "UPDATE pedido SET uuid = ?, total = ?, metodoPago = ?, compra = ?, cliente = ?, mesa = ?";
+        String sql = "UPDATE pedido SET uuid = ?, total = ?, metodoPago = ?, compra = ?, cliente = ?";
         db.open();
         //TODO ¿Problemas con el UUID?
-        var rs = db.update(sql, entity.getUuid(), entity.getTotal(), entity.getMetodoPago(), entity.getCompra(), entity.getCliente(), entity.getMesa());
+        var rs = db.update(sql, entity.getUuid(), entity.getTotal(), entity.getMetodoPago(), entity.getCompra(), entity.getCliente());
 
         db.close();
         repository.set(index, entity);

@@ -9,12 +9,12 @@ import java.util.UUID;
 
 public class Producto{
     private String uuid = UUID.randomUUID().toString();
-    private final SimpleStringProperty nombre;
-    private final SimpleFloatProperty precio;
-    private final SimpleStringProperty imagen;
-    private final SimpleStringProperty descripcion;
-    private final SimpleBooleanProperty disponible;
-    private final SimpleObjectProperty<CodigoDescuento> codigoDescuento;
+    private SimpleStringProperty nombre;
+    private SimpleFloatProperty precio;
+    private SimpleStringProperty imagen;
+    private SimpleStringProperty descripcion;
+    private SimpleBooleanProperty disponible;
+    private SimpleObjectProperty<CodigoDescuento> codigoDescuento;
 
     public Producto(String uuid, String nombre, float precio, String imagen, String descripcion, boolean disponible, CodigoDescuento codigoDescuento){
         this.uuid = uuid;
@@ -33,6 +33,11 @@ public class Producto{
         this.disponible = new SimpleBooleanProperty(disponible);
         this.codigoDescuento = new SimpleObjectProperty(codigoDescuento);
     }
+
+    public Producto() {
+
+    }
+
 
     public String getUuid(){
         return uuid;

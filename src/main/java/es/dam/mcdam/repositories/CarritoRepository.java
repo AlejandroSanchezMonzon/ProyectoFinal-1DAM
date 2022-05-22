@@ -22,11 +22,8 @@ public class CarritoRepository implements ICarritoRepository {
     }
 
     @Override
-    public Optional<ObservableList<ItemCarrito>> findAll()throws SQLException{
-        if(items.isEmpty()) {
-            return Optional.empty();
-        }
-        return Optional.of(items);
+    public ObservableList<ItemCarrito> findAll()throws SQLException{
+        return items;
     }
 
     @Override

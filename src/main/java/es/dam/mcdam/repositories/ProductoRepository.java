@@ -1,12 +1,16 @@
 package es.dam.mcdam.repositories;
 
+import es.dam.mcdam.services.Storage;
+import es.dam.mcdam.utils.Properties;
+import es.dam.mcdam.utils.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import es.dam.mcdam.managers.DataBaseManager;
 import es.dam.mcdam.models.CodigoDescuento;
-import es.dam.mcdam.models.PersonaRegistrada;
 import es.dam.mcdam.models.Producto;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -16,7 +20,7 @@ public class ProductoRepository implements IProductoRepository {
     private static ProductoRepository instance;
     private final ObservableList<Producto> repository = FXCollections.observableArrayList();
     //TODO: Añadir backup
-    //private final Storage storage = Storage.getInstance();
+    private final Storage storage = Storage.getInstance();
     //TODO usar Logger
     DataBaseManager db = DataBaseManager.getInstance();
 
@@ -30,7 +34,7 @@ public class ProductoRepository implements IProductoRepository {
     }
 
     @Override
-    public Optional<ObservableList<Producto>> findAll() throws SQLException {
+    public ObservableList<Producto> findAll() throws SQLException {
         String sql = "SELECT * FROM producto";
         db.open();
         ResultSet rs = db.select(sql).orElseThrow(() -> new SQLException("Error al obtener todos los productos"));
@@ -50,10 +54,9 @@ public class ProductoRepository implements IProductoRepository {
         }
         db.close();
         if (repository.isEmpty()) {
-            return Optional.empty();
+            System.out.println("Aún no hay datos en este repositorio.");
         }
-
-        return Optional.of(repository);
+        return repository;
     }
 
     @Override
@@ -117,5 +120,19 @@ public class ProductoRepository implements IProductoRepository {
         db.open();
         var rs = db.delete(sql);
         db.delete(sql);
+    }
+
+    public void storeImagen(Producto p) throws IOException {
+        String destination = Properties.IMAGES_DIR + File.separator + p.getUuid() + "." + Utils.getFileExtension(p.getImagen()).orElse("png");
+        String source = p.getImagen().replace("file:", "");
+        System.out.println("Origen: " + source);
+        System.out.println("Destino: " + destination);
+        storage.copyFile(source, destination);
+        p.setImagen(destination);
+    }
+
+    public void deleteImagen(Producto p) throws IOException {
+        String source = Properties.IMAGES_DIR + File.separator + p.getUuid() + "." + Utils.getFileExtension(p.getImagen()).orElse("png");
+        storage.deleteFile(source);
     }
 }

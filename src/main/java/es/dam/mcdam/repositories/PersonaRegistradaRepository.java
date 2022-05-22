@@ -4,14 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import es.dam.mcdam.managers.DataBaseManager;
 import es.dam.mcdam.models.PersonaRegistrada;
-import es.dam.mcdam.models.Producto;
 import es.dam.mcdam.models.Tipo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class PersonaRegistradaRepository implements IPersonaRegistradaRepository{
+public class PersonaRegistradaRepository implements IPersonaRegistradaRepository {
     private static PersonaRegistradaRepository instance;
     private final ObservableList<PersonaRegistrada> repository = FXCollections.observableArrayList();
     //TODO: Añadir backup
@@ -29,7 +28,7 @@ public class PersonaRegistradaRepository implements IPersonaRegistradaRepository
     }
 
     @Override
-    public Optional<ObservableList<PersonaRegistrada>> findAll() throws SQLException {
+    public ObservableList<PersonaRegistrada> findAll() throws SQLException {
         String sql = "SELECT * FROM personaRegistrada";
         db.open();
         ResultSet rs = db.select(sql).orElseThrow(() -> new SQLException("Error al obtener todas las personas registradas"));
@@ -47,9 +46,9 @@ public class PersonaRegistradaRepository implements IPersonaRegistradaRepository
         }
         db.close();
         if (repository.isEmpty()) {
-            return Optional.empty();
+            System.out.println("Aún no hay datos en este repositorio.");
         }
-        return Optional.of(repository);
+        return repository;
     }
 
     @Override

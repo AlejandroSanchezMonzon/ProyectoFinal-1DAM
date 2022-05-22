@@ -9,23 +9,20 @@ public class Pedido {
     private final String metodoPago;
     private final List<LineaPedido> compra;
     private final PersonaRegistrada cliente;
-    private final Localizador mesa;
 
-    public Pedido(String uuid, float total, String metodoPago, List<LineaPedido> compra, PersonaRegistrada cliente, Localizador mesa) {
+    public Pedido(String uuid, float total, String metodoPago, List<LineaPedido> compra, PersonaRegistrada cliente) {
         this.uuid = uuid;
         this.total = getTotal();
         this.metodoPago = metodoPago;
         this.compra = compra;
         this.cliente = cliente;
-        this.mesa = mesa;
     }
 
-    public Pedido(float total, String metodoPago, List<LineaPedido> compra, PersonaRegistrada cliente, Localizador mesa) {
+    public Pedido(float total, String metodoPago, List<LineaPedido> compra, PersonaRegistrada cliente) {
         this.total = getTotal();
         this.metodoPago = metodoPago;
         this.compra = compra;
         this.cliente = cliente;
-        this.mesa = mesa;
     }
 
     public String getUuid() {
@@ -53,12 +50,8 @@ public class Pedido {
         return cliente;
     }
 
-    public Localizador getMesa() {
-        return mesa;
-    }
-
     @Override
     public String toString() {
-        return "Pedido{" + "uuid=" + uuid + ", total=" + total + ", metodoPago=" + metodoPago + ", compra=" + compra + ", cliente=" + cliente + ", mesa=" + mesa + '}';
+        return "Pedido{" + "uuid=" + uuid + ", total=" + total + ", metodoPago=" + metodoPago + ", compra=" + compra + ", cliente=" + cliente + '}';
     }
 }
