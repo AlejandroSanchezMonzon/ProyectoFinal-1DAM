@@ -64,12 +64,8 @@ public class DataBaseManager {
      */
     private void initConfig() {
         // Para SQLite solo necesito el driver...
-        serverUrl = "localhost";
-        serverPort = "3306";
-        dataBaseName = "dam";
         jdbcDriver = "org.sqlite.JDBC"; // SQLite
-        user = "dam";
-        password = "dam1234";
+
 
 
     }

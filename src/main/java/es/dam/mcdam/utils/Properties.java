@@ -36,13 +36,9 @@ public class Properties {
     public static final int MENUADMIN_HEIGHT = 400;
     public static final int MENUADMIN_WIDTH = 600;
 
-    //Menu Registro
-    public static final int MENUREG_HEIGHT = 400;
-    public static final int MENUREG_WIDTH = 600;
-
-    //Menu Login
-    public static final int MENULOG_HEIGHT = 400;
-    public static final int MENULOG_WIDTH = 600;
+    //Menu registro
+    public static final int REGISTER_HEIGHT = 400;
+    public static final int REGISTER_WIDTH = 600;
 
     //Menu proceso de pago
     public static final int PROCESOPAGO_HEIGHT = 400;

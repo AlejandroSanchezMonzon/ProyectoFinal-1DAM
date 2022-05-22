@@ -1,9 +1,11 @@
 package es.dam.mcdam.services;
 
+import javafx.collections.ObservableList;
+
 import java.io.IOException;
 import java.util.List;
 
 public interface Backup<T>{
-    void backup(List<T> data) throws IOException;
-    List<T> restore() throws IOException;
+    void backup(ObservableList<T> data) throws IOException;
+    ObservableList<T> restore() throws IOException;
 }

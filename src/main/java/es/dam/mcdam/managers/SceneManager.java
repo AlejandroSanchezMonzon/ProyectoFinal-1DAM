@@ -2,7 +2,14 @@ package es.dam.mcdam.managers;
 
 import es.dam.mcdam.AppMain;
 import es.dam.mcdam.controllers.AcercaDeViewController;
+import es.dam.mcdam.controllers.ActualizarCodigoDescuentoViewController;
+import es.dam.mcdam.controllers.ActualizarProductoViewController;
 import es.dam.mcdam.controllers.McDAMController;
+import es.dam.mcdam.models.CodigoDescuento;
+import es.dam.mcdam.models.Producto;
+import es.dam.mcdam.repositories.PersonaRegistradaRepository;
+import es.dam.mcdam.services.Backup;
+import es.dam.mcdam.services.BackupJSON;
 import es.dam.mcdam.utils.Properties;
 import es.dam.mcdam.utils.Resources;
 import es.dam.mcdam.views.Views;
@@ -19,6 +26,7 @@ import javafx.stage.StageStyle;
 //import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 
@@ -67,7 +75,7 @@ public class SceneManager {
         FXMLLoader fxmlLoader = new FXMLLoader(Objects.requireNonNull(appClass.getResource(Views.MAIN.get())));
         Scene scene = new Scene(fxmlLoader.load(), Properties.APP_WIDTH, Properties.APP_HEIGHT);
         Stage stage = new Stage();
-        stage.setResizable(true);
+        stage.setResizable(false);
         stage.getIcons().add(new Image(Resources.get(AppMain.class, Properties.APP_ICON)));
         stage.setTitle(Properties.APP_TITLE);
         stage.initStyle(StageStyle.DECORATED);
@@ -148,5 +156,109 @@ public class SceneManager {
         stage.showAndWait();
     }
 
+    public void initConsultaAdministrador() throws IOException {
+        //logger.info("Iniciando consulta administrador");
+        System.out.println("Iniciando consulta administrador");
+        FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.CONSULTAADMINISTRADOR.get()));
+        Scene scene = new Scene(fxmlLoader.load(), Properties.CONSULTAADMINISTRADOR_WIDTH, Properties.CONSULTAADMINISTRADOR_HEIGHT);
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.getIcons().add(new Image(Resources.get(AppMain.class, Properties.APP_ICON)));
+        stage.setTitle(Properties.APP_TITLE);
+        stage.initStyle(StageStyle.DECORATED);
+        //logger.info("Scene Consulta Admin loaded");
+        System.out.println("Scene Consulta Admin loaded");
+        stage.setScene(scene);
+        stage.showAndWait();
 
+    }
+    public void initEdicionAdministrador() throws IOException {
+        //logger.info("Iniciando edicion administrador");
+        System.out.println("Iniciando edicion administrador");
+        FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.EDICIONADMINISTRADOR.get()));
+        Scene scene = new Scene(fxmlLoader.load(), Properties.EDICIONADMINISTRADOR_WIDTH, Properties.EDICIONADMINISTRADOR_HEIGHT);
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.getIcons().add(new Image(Resources.get(AppMain.class, Properties.APP_ICON)));
+        stage.setTitle(Properties.APP_TITLE);
+        stage.initStyle(StageStyle.DECORATED);
+        //logger.info("Scene Consulta Admin loaded");
+        System.out.println("Scene Edicion Admin loaded");
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
+    public void ProcesoPago() throws IOException {
+        //logger.info("Iniciando proceso pago");
+        System.out.println("Iniciando proceso pago");
+        FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.PROCESOPAGO.get()));
+        Scene scene = new Scene(fxmlLoader.load(), Properties.PROCESOPAGO_WIDTH, Properties.PROCESOPAGO_HEIGHT);
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.getIcons().add(new Image(Resources.get(AppMain.class, Properties.APP_ICON)));
+        stage.setTitle(Properties.APP_TITLE);
+        stage.initStyle(StageStyle.DECORATED);
+        //logger.info("Scene Proceso Pago loaded");
+        System.out.println("Scene Proceso Pago loaded");
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
+    public boolean initProductoEditar(boolean editarModo, Producto producto) throws IOException {
+        System.out.println("Iniciando Actualizar Producto");
+        FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.ACTUALIZARPRODUCTO.get()));
+        Scene scene = new Scene(fxmlLoader.load(), Properties.ACTUALIZARPRODUCTO_WIDTH, Properties.ACTUALIZARPRODUCTO_HEIGHT);
+        Stage stage =new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        //stage.initOwner(mainStage); // -importante con windows modal
+        stage.setTitle(editarModo ? "Editar Producto" : "Nuevo Producto");
+        stage.setResizable(false);
+        // Le hacemos los setters a los elementos del controlador
+        ActualizarProductoViewController controller = fxmlLoader.getController();
+        controller.setDialogStage(stage);
+        controller.setEditarModo(editarModo);
+        controller.setProducto(producto);
+        stage.setScene(scene);
+        stage.showAndWait();
+        return controller.isAceptarClicked();
+    }
+
+    public boolean initCodigoDescuentoEditar(boolean editarModo, CodigoDescuento codigoDescuento) throws IOException {
+        System.out.println("Iniciando Actualizar Codigo Descuento");
+        FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.ACTUALIZARCODIGO.get()));
+        Scene scene = new Scene(fxmlLoader.load(), Properties.ACTUALIZARCODIGO_WIDTH, Properties.ACTUALIZARCODIGO_HEIGHT);
+        Stage stage =new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        //stage.initOwner(mainStage); // -importante con windows modal
+        stage.setTitle(editarModo ? "Editar Código Descuento" : "Nueva Código Descuento");
+        stage.setResizable(false);
+        // Le hacemos los setters a los elementos del controlador
+        ActualizarCodigoDescuentoViewController controller = fxmlLoader.getController();
+        controller.setDialogStage(stage);
+        controller.setEditarModo(editarModo);
+        controller.setCodigoDescuento(codigoDescuento);
+        stage.setScene(scene);
+        stage.showAndWait();
+        return controller.isAceptarClicked();
+    }
+
+
+    public void initRegisterView() throws IOException {
+        //logger.info("Iniciando registro");
+        System.out.println("Iniciando Registro");
+        FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.REGISTRARSE.get()));
+        Scene scene = new Scene(fxmlLoader.load(), Properties.REGISTER_WIDTH, Properties.REGISTER_HEIGHT);
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.setTitle(Properties.APP_TITLE);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
+    public void initBackup() throws SQLException, IOException {
+        System.out.println("Iniciando Backup");
+        Backup save = BackupJSON.getInstance();
+        PersonaRegistradaRepository personaRegistradaRepository = PersonaRegistradaRepository.getInstance();
+        save.backup(personaRegistradaRepository.findAll());
+    }
 }

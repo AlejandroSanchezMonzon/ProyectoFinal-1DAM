@@ -25,13 +25,12 @@ class ItemCarritoRepositoryTest {
     @Test
     void findAll(){
         try {
-            var resVacioOptional = carritoRepository.findAll();
-            var resVacio = resVacioOptional.get();
+            var resVacio = carritoRepository.findAll();
             carritoRepository.save(pTest1);
             carritoRepository.save(pTest2);
             carritoRepository.save(pTest3);
-            var resLlenoOptional = carritoRepository.findAll();
-            var resLleno = resLlenoOptional.get();
+            var resLleno = carritoRepository.findAll();
+
             assertAll(
                     () -> assertFalse(resVacioOptional.isPresent()),
                     () -> assertTrue(resLlenoOptional.isPresent()),

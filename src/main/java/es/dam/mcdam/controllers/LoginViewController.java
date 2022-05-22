@@ -1,14 +1,12 @@
 package es.dam.mcdam.controllers;
 
+import es.dam.mcdam.AppMain;
 import es.dam.mcdam.managers.DataBaseManager;
 import es.dam.mcdam.managers.SceneManager;
 import es.dam.mcdam.utils.Utils;
 import es.dam.mcdam.views.Views;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -24,6 +22,21 @@ public class LoginViewController {
     private TextField password;
     @FXML
     private Button validar;
+
+    private Hyperlink register;
+
+    SceneManager sceneManager = SceneManager.getInstance(AppMain.class);
+
+    @FXML
+    public void initialize() {
+        register.setOnAction(event -> {
+            try {
+                sceneManager.initRegisterView();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
 
     @FXML
     private void validarOnClick() throws SQLException {

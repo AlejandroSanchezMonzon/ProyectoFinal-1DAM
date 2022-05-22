@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import es.dam.mcdam.models.PersonaRegistrada;
 import es.dam.mcdam.utils.LocalDateAdapter;
+import javafx.collections.ObservableList;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class BackupJSON implements IBackupJSON{
     }
 
     @Override
-    public void backup(List<PersonaRegistrada> personas) throws IOException {
+    public void backup(ObservableList<PersonaRegistrada> personas) throws IOException {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .setPrettyPrinting()
@@ -46,7 +47,7 @@ public class BackupJSON implements IBackupJSON{
     }
 
     @Override
-    public List<PersonaRegistrada> restore() throws IOException {
+    public ObservableList<PersonaRegistrada> restore() throws IOException {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .create();

@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d705b7f-b2ef-45dd-bff7-00acb68db3d9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/AcercaDeViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/AcercaDeViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/McDAM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/McDAM.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/LoginViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/LoginViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/managers/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/managers/DataBaseManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/managers/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/managers/SceneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/services/Backup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/services/Backup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/services/BackupJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/services/BackupJSON.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/utils/Properties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/utils/Properties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/es/dam/repositories/ItemCarritoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/es/dam/repositories/ItemCarritoRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +132,7 @@
       <workItem from="1653216990581" duration="2667000" />
       <workItem from="1653232834157" duration="5371000" />
       <workItem from="1653244892650" duration="827000" />
+      <workItem from="1653255909355" duration="2563000" />
     </task>
     <servers />
   </component>
