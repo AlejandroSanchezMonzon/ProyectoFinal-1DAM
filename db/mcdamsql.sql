@@ -6,8 +6,8 @@
 CREATE TABLE `producto` (
   `nombre` text,
   `uuid` text primary key,
-  `descripcion` text
-  `disponibilidad` text
+  `descripcion` text,
+  `disponibilidad` text,
   `coddescuento` integer
 );
 
@@ -34,10 +34,9 @@ CREATE TABLE `pedido` (
 -- Declaración de la tabla `personaRegistrada`
 
 CREATE TABLE `personaRegistrada` (
-  `nombre` char(100) NOT NULL DEFAULT '',
-  `uuid` char(45) NOT NULL,
-  `correo` varchar(100) NOT NULL,
-  `contraseña` varchar(100) NOT NULL,
-  `tipo` varchar(7),
-  PRIMARY KEY (`uuid`)
+  `nombre`text ,
+  `uuid` text primary key,
+  `correo` text,
+  `contraseña` text,
+  `tipo` text
 );

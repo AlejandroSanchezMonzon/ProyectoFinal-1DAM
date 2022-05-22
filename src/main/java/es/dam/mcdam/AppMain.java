@@ -20,6 +20,7 @@ public class AppMain extends Application {
     public void start(Stage stage) throws IOException, InterruptedException {
         SceneManager sceneManager = SceneManager.getInstance(AppMain.class);
         sceneManager.initSplash(stage);
+
     }
 
     private static void checkServer() {

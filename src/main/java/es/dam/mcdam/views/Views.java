@@ -9,7 +9,7 @@ public enum Views {
     MENUADMIN("views/menuadministrador.fxml"),
     PROCESOPAGO("views/procesopago-view.fxml"),
     REGISTRARSE("views/registrarse-view.fxml"),
-    SPLASH("views/Splash.fxml");
+    SPLASH("views/splash-view.fxml");
 
     private final String view;
 
