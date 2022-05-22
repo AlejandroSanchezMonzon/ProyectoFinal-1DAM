@@ -4,59 +4,61 @@ import es.dam.mcdam.utils.Properties;
 import es.dam.mcdam.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class AcercaDeViewController {
+    private Stage dialogStage;
 
-    private Stage acercaDeStage;
     @FXML
     private Label version;
     @FXML
     private Label autor;
     @FXML
-    private ImageView logo;
+    private Label titulo;
+    @FXML
+    private ImageView githubIcon;
     @FXML
     private Hyperlink githubLink;
-
     @FXML
-    public void setAcercaDeStage(Stage acercaDeStage) {
-        this.acercaDeStage = acercaDeStage;
+    private Button validar;
+
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
     }
 
     @FXML
-    public void initialize() {
-        version.setText("Versión: " + Properties.APP_VERSION);
+    private void initialize() {
+        titulo.setText(Properties.APP_TITLE);
+        version.setText("Version: " + Properties.APP_VERSION);
         autor.setText("Autores: " + Properties.APP_AUTHOR);
-        logo.setImage(new Image(Properties.APP_LOGO));
+
         githubLink.setText(Properties.ACERCADE_LINK);
 
+        githubLink.setOnAction(event -> openGitHub());
 
-        githubLink.setOnAction(event -> openGithub());
-
-
+        validar.setOnAction(event -> aceptarOnClick());
     }
 
-    private void openGithub() {
-        try{
+    private void openGitHub() {
+        try {
             Utils.openBrowser(Properties.ACERCADE_LINK);
-        }catch (IOException e){
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Error al abrir la página");
-            alerta.setContentText(e.getMessage());
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error al abrir el navegador");
+            alert.setContentText("No se ha podido abrir el navegador");
+            e.printStackTrace();
         }
-
     }
 
     @FXML
-    private void handleCerrar() {
-        acercaDeStage.close();
+    private void aceptarOnClick() {
+        dialogStage.close();
     }
-
-
 }
