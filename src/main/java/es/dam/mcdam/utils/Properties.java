@@ -45,16 +45,24 @@ public class Properties {
     public static final int MENULOG_WIDTH = 600;
 
     //Menu proceso de pago
-    public static final int MENUPAGO_HEIGHT = 400;
-    public static final int MENUPAGO_WIDTH = 600;
+    public static final int PROCESOPAGO_HEIGHT = 400;
+    public static final int PROCESOPAGO_WIDTH = 600;
 
     //Menu de consulta administrador
-    public static final int MENUCONSULTA_HEIGHT = 400;
-    public static final int MENUCONSULTA_WIDTH = 600;
+    public static final int CONSULTAADMINISTRADOR_HEIGHT = 400;
+    public static final int CONSULTAADMINISTRADOR_WIDTH = 600;
 
     //Menu edicion administrador
-    public static final int MENUEDICION_HEIGHT = 400;
-    public static final int MENUEDICION_WIDTH = 600;
+    public static final int EDICIONADMINISTRADOR_HEIGHT = 400;
+    public static final int EDICIONADMINISTRADOR_WIDTH = 600;
+
+    //Menu actualizar producto
+    public static final int ACTUALIZARPRODUCTO_HEIGHT = 400;
+    public static final int ACTUALIZARPRODUCTO_WIDTH = 600;
+
+    //Menu actualizar codigo descuento
+    public static final int ACTUALIZARCODIGO_HEIGHT = 400;
+    public static final int ACTUALIZARCODIGO_WIDTH = 600;
 
     //Acerca de
     public static final String APP_LOGO = "images/logo.png";

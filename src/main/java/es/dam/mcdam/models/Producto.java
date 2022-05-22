@@ -42,6 +42,9 @@ public class Producto{
     public String getUuid(){
         return uuid;
     }
+    public void setUuid(String uuid){
+        this.uuid = uuid;
+    }
 
     public String getNombre(){
         return nombre.get();
