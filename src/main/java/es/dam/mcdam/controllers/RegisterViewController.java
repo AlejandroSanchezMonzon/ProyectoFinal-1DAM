@@ -8,11 +8,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
+import java.util.UUID;
 
 public class RegisterViewController {
 
 
     DataBaseManager db = DataBaseManager.getInstance();
+    @FXML
+    private TextField nombre;
     @FXML
     private TextField identificacion;
     @FXML
@@ -21,9 +24,20 @@ public class RegisterViewController {
     private Button validar;
 
     @FXML
+    private void initialize() {
+        validar.setOnAction(event -> {
+            try {
+                validarOnClick();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    @FXML
     private void validarOnClick() throws SQLException {
         if (comprobarDatos(identificacion.getText(), password.getText())){
-            String sql = "INSERT INTO usuarios (identificacion, contraseña) VALUES ('"+identificacion.getText()+"','"+password.getText()+"')";
+            String sql = "INSERT INTO personaRegistrada (nombre, correo, contraseña, tipo, uuid) VALUES ('"+nombre.getText()+"','"+identificacion.getText()+"','"+password.getText()+"', 'USER', '"+UUID.randomUUID().toString()+"')";
             db.open();
             db.insert(sql);
             db.close();

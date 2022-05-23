@@ -28,16 +28,12 @@ class CodigoDescuentoRepositoryTest {
     @Test
     void findAll() {
         try {
-            var resVacioOptional = codigoDescuentoRepository.findAll();
-            var resVacio = resVacioOptional.get();
+            var resVacio = codigoDescuentoRepository.findAll();
             codigoDescuentoRepository.save(pTest1);
             codigoDescuentoRepository.save(pTest2);
             codigoDescuentoRepository.save(pTest3);
-            var resLlenoOptional = codigoDescuentoRepository.findAll();
-            var resLleno = resLlenoOptional.get();
+            var resLleno = codigoDescuentoRepository.findAll();
             assertAll(
-                    () -> assertFalse(resVacioOptional.isPresent()),
-                    () -> assertTrue(resLlenoOptional.isPresent()),
                     () -> assertEquals(3, resLleno.size()),
                     () -> assertEquals(pTest1, resLleno.get(0)),
                     () -> assertEquals(pTest2, resLleno.get(1)),

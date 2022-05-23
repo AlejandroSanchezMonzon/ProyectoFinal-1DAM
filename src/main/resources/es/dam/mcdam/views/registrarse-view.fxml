@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.dam.mcdam.views.Registrarse">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.dam.mcdam.controllers.RegisterViewController">
     <children>
         <ImageView fitHeight="72.0" fitWidth="85.0" layoutX="263.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -53,17 +53,17 @@
             </VBox>
             <VBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="170.0">
                <children>
-                  <TextField prefHeight="26.0" prefWidth="145.0">
+                  <TextField fx:id="nombre" prefHeight="26.0" prefWidth="145.0">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
-                    <TextField>
+                    <TextField fx:id="identificacion">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </TextField>
-                    <TextField>
+                    <TextField fx:id="password">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -92,7 +92,7 @@
             <Font name="Arial Black" size="12.0" />
          </font>
       </Label>
-        <Button layoutX="226.0" layoutY="308.0" mnemonicParsing="false" prefWidth="157.0" style="-fx-background-color: lightgreen;" text="Registrarse">
+        <Button fx:id="validar" layoutX="226.0" layoutY="308.0" mnemonicParsing="false" prefWidth="157.0" style="-fx-background-color: lightgreen;" text="Registrarse">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font></Button>

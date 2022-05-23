@@ -1,10 +1,12 @@
 package es.dam.mcdam.controllers;
 
+import es.dam.mcdam.AppMain;
 import es.dam.mcdam.models.Pedido;
 import es.dam.mcdam.models.PersonaRegistrada;
 import es.dam.mcdam.repositories.PedidoRepository;
 import es.dam.mcdam.repositories.PersonaRegistradaRepository;
 import es.dam.mcdam.utils.Properties;
+import es.dam.mcdam.utils.Resources;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -61,7 +63,7 @@ public class ConsultaAdministradorViewController {
                     ImageView imageView = new ImageView();
                     imageView.setFitHeight(75);
                     imageView.setFitWidth(50);
-                    imageView.setImage(new Image(Properties.PEDIDO_DEFAULT));
+                    imageView.setImage(new Image(Resources.get(AppMain.class, Properties.PEDIDO_DEFAULT)));
                     hBox.setAlignment(Pos.CENTER);
                     hBox.getChildren().addAll(imageView, vbox);
                     setGraphic(hBox);
@@ -94,7 +96,7 @@ public class ConsultaAdministradorViewController {
                     ImageView imageView = new ImageView();
                     imageView.setFitHeight(75);
                     imageView.setFitWidth(50);
-                    imageView.setImage(new Image(Properties.USER_DEFAULT));
+                    imageView.setImage(new Image(Resources.get(AppMain.class, Properties.USER_DEFAULT)));
                     hBox.setAlignment(Pos.CENTER);
                     hBox.getChildren().addAll(imageView, vbox);
                     setGraphic(hBox);

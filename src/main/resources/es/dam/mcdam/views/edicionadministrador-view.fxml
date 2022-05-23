@@ -70,14 +70,14 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                            <children>
-                              <Button mnemonicParsing="false" prefWidth="95.0" style="-fx-background-color: black;" text="Producto" textFill="WHITE">
+                              <Button fx:id="producto" mnemonicParsing="false" prefWidth="95.0" style="-fx-background-color: black;" text="Producto" textFill="WHITE">
                                  <VBox.margin>
                                     <Insets left="7.0" right="7.0" top="40.0" />
                                  </VBox.margin>
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font></Button>
-                              <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="95.0" style="-fx-background-color: black;" text="Código Promocional" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                              <Button fx:id="codigoPromocional" mnemonicParsing="false" prefHeight="43.0" prefWidth="95.0" style="-fx-background-color: black;" text="Código Promocional" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                                  <VBox.margin>
                                     <Insets bottom="30.0" left="7.0" right="7.0" top="40.0" />
                                  </VBox.margin>
@@ -91,7 +91,8 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                            <children>
-                              <ListView prefHeight="200.0" prefWidth="390.0" />
+                              <ListView fx:id="listaProductos" prefHeight="200.0" prefWidth="390.0" visible="false"/>
+                              <ListView fx:id="listaCodigoDescuento" prefHeight="200.0" prefWidth="390.0" visible="false"/>
                            </children>
                         </AnchorPane>
                      </children>

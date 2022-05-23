@@ -1,10 +1,7 @@
 package es.dam.mcdam.managers;
 
 import es.dam.mcdam.AppMain;
-import es.dam.mcdam.controllers.AcercaDeViewController;
-import es.dam.mcdam.controllers.ActualizarCodigoDescuentoViewController;
-import es.dam.mcdam.controllers.ActualizarProductoViewController;
-import es.dam.mcdam.controllers.McDAMController;
+import es.dam.mcdam.controllers.*;
 import es.dam.mcdam.models.CodigoDescuento;
 import es.dam.mcdam.models.Producto;
 import es.dam.mcdam.repositories.PersonaRegistradaRepository;
@@ -83,7 +80,7 @@ public class SceneManager {
         System.out.println("Scene Main loaded");
         // Por si salimos
         stage.setOnCloseRequest(event -> {
-            fxmlLoader.<McDAMController>getController().onSalirAction();
+            fxmlLoader.<LoginViewController>getController().onSalirAction();
         });
         stage.setScene(scene);
         mainStage = stage;

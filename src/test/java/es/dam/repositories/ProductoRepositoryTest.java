@@ -40,16 +40,12 @@ class ProductoRepositoryTest {
     @Test
     void findAll() {
         try {
-            var resVacioOptional = productoRepository.findAll();
-            var resVacio = resVacioOptional.get();
+            var resVacio = productoRepository.findAll();
             productoRepository.save(pTest1);
             productoRepository.save(pTest2);
             productoRepository.save(pTest3);
-            var resLlenoOptional = productoRepository.findAll();
-            var resLleno = resLlenoOptional.get();
+            var resLleno = productoRepository.findAll();
             assertAll(
-                    () -> assertFalse(resVacioOptional.isPresent()),
-                    () -> assertTrue(resLlenoOptional.isPresent()),
                     () -> assertEquals(3, resLleno.size()),
                     () -> assertEquals(pTest1, resLleno.get(0)),
                     () -> assertEquals(pTest2, resLleno.get(1)),

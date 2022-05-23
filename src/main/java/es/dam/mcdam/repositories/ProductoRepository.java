@@ -42,13 +42,13 @@ public class ProductoRepository implements IProductoRepository {
         while (rs.next()) {
             repository.add(
                     new Producto(
-                            rs.getString("uuuid"),
+                            rs.getString("uuid"),
                             rs.getString("nombre"),
                             rs.getFloat("precio"),
                             rs.getString("imagen"),
                             rs.getString("descripcion"),
-                            rs.getBoolean("disponible"),
-                            (CodigoDescuento) rs.getObject("codigoDescuento")
+                            rs.getBoolean("disponibilidad"),
+                            (CodigoDescuento) rs.getObject("coddescuento")
                     )
             );
         }
@@ -66,13 +66,13 @@ public class ProductoRepository implements IProductoRepository {
         var rs = db.select(sql, uuid).orElseThrow(() -> new SQLException("Error al obtener el producto con uuid: " + uuid));
         while (rs.next()) {
             var producto = new Producto(
-                    rs.getString("uuuid"),
+                    rs.getString("uuid"),
                     rs.getString("nombre"),
                     rs.getFloat("precio"),
                     rs.getString("imagen"),
                     rs.getString("descripcion"),
-                    rs.getBoolean("disponible"),
-                    (CodigoDescuento) rs.getObject("codigoDescuento")
+                    rs.getBoolean("disponibilidad"),
+                    (CodigoDescuento) rs.getObject("coddescuento")
             );
             return Optional.of(producto);
         }

@@ -21,6 +21,7 @@ public class AppMain extends Application {
         SceneManager sceneManager = SceneManager.getInstance(AppMain.class);
         sceneManager.initSplash(stage);
 
+
     }
 
     private static void checkServer() {
@@ -45,5 +46,9 @@ public class AppMain extends Application {
     public static void main(String[] args) {
         checkServer();
         launch();
+    }
+
+    public void onSalirAction() {
+        System.exit(0);
     }
 }

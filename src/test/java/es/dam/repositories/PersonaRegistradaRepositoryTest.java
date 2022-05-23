@@ -37,16 +37,12 @@ class PersonaRegistradaRepositoryTest {
     @Test
     void findAll() {
         try {
-            var resVacioOptional = personaRepository.findAll();
-            var resVacio = resVacioOptional.get();
+            var resVacio = personaRepository.findAll();
             personaRepository.save(pTest1);
             personaRepository.save(pTest2);
             personaRepository.save(pTest3);
-            var resLlenoOptional = personaRepository.findAll();
-            var resLleno = resLlenoOptional.get();
+            var resLleno = personaRepository.findAll();
             assertAll(
-                    () -> assertFalse(resVacioOptional.isPresent()),
-                    () -> assertTrue(resLlenoOptional.isPresent()),
                     () -> assertEquals(3, resLleno.size()),
                     () -> assertEquals(pTest1, resLleno.get(0)),
                     () -> assertEquals(pTest2, resLleno.get(1)),

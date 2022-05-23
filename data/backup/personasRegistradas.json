@@ -1,0 +1,16 @@
+[
+  {
+    "uuid": "222",
+    "nombre": "Ruben",
+    "correo": "admin@admin.com",
+    "contraseña": "admin12345",
+    "tipo": "ADMIN"
+  },
+  {
+    "uuid": "4358c747-ddbb-4a6b-987c-07bc7592302f",
+    "nombre": "Prueba",
+    "correo": "prueba@prueba.com",
+    "contraseña": "12345678",
+    "tipo": "USER"
+  }
+]

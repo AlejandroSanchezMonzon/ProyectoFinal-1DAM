@@ -49,16 +49,12 @@ class PedidoRepositoryTest {
     @Test
     void findAll() {
         try {
-            var resVacioOptional = pedidoRepository.findAll();
-            var resVacio = resVacioOptional.get();
+            var resVacio = pedidoRepository.findAll();
             pedidoRepository.save(pTest1);
             pedidoRepository.save(pTest2);
             pedidoRepository.save(pTest3);
-            var resLlenoOptional = pedidoRepository.findAll();
-            var resLleno = resLlenoOptional.get();
+            var resLleno = pedidoRepository.findAll();
             assertAll(
-                    () -> assertFalse(resVacioOptional.isPresent()),
-                    () -> assertTrue(resLlenoOptional.isPresent()),
                     () -> assertEquals(3, resLleno.size()),
                     () -> assertEquals(pTest1, resLleno.get(0)),
                     () -> assertEquals(pTest2, resLleno.get(1)),

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="616.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.dam.mcdam.views.Clientemenu">
+<AnchorPane prefHeight="616.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.dam.mcdam.controllers.MenuClienteViewController">
    <children>
       <AnchorPane prefHeight="616.0" prefWidth="845.0">
          <children>

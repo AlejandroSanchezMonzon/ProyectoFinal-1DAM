@@ -7,7 +7,7 @@ public class Properties {
     private static final String APP_PATH = System.getProperty("user.dir");
 
     public static final String DB_DIR = APP_PATH + File.separator + "db";
-    public static final String DB_FILE = DB_DIR + File.separator + "mcdamsql.sql";
+    public static final String DB_FILE = DB_DIR + File.separator + "McDAM.db";
 
     //Datos
     public static final String DATA_DIR = APP_PATH + File.separator + "data";
@@ -18,7 +18,7 @@ public class Properties {
 
     //General
     public static final String APP_TITLE = "MCDAM";
-    public static final String APP_ICON = "icons/logo.ico";
+    public static final String APP_ICON = "icons" + File.separator + "logo.png";
     public static final int APP_WIDTH = 600;
     public static final int APP_HEIGHT = 400;
 

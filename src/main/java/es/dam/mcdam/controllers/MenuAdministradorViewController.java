@@ -17,6 +17,7 @@ public class MenuAdministradorViewController {
     @FXML
     private Button backup;
 
+    @FXML
     public void initialize(){
         consultar.setOnAction(event -> {
             System.out.println("Consultar");

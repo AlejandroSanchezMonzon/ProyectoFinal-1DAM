@@ -32,8 +32,6 @@ class ItemCarritoRepositoryTest {
             var resLleno = carritoRepository.findAll();
 
             assertAll(
-                    () -> assertFalse(resVacioOptional.isPresent()),
-                    () -> assertTrue(resLlenoOptional.isPresent()),
                     () -> assertEquals(3, resLleno.size()),
                     () -> assertEquals(pTest1, resLleno.get(0)),
                     () -> assertEquals(pTest2, resLleno.get(1)),

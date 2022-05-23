@@ -19,7 +19,7 @@ public class BackupJSON implements IBackupJSON{
 
     private final String APP_PATH = System.getProperty("user.dir");
     private final String DATA_DIR = APP_PATH + File.separator + "data";
-    private final String BACKUP_FILE = DATA_DIR + File.separator;
+    private final String BACKUP_FILE = DATA_DIR + File.separator + "backup" + File.separator;
 
      private BackupJSON(){
         File dataDir = new File(DATA_DIR);
@@ -42,7 +42,7 @@ public class BackupJSON implements IBackupJSON{
                 .setPrettyPrinting()
                 .create();
         String json = gson.toJson(personas);
-        Files.writeString(new File(BACKUP_FILE + "personasRegistradas.json").toPath(), json);
+        Files.writeString(new File(BACKUP_FILE +  "personasRegistradas.json").toPath(), json);
 
     }
 

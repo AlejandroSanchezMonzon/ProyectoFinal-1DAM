@@ -2,11 +2,11 @@ package es.dam.mcdam.views;
 
 public enum Views {
     ACERCADE("views/acercade-view.fxml"),
-    MENUCLIENTE("views/clientemenu.fxml"),
+    MENUCLIENTE("views/clientemenu-view.fxml"),
     CONSULTAADMINISTRADOR("views/consultaadministrador-view.fxml"),
     EDICIONADMINISTRADOR("views/edicionadministrador-view.fxml"),
-    MAIN("views/iniciosesion.fxml"),
-    MENUADMIN("views/menuadministrador.fxml"),
+    MAIN("views/iniciosesion-view.fxml"),
+    MENUADMIN("views/menuadministrador-view.fxml"),
     PROCESOPAGO("views/procesopago-view.fxml"),
 
     REGISTRARSE("views/registrarse-view.fxml"),

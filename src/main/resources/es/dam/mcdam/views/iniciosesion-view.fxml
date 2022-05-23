@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.dam.mcdam.views.Logingeneral">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.dam.mcdam.controllers.LoginViewController">
    <children>
       <ImageView fitHeight="72.0" fitWidth="85.0" layoutX="263.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -32,13 +32,13 @@
             <Font name="Arial Black" size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="230.0" layoutY="185.0" />
-      <TextField layoutX="229.0" layoutY="222.0" />
-      <Button layoutX="226.0" layoutY="277.0" mnemonicParsing="false" prefWidth="157.0" style="-fx-background-color: lightgreen;" text="Validar credenciales">
+      <TextField fx:id="identificacion" layoutX="230.0" layoutY="185.0" />
+      <TextField fx:id="password" layoutX="229.0" layoutY="222.0" />
+      <Button fx:id="validar" layoutX="226.0" layoutY="277.0" mnemonicParsing="false" prefWidth="157.0" style="-fx-background-color: lightgreen;" text="Validar credenciales">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font></Button>
       <Label layoutX="184.0" layoutY="333.0" text="¿Aún no estas registrado?" />
-      <Hyperlink layoutX="324.0" layoutY="330.0" text="Regístrate gratis." />
+      <Hyperlink fx:id="register" layoutX="324.0" layoutY="330.0" text="Regístrate gratis." />
    </children>
 </AnchorPane>

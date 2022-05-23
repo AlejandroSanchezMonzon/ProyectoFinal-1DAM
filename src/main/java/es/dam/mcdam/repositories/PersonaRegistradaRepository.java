@@ -36,11 +36,11 @@ public class PersonaRegistradaRepository implements IPersonaRegistradaRepository
         while (rs.next()) {
             repository.add(
                     new PersonaRegistrada(
-                            rs.getString("uuuid"),
+                            rs.getString("uuid"),
                             rs.getString("nombre"),
                             rs.getString("correo"),
                             rs.getString("contraseña"),
-                            (Tipo) rs.getObject("tipo")
+                            Tipo.valueOf(rs.getString("tipo"))
                     )
             );
         }

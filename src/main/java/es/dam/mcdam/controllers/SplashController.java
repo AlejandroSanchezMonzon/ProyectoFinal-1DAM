@@ -1,5 +1,6 @@
 package es.dam.mcdam.controllers;
 
+import es.dam.mcdam.AppMain;
 import es.dam.mcdam.managers.SceneManager;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
@@ -18,19 +19,21 @@ public class SplashController implements Initializable {
 
     @FXML
     private ImageView gifCarga;
+    SceneManager sceneManager = SceneManager.getInstance(AppMain.class);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        FadeTransition transition = new FadeTransition(Duration.millis(3000), fondo);
+        FadeTransition transition = new FadeTransition(Duration.seconds(3), fondo);
         transition.setFromValue(1.0);
         transition.setToValue(1.0);
         transition.play();
+
 
         transition.setOnFinished(event -> {
             Stage scene = (Stage) fondo.getScene().getWindow();
             scene.setResizable(false);
             scene.hide();
-            SceneManager sceneManager = SceneManager.get();
+
             try {
                 sceneManager.initMain();
             } catch (IOException e) {

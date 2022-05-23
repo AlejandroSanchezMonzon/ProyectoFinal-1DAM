@@ -11,4 +11,8 @@ module es.dam.mcdam {
 
     opens es.dam.mcdam to javafx.fxml;
     exports es.dam.mcdam;
+    exports es.dam.mcdam.controllers;
+    opens es.dam.mcdam.controllers to javafx.fxml;
+    opens es.dam.mcdam.models to com.google.gson;
+
 }
