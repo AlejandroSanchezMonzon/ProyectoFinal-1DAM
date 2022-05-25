@@ -37,7 +37,7 @@ public class CodigoDescuentoRepository implements ICodigoDescuentoRepository{
             repository.add(
                     new CodigoDescuento(
                             rs.getString("codigo"),
-                            rs.getFloat("porcentajeDescuento")
+                            rs.getFloat("porcendesc")
                     )
             );
         }
@@ -56,7 +56,7 @@ public class CodigoDescuentoRepository implements ICodigoDescuentoRepository{
         while (rs.next()) {
             var codigoDescuento = new CodigoDescuento(
                     rs.getString("codigo"),
-                    rs.getFloat("porcentajeDescuento")
+                    rs.getFloat("porcendesc")
             );
             return Optional.of(codigoDescuento);
         }
@@ -66,7 +66,7 @@ public class CodigoDescuentoRepository implements ICodigoDescuentoRepository{
 
     @Override
     public CodigoDescuento save(CodigoDescuento entity) throws SQLException {
-        String sql = "INSERT INTO codigoDescuento (codigo, porcentajeDecuento) VALUES (?, ?)";
+        String sql = "INSERT INTO codigoDescuento (codigo, porcendesc) VALUES (?, ?)";
         db.open();
         //TODO ¿Problemas con el UUID?
         ResultSet rs = db.insert(sql, entity.getCodigo(), entity.getPorcentajeDescuento())
@@ -79,7 +79,7 @@ public class CodigoDescuentoRepository implements ICodigoDescuentoRepository{
     @Override
     public CodigoDescuento update(CodigoDescuento entity) throws SQLException {
         int index = repository.indexOf(entity);
-        String sql = "UPDATE codigoDescuento SET codigo = ?, porcentajeDescuento = ?";
+        String sql = "UPDATE codigoDescuento SET codigo = ?, porcendesc = ?";
         db.open();
         //TODO ¿Problemas con el UUID?
         var rs = db.update(sql, entity.getCodigo(), entity.getPorcentajeDescuento());

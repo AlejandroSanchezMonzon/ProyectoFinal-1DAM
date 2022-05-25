@@ -12,7 +12,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductoRepositoryTest {
-    private final ProductoRepository productoRepository = ProductoRepository.getInstance();
+    private static final ProductoRepository productoRepository = ProductoRepository.getInstance();
 
     private final CodigoDescuento codigo1 = new CodigoDescuento("A111",30.00f);
     private final CodigoDescuento codigo2 = new CodigoDescuento("B222",40.00f);
@@ -33,12 +33,12 @@ class ProductoRepositoryTest {
 
 
     @BeforeAll
-    void setUp() throws SQLException {
+    static void setUp() throws SQLException {
         productoRepository.deleteAll();
     }
 
     @Test
-    void findAll() {
+    void findAll() throws SQLException {
         try {
             var resVacio = productoRepository.findAll();
             productoRepository.save(pTest1);
@@ -52,12 +52,12 @@ class ProductoRepositoryTest {
                     () -> assertEquals(pTest3, resLleno.get(2))
             );
         }catch (Exception e){
-            fail();
+            throw new SQLException(e.getMessage());
         }
     }
 
     @Test
-    void findById() {
+    void findById() throws SQLException {
         try {
             productoRepository.save(pTest1);
             var resOptional = productoRepository.findById(pTest1.getUuid());
@@ -74,12 +74,12 @@ class ProductoRepositoryTest {
                     () -> assertEquals(pTest1.getCodigoDescuento(), res.getCodigoDescuento())
             );
         }catch (Exception e){
-            fail();
+            throw new SQLException(e.getMessage());
         }
     }
 
     @Test
-    void save() {
+    void save() throws SQLException {
         try {
             var res = productoRepository.save(pTest1);
             assertAll(
@@ -93,12 +93,12 @@ class ProductoRepositoryTest {
                     () -> assertEquals(pTest1.getCodigoDescuento(), res.getCodigoDescuento())
             );
         }catch (Exception e){
-            fail();
+            throw new SQLException(e.getMessage());
         }
     }
 
     @Test
-    void update() {
+    void update() throws SQLException {
         try {
             var res = productoRepository.save(pTest1);
             var resUpd = productoRepository.update(pTest1V2);
@@ -115,12 +115,12 @@ class ProductoRepositoryTest {
                     () -> assertEquals(pTest1.getCodigoDescuento(), res.getCodigoDescuento())
             );
         }catch (Exception e){
-            fail();
+            throw new SQLException(e.getMessage());
         }
     }
 
     @Test
-    void delete() {
+    void delete() throws SQLException {
         try {
             productoRepository.save(pTest1);
             var res = productoRepository.delete(pTest1);
@@ -136,12 +136,12 @@ class ProductoRepositoryTest {
                     () -> assertEquals(pTest1.getCodigoDescuento(), res.getCodigoDescuento())
             );
         }catch (Exception e){
-            fail();
+            throw new SQLException(e.getMessage());
         }
     }
 
     @Test
-    void deleteAll() {
+    void deleteAll() throws SQLException {
         try {
             productoRepository.save(pTest1);
             productoRepository.save(pTest2);
@@ -155,7 +155,7 @@ class ProductoRepositoryTest {
                     () -> assertTrue(productoRepository.findById(pTest3.getUuid()).isEmpty())
             );
         }catch (Exception e){
-            fail();
+            throw new SQLException(e.getMessage());
         }
     }
 }

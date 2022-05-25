@@ -12,7 +12,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PersonaRegistradaRepositoryTest {
-    private final PersonaRegistradaRepository personaRepository = PersonaRegistradaRepository.getInstance();
+    private static final PersonaRegistradaRepository personaRepository = PersonaRegistradaRepository.getInstance();
 
     private final PersonaRegistrada pTest1 = new PersonaRegistrada(
             UUID.randomUUID().toString(), "Antonio", "antonio@gmail.com", "antonio1234", Tipo.USER
@@ -29,13 +29,13 @@ class PersonaRegistradaRepositoryTest {
 
 
     @BeforeAll
-    void setUp() throws SQLException {
+    static void setUp() throws SQLException {
         personaRepository.deleteAll();
     }
 
 
     @Test
-    void findAll() {
+    void findAll() throws SQLException {
         try {
             var resVacio = personaRepository.findAll();
             personaRepository.save(pTest1);
@@ -49,12 +49,12 @@ class PersonaRegistradaRepositoryTest {
                     () -> assertEquals(pTest3, resLleno.get(2))
             );
         }catch (Exception e){
-            fail();
+            throw new SQLException(e.getMessage());
         }
     }
 
     @Test
-    void findById() {
+    void findById() throws SQLException {
         try {
             personaRepository.save(pTest1);
             var resOptional = personaRepository.findById(pTest1.getUuid());
@@ -70,12 +70,12 @@ class PersonaRegistradaRepositoryTest {
 
             );
         }catch (Exception e){
-            fail();
+            throw new SQLException(e.getMessage());
         }
     }
 
     @Test
-    void save() {
+    void save() throws SQLException {
         try {
             var res = personaRepository.save(pTest1);
             assertAll(
@@ -87,12 +87,12 @@ class PersonaRegistradaRepositoryTest {
                     () -> assertEquals(pTest1.getTipo(), res.getTipo())
             );
         }catch (Exception e){
-            fail();
+            throw new SQLException(e.getMessage());
         }
     }
 
     @Test
-    void update() {
+    void update() throws SQLException {
         try {
             var res = personaRepository.save(pTest1);
             var resUpd = personaRepository.update(pTest1V2);
@@ -107,12 +107,12 @@ class PersonaRegistradaRepositoryTest {
                     () -> assertEquals(pTest1.getTipo(), res.getTipo())
             );
         }catch (Exception e){
-            fail();
+            throw new SQLException(e.getMessage());
         }
     }
 
     @Test
-    void delete() {
+    void delete() throws SQLException {
         try {
             personaRepository.save(pTest1);
             var res = personaRepository.delete(pTest1);
@@ -126,7 +126,7 @@ class PersonaRegistradaRepositoryTest {
                     () -> assertEquals(pTest1.getTipo(), res.getTipo())
             );
         }catch (Exception e){
-            fail();
+            throw new SQLException(e.getMessage());
         }
     }
 }

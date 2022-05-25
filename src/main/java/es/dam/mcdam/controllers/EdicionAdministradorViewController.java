@@ -67,9 +67,9 @@ public class EdicionAdministradorViewController {
 
     @FXML
     private void initialize() throws SQLException {
-        initData();
         producto.setOnAction(event -> initProductosView());
         codigoPromocional.setOnAction(event -> initCodigosDescuentoView());
+        initData();
 
     }
 
@@ -110,7 +110,7 @@ public class EdicionAdministradorViewController {
                     imageView.setFitHeight(75);
                     imageView.setFitWidth(50);
                     //System.out.println(dirImage);
-                    imageView.setImage(new Image(Properties.CODIGODESCUENTO_DEFAULT));
+                    imageView.setImage(new Image(Resources.get(AppMain.class, Properties.CODIGODESCUENTO_DEFAULT)));
                     // Boton eliminar
                     Button botonEliminar = new Button("Eliminar");
                     botonEliminar.setOnAction(event -> {

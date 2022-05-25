@@ -35,7 +35,7 @@ public class ProductoRepository implements IProductoRepository {
 
     @Override
     public ObservableList<Producto> findAll() throws SQLException {
-        String sql = "SELECT * FROM producto";
+        String sql = "SELECT * FROM producto, codigoDescuento";
         db.open();
         ResultSet rs = db.select(sql).orElseThrow(() -> new SQLException("Error al obtener todos los productos"));
         repository.clear();
@@ -48,7 +48,7 @@ public class ProductoRepository implements IProductoRepository {
                             rs.getString("imagen"),
                             rs.getString("descripcion"),
                             rs.getBoolean("disponibilidad"),
-                            (CodigoDescuento) rs.getObject("coddescuento")
+                            new CodigoDescuento(rs.getString("coddescuento"), rs.getInt("porcendesc"))
                     )
             );
         }
@@ -61,7 +61,7 @@ public class ProductoRepository implements IProductoRepository {
 
     @Override
     public Optional<Producto> findById(String uuid) throws SQLException {
-        String sql = "SELECT * FROM producto WHERE uuid = ?";
+        String sql = "SELECT * FROM producto, codigoDescuento WHERE producto.uuid = ?";
         db.open();
         var rs = db.select(sql, uuid).orElseThrow(() -> new SQLException("Error al obtener el producto con uuid: " + uuid));
         while (rs.next()) {
@@ -72,7 +72,7 @@ public class ProductoRepository implements IProductoRepository {
                     rs.getString("imagen"),
                     rs.getString("descripcion"),
                     rs.getBoolean("disponibilidad"),
-                    (CodigoDescuento) rs.getObject("coddescuento")
+                    new CodigoDescuento(rs.getString("coddescuento"), rs.getInt("porcendesc"))
             );
             return Optional.of(producto);
         }
@@ -82,10 +82,10 @@ public class ProductoRepository implements IProductoRepository {
 
     @Override
     public Producto save(Producto entity) throws SQLException {
-        String sql = "INSERT INTO producto (uuid, nombre, precio, imagen, descripcion, disponible, codigoDescuento) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO producto (uuid, nombre, precio, imagen, descripcion, disponibilidad, coddescuento) VALUES (?, ?, ?, ?, ?, ?, ?)";
         db.open();
         //TODO ¿Problemas con el UUID?
-        var rs = db.insert(sql, entity.getUuid(), entity.getNombre(), entity.getPrecio(), entity.getImagen(), entity.getDescripcion(), entity.getDisponible(), entity.getCodigoDescuento());
+        var rs = db.insert(sql, entity.getUuid(), entity.getNombre(), entity.getPrecio(), entity.getImagen(), entity.getDescripcion(), entity.getDisponible(), entity.getCodigoDescuento().getCodigo());
         db.close();
         repository.add(entity);
         return entity;
@@ -97,7 +97,7 @@ public class ProductoRepository implements IProductoRepository {
         String sql = "UPDATE producto SET uuid = ?, nombre = ?, precio = ?, imagen = ?, descripcion = ?, disponible = ?, codigoDescuento = ?)";
         db.open();
         //TODO ¿Problemas con el UUID?
-        var rs = db.update(sql, entity.getUuid(), entity.getNombre(), entity.getPrecio(), entity.getImagen(), entity.getDescripcion(), entity.getDisponible(), entity.getCodigoDescuento());
+        var rs = db.update(sql, entity.getUuid(), entity.getNombre(), entity.getPrecio(), entity.getImagen(), entity.getDescripcion(), entity.getDisponible(), entity.getCodigoDescuento().getCodigo());
 
         db.close();
         repository.set(index, entity);

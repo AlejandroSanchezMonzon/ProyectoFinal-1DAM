@@ -1,14 +1,56 @@
 [
   {
-    "uuid": "222",
-    "nombre": "Ruben",
-    "correo": "admin@admin.com",
-    "contraseña": "admin12345",
+    "uuid": "88c18f41-29e5-4617-966f-86c309af2266",
+    "nombre": "Antonio",
+    "correo": "antonio@gmail.com",
+    "contraseña": "antonio1234",
+    "tipo": "USER"
+  },
+  {
+    "uuid": "c5aee702-7c6d-4995-b948-5b032cfcd073",
+    "nombre": "Maria",
+    "correo": "maria@gmail.com",
+    "contraseña": "maria1234",
     "tipo": "ADMIN"
   },
   {
-    "uuid": "4358c747-ddbb-4a6b-987c-07bc7592302f",
-    "nombre": "Prueba",
+    "uuid": "47899268-1877-4836-a897-779ca1af9b6b",
+    "nombre": "Paola",
+    "correo": "paola@gmail.com",
+    "contraseña": "paola1234",
+    "tipo": "USER"
+  },
+  {
+    "uuid": "fce7f089-b3f2-4d26-b81a-4427b7162ba6",
+    "nombre": "Antonio",
+    "correo": "antonio@gmail.com",
+    "contraseña": "antonio1234",
+    "tipo": "USER"
+  },
+  {
+    "uuid": "231f14b2-5a7f-439c-9b10-da0bb5eef1dc",
+    "nombre": "Antonio",
+    "correo": "antonio@gmail.com",
+    "contraseña": "antonio1234",
+    "tipo": "USER"
+  },
+  {
+    "uuid": "231f14b2-5a7f-439c-9b10-da0bb5eef1dr",
+    "nombre": "Admin",
+    "correo": "admin@admin.com",
+    "contraseña": "admin1234",
+    "tipo": "ADMIN"
+  },
+  {
+    "uuid": "7a933d3c-9f20-4d71-968d-bf8c97aefd5f",
+    "nombre": "prueba",
+    "correo": "correo@prueba.com",
+    "contraseña": "123456789",
+    "tipo": "USER"
+  },
+  {
+    "uuid": "66b35aa4-7986-4ab5-9262-826196e7d456",
+    "nombre": "prueba",
     "correo": "prueba@prueba.com",
     "contraseña": "12345678",
     "tipo": "USER"

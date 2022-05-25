@@ -1,18 +1,20 @@
 package es.dam.mcdam.views;
 
-public enum Views {
-    ACERCADE("views/acercade-view.fxml"),
-    MENUCLIENTE("views/clientemenu-view.fxml"),
-    CONSULTAADMINISTRADOR("views/consultaadministrador-view.fxml"),
-    EDICIONADMINISTRADOR("views/edicionadministrador-view.fxml"),
-    MAIN("views/iniciosesion-view.fxml"),
-    MENUADMIN("views/menuadministrador-view.fxml"),
-    PROCESOPAGO("views/procesopago-view.fxml"),
+import java.io.File;
 
-    REGISTRARSE("views/registrarse-view.fxml"),
-    SPLASH("views/splash-view.fxml"),
-    ACTUALIZARCODIGO("views/actualizarcodigo-view.fxml"),
-    ACTUALIZARPRODUCTO("views/actualizarproducto-view.fxml");
+public enum Views {
+    ACERCADE("views" + File.separator + "acercade-view.fxml"),
+    MENUCLIENTE("views" + File.separator + "clientemenu-view.fxml"),
+    CONSULTAADMINISTRADOR("views" + File.separator + "consultaadministrador-view.fxml"),
+    EDICIONADMINISTRADOR("views" + File.separator + "edicionadministrador-view.fxml"),
+    MAIN("views" + File.separator + "iniciosesion-view.fxml"),
+    MENUADMIN("views" + File.separator + "menuadministrador-view.fxml"),
+    PROCESOPAGO("views" + File.separator + "procesopago-view.fxml"),
+
+    REGISTRARSE("views" + File.separator + "registrarse-view.fxml"),
+    SPLASH("views" + File.separator + "splash-view.fxml"),
+    ACTUALIZARCODIGO("views" + File.separator + "actualizarcodigo-view.fxml"),
+    ACTUALIZARPRODUCTO("views" + File.separator + "actualizarproducto-view.fxml");
 
     private final String view;
 

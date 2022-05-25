@@ -4,34 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d705b7f-b2ef-45dd-bff7-00acb68db3d9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/mcdamscript.sqlite" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/mcdamsql.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/AppMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/AppMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/LoginViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/LoginViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/MenuAdministradorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/MenuAdministradorViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/RegisterViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/RegisterViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/managers/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/managers/SceneManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/PersonaRegistradaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/PersonaRegistradaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/utils/Properties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/utils/Properties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/views/Views.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/views/Views.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/icons/logo.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/clientemenu.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/consultaadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/consultaadministrador-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/edicionadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/edicionadministrador-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/iniciosesion.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/menuadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/menuadministrador-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/registrarse.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/es/dam/repositories/CodigoDescuentoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/es/dam/repositories/CodigoDescuentoRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/es/dam/repositories/ItemCarritoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/es/dam/repositories/ItemCarritoRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/es/dam/repositories/PedidoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/es/dam/repositories/PedidoRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/es/dam/repositories/PersonaRegistradaRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/es/dam/repositories/PersonaRegistradaRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/es/dam/repositories/ProductoRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/es/dam/repositories/ProductoRepositoryTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="2d705b7f-b2ef-45dd-bff7-00acb68db3d9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,6 +19,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
@@ -86,7 +64,10 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;DatabaseDriversLRU&quot;: [
@@ -113,15 +94,61 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="McDAMController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="es.dam.mcdam.controllers.McDAMController" />
+    <configuration name="PersonaRegistradaRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="McDAM" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="es.dam.mcdam.controllers.*" />
+          <option name="PATTERN" value="es.dam.repositories.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="es.dam.repositories" />
+      <option name="MAIN_CLASS_NAME" value="es.dam.repositories.PersonaRegistradaRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductoRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="McDAM" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="es.dam.repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="es.dam.repositories" />
+      <option name="MAIN_CLASS_NAME" value="es.dam.repositories.ProductoRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UtilsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="McDAM" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="es.dam.Utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="es.dam.Utils" />
+      <option name="MAIN_CLASS_NAME" value="es.dam.Utils.UtilsTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="es.dam in McDAM" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="McDAM" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="es.dam.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="es.dam" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -129,7 +156,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.AppMain" />
-        <item itemvalue="Application.McDAMController" />
+        <item itemvalue="JUnit.es.dam in McDAM" />
+        <item itemvalue="JUnit.UtilsTest" />
+        <item itemvalue="JUnit.PersonaRegistradaRepositoryTest" />
+        <item itemvalue="JUnit.ProductoRepositoryTest" />
       </list>
     </recent_temporary>
   </component>
@@ -154,6 +184,8 @@
       <workItem from="1653255909355" duration="2563000" />
       <workItem from="1653288150798" duration="5257000" />
       <workItem from="1653294003608" duration="4847000" />
+      <workItem from="1653301916650" duration="9064000" />
+      <workItem from="1653461230391" duration="573000" />
     </task>
     <servers />
   </component>

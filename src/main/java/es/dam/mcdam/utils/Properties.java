@@ -13,7 +13,6 @@ public class Properties {
     public static final String DATA_DIR = APP_PATH + File.separator + "data";
     public static final String BACKUP_DIR = DATA_DIR + File.separator + "backup";
 
-    public static final String BACKUP_FILE = BACKUP_DIR + File.separator + "agenda.bak";
     public static final String IMAGES_DIR = DATA_DIR + File.separator + "images";
 
     //General

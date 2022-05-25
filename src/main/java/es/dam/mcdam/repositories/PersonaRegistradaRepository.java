@@ -58,11 +58,11 @@ public class PersonaRegistradaRepository implements IPersonaRegistradaRepository
         var rs = db.select(sql, uuid).orElseThrow(() -> new SQLException("Error al obtener la persona con uuid: " + uuid));
         while (rs.next()) {
             var persona = new PersonaRegistrada(
-                    rs.getString("uuuid"),
+                    rs.getString("uuid"),
                     rs.getString("nombre"),
                     rs.getString("correo"),
                     rs.getString("contraseña"),
-                    (Tipo) rs.getObject("tipo")
+                    Tipo.valueOf(rs.getString("tipo"))
             );
             return Optional.of(persona);
         }
@@ -85,7 +85,7 @@ public class PersonaRegistradaRepository implements IPersonaRegistradaRepository
     @Override
     public PersonaRegistrada update(PersonaRegistrada entity) throws SQLException {
         int index = repository.indexOf(entity);
-        String sql = "UPDATE personaRegistrada SET uuid = ?, nombre = ?, correo = ?, contraseña = ?, tipo = ?)";
+        String sql = "UPDATE personaRegistrada SET uuid = ?, nombre = ?, correo = ?, contraseña = ?, tipo = ?";
         db.open();
         //TODO ¿Problemas con el UUID?
         var rs = db.update(sql, entity.getUuid(), entity.getNombre(), entity.getCorreo(), entity.getContraseña(), entity.getTipo());

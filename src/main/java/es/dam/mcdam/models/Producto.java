@@ -13,24 +13,24 @@ public class Producto{
     private SimpleFloatProperty precio;
     private SimpleStringProperty imagen;
     private SimpleStringProperty descripcion;
-    private SimpleBooleanProperty disponible;
+    private SimpleBooleanProperty disponibilidad;
     private SimpleObjectProperty<CodigoDescuento> codigoDescuento;
 
-    public Producto(String uuid, String nombre, float precio, String imagen, String descripcion, boolean disponible, CodigoDescuento codigoDescuento){
+    public Producto(String uuid, String nombre, float precio, String imagen, String descripcion, boolean disponibilidad, CodigoDescuento codigoDescuento){
         this.uuid = uuid;
         this.nombre = new SimpleStringProperty(nombre);
         this.precio = new SimpleFloatProperty(precio);
         this.imagen = new SimpleStringProperty(imagen);
         this.descripcion = new SimpleStringProperty(descripcion);
-        this.disponible = new SimpleBooleanProperty(disponible);
+        this.disponibilidad = new SimpleBooleanProperty(disponibilidad);
         this.codigoDescuento = new SimpleObjectProperty(codigoDescuento);
     }
-    public Producto(String nombre, float precio, String imagen, String descripcion, boolean disponible, CodigoDescuento codigoDescuento){
+    public Producto(String nombre, float precio, String imagen, String descripcion, boolean disponibilidad, CodigoDescuento codigoDescuento){
         this.nombre = new SimpleStringProperty(nombre);
         this.precio = new SimpleFloatProperty(precio);
         this.imagen = new SimpleStringProperty(imagen);
         this.descripcion = new SimpleStringProperty(descripcion);
-        this.disponible = new SimpleBooleanProperty(disponible);
+        this.disponibilidad = new SimpleBooleanProperty(disponibilidad);
         this.codigoDescuento = new SimpleObjectProperty(codigoDescuento);
     }
 
@@ -95,15 +95,15 @@ public class Producto{
     }
 
     public boolean getDisponible(){
-        return disponible.get();
+        return disponibilidad.get();
     }
 
     public void setDisponible(boolean disponible){
-        this.disponible.set(disponible);
+        this.disponibilidad.set(disponible);
     }
 
     public SimpleBooleanProperty disponibleProperty() {
-        return disponible;
+        return disponibilidad;
     }
 
     public CodigoDescuento getCodigoDescuento(){
