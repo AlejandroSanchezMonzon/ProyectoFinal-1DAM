@@ -62,7 +62,7 @@ public class Properties {
     //Acerca de
     public static final String APP_LOGO = "images/logo.png";
     public static final String APP_VERSION = "1.0";
-    public static final String APP_AUTHOR = "· Alejandro Sánchez Monzón \n"
+    public static final String APP_AUTHOR = "\n· Alejandro Sánchez Monzón \n"
                                             + "· Mireya Sánchez Pinzón \n"
                                             + "· Ainhoa Bermejo Esteban \n"
                                             + "· Rubén García-Redondo Marín \n"

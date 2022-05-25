@@ -1,12 +1,12 @@
 package es.dam.mcdam;
 
-import es.dam.mcdam.controllers.SplashController;
+
 import es.dam.mcdam.managers.DataBaseManager;
 import es.dam.mcdam.managers.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -15,7 +15,7 @@ import java.util.Optional;
 
 
 public class AppMain extends Application {
-    //static Logger logger = LogManager.getLogger(AppMain.class);
+    static Logger logger = LogManager.getLogger(AppMain.class);
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
         SceneManager sceneManager = SceneManager.getInstance(AppMain.class);
@@ -33,12 +33,10 @@ public class AppMain extends Application {
             if (rs.isPresent()) {
                 rs.get().next();
                 controller.close();
-                //logger.info("Conexión correcta a la Base de Datos");
-                System.out.println("Conexión correcta a la Base de Datos");
+                logger.info("Conexión correcta a la Base de Datos");
             }
         } catch (SQLException e) {
-            //logger.error("Error al conectar al servidor de Base de Datos: " + e.getMessage());
-            System.out.println("Error al conectar al servidor de Base de Datos: " + e.getMessage());
+            logger.error("Error al conectar al servidor de Base de Datos: " + e.getMessage());
             System.exit(1);
         }
     }

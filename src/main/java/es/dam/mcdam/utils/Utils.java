@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class Utils {
     public static void openBrowser(String url) throws IOException {
-        new ProcessBuilder("x-www-browser", url).start();
+        new ProcessBuilder("safari", url).start();
     }
 
     public static boolean isEmail(String email){

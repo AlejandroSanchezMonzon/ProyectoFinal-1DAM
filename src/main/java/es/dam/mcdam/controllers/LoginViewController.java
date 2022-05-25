@@ -10,8 +10,12 @@ import es.dam.mcdam.utils.Utils;
 import es.dam.mcdam.views.Views;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,6 +34,8 @@ public class LoginViewController {
     private Button validar;
     @FXML
     private Hyperlink register;
+    @FXML
+    private ImageView acercade;
 
     SceneManager sceneManager = SceneManager.getInstance(AppMain.class);
 
@@ -50,6 +56,18 @@ public class LoginViewController {
                 throw new RuntimeException(e);
             }
         });
+        acercade.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    sceneManager.initAcercaDe();
+                    event.consume();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
     }
 
     @FXML

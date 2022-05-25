@@ -5,6 +5,8 @@ module es.dam.mcdam {
     requires com.google.gson;
     requires lombok;
     requires org.mybatis;
+    requires org.apache.logging.log4j;
+    requires java.desktop;
 //    requires org.apache.logging.log4j.core;
 //    requires org.apache.logging.log4j;
 
