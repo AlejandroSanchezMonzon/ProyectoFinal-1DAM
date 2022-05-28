@@ -1,15 +1,13 @@
 package org.example.models;
 
-import javafx.beans.property.SimpleFloatProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 
 public class ItemCarrito {
-    private final SimpleStringProperty uuid;
-    private final SimpleStringProperty nombre;
-    private final SimpleStringProperty imagen;
-    private final SimpleFloatProperty precio;
-    private final SimpleIntegerProperty cantidad;
+    private final StringProperty uuid;
+    private final StringProperty nombre;
+    private final StringProperty imagen;
+    private final FloatProperty precio;
+    private final IntegerProperty cantidad;
     private double total;
 
     public ItemCarrito(String uuid, String nombre, String imagen, float precio, int cantidad) {
@@ -32,7 +30,7 @@ public class ItemCarrito {
         this.nombre.set(nombre);
     }
 
-    public SimpleStringProperty nombreProperty() {
+    public StringProperty nombreProperty() {
         return nombre;
     }
 
@@ -44,7 +42,7 @@ public class ItemCarrito {
         this.imagen.set(imagen);
     }
 
-    public SimpleStringProperty imagenProperty() {
+    public StringProperty imagenProperty() {
         return imagen;
     }
 
@@ -56,7 +54,7 @@ public class ItemCarrito {
         this.precio.set(precio);
     }
 
-    public SimpleFloatProperty precioProperty() {
+    public FloatProperty precioProperty() {
         return precio;
     }
 
@@ -69,7 +67,7 @@ public class ItemCarrito {
         this.total = precio.get() * cantidad;
     }
 
-    public SimpleIntegerProperty cantidadProperty() {
+    public IntegerProperty cantidadProperty() {
         return cantidad;
     }
 
