@@ -1,11 +1,15 @@
 package es.dam.mcdam.controllers;
 
 import es.dam.mcdam.AppMain;
+import es.dam.mcdam.models.CodigoDescuento;
 import es.dam.mcdam.models.Producto;
+import es.dam.mcdam.repositories.CodigoDescuentoRepository;
+import es.dam.mcdam.repositories.ProductoRepository;
 import es.dam.mcdam.utils.Resources;
 import es.dam.mcdam.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,10 +17,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 
 public class ActualizarProductoViewController {
+
+    ProductoRepository productoRepository = ProductoRepository.getInstance();
     @FXML
     TextField nombreTxt;
     @FXML
@@ -31,12 +39,29 @@ public class ActualizarProductoViewController {
     TextField codigoTxt;
     @FXML
     ImageView imageView;
+
+    @FXML
+    Button aceptar;
+
+    @FXML
+    Button cancelar;
     private Stage dialogStage;
     private Producto producto;
     private boolean aceptarClicked = false;
     private boolean editarModo = false;
 
-    // GETTERS AND SETTERS
+    @FXML
+    private void initialize() throws SQLException {
+        System.out.println("Editar o nuevo producto");
+        aceptar.setOnAction(event ->{
+                    try {
+                        onAceptarAction();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                );
+    }
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
@@ -47,7 +72,7 @@ public class ActualizarProductoViewController {
         if (editarModo) {
             setDataInfo();
         }
-        nombreTxt.requestFocus(); // Obtiene el foco
+        nombreTxt.requestFocus();
     }
 
     private void setDataInfo() {
@@ -82,13 +107,9 @@ public class ActualizarProductoViewController {
         return aceptarClicked;
     }
 
-    @FXML
-    private void initialize() {
-        System.out.println("Editar o nuevo producto");
-    }
 
-    @FXML
-    private void onAceptarAction() {
+
+    private Producto onAceptarAction() throws SQLException {
         System.out.println("Aceptar");
         System.out.println("Validar datos");
         if (isInputValid()) {
@@ -97,13 +118,15 @@ public class ActualizarProductoViewController {
             producto.setPrecio(Float.parseFloat(precioTxt.getText()));
             producto.setDescripcion(descripcionTxt.getText());
             producto.setDisponible(Boolean.parseBoolean(disponibleTxt.getText()));
-            //producto.setCodigoDescuento(codigoTxt.getText());
+            producto.setCodigoDescuento(new CodigoDescuento(codigoTxt.getText(), 50f));
             producto.setImagen(imageView.getImage().getUrl());
             aceptarClicked = true;
+            productoRepository.save(producto);
             dialogStage.close();
         } else {
             System.out.println("Datos no validos");
         }
+        return producto;
     }
 
     @FXML
@@ -114,37 +137,31 @@ public class ActualizarProductoViewController {
 
     //TODO validar datos mejor
     private boolean isInputValid() {
-        String errorMessage = "";
+        boolean errorMessage = true;
 
         if (nombreTxt.getText() == null || nombreTxt.getText().isBlank()) {
-            errorMessage += "El nombre no puede estar en blanco\n";
+            errorMessage = false;
+        }else if (idTxt.getText() == null || idTxt.getText().isBlank()) {
+            //errorMessage += "El id no pueden estar en blanco\n";
+            errorMessage = false;
+        }else if (precioTxt.getText() == null || precioTxt.getText().isBlank() || !Utils.isPrecio(precioTxt.getText())) {
+           // errorMessage += "La calle no puede estar en blanco\n";
+            errorMessage = false;
+        }else if (descripcionTxt.getText() == null || descripcionTxt.getText().isBlank()) {
+            //errorMessage += "La ciudad no puede estar en blanco\n";
+            errorMessage = false;
+        }else if (disponibleTxt.getText() == null || disponibleTxt.getText().isBlank() || !Utils.isYesorNo(disponibleTxt.getText())) {
+            //errorMessage += "El email no puede estar en blanco o no es válido\n";
+            errorMessage = false;
+        }else if (codigoTxt.getText() == null || codigoTxt.getText().isBlank()) {
+            //errorMessage += "La fecha de cumpleaños no puede ser superior a la actual\n";
+            errorMessage = false;
         }
-        if (idTxt.getText() == null || idTxt.getText().isBlank()) {
-            errorMessage += "El id no pueden estar en blanco\n";
-        }
-        if (precioTxt.getText() == null || precioTxt.getText().isBlank()) {
-            errorMessage += "La calle no puede estar en blanco\n";
-        }
-
-        if (descripcionTxt.getText() == null || descripcionTxt.getText().isBlank()) {
-            errorMessage += "La ciudad no puede estar en blanco\n";
-        }
-
-        if (disponibleTxt.getText() == null || disponibleTxt.getText().isBlank() || !Utils.isEmail(disponibleTxt.getText())) {
-            errorMessage += "El email no puede estar en blanco o no es válido\n";
-        }
-
-        if (codigoTxt.getText() == null || codigoTxt.getText().isBlank()) {
-            errorMessage += "La fecha de cumpleaños no puede ser superior a la actual\n";
-        }
-
-        if (errorMessage.length() == 0) {
-            return true;
-        } else {
-            Alert alert = Utils.getAlertErrorDetails("Error en datos", "Datos de producto incorrrectos", "Existen problemas al validar.", errorMessage);
+        if(!errorMessage){
+            Alert alert = Utils.getAlertErrorDetails("Error en datos", "Datos de producto incorrrectos", "Existen problemas al validar.", "Datos incorrectos");
             alert.showAndWait();
-            return false;
         }
+        return errorMessage;
     }
 
     @FXML

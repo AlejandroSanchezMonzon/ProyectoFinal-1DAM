@@ -38,11 +38,11 @@
         </GridPane>
         <HBox spacing="8.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#onAceptarAction" text="Acerptar" />
-                <Button mnemonicParsing="false" onAction="#onCancelarAction" text="Cancerlar" />
+                <Button fx:id="aceptar" mnemonicParsing="false"  text="Aceptar" />
+                <Button fx:id="cancelar" mnemonicParsing="false" onAction="#onCancelarAction" text="Cancelar" />
             </children>
         </HBox>
-        <ImageView fx:id="avatarImageView" fitHeight="80.0" fitWidth="80.0" onMouseClicked="#onAvatarAction" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <ImageView fx:id="imageView" fitHeight="80.0" fitWidth="80.0" onMouseClicked="#onAvatarAction" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <image>
                 <Image url="@../icons/maiz.png" />
             </image>

@@ -8,8 +8,10 @@ import es.dam.mcdam.repositories.CodigoDescuentoRepository;
 import es.dam.mcdam.repositories.ProductoRepository;
 import es.dam.mcdam.utils.Properties;
 import es.dam.mcdam.utils.Resources;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,10 +19,10 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -28,64 +30,53 @@ import java.util.Optional;
 public class EdicionAdministradorViewController {
     private final ProductoRepository productosRepository = ProductoRepository.getInstance();
     private final CodigoDescuentoRepository codigoDescuentoRepository = CodigoDescuentoRepository.getInstance();
-
+    private Stage dialogStage;
     @FXML
     private ListView<Producto> listaProductos;
     @FXML
     private ListView<CodigoDescuento> listaCodigoDescuento;
     @FXML
-    private Button producto;
+    private Button productoButton;
     @FXML
-    private Button codigoPromocional;
+    private Button codigoPromocionalButton;
+    @FXML
+    private Button insertarButton;
 
-    @FXML
-    private Label nombreLabel;
-    @FXML
-    private Label idLabel;
-    @FXML
-    private Label precioLabel;
-    @FXML
-    private Label descripcionLabel;
-    @FXML
-    private Label disponibleLabel;
-    @FXML
-    private Label emailLabel;
-    @FXML
-    private Label codigoDescuentoAsociadoLabel;
-
-    @FXML
-    private ImageView imagenProductoView;
-
-    @FXML
-    private Label codidoLabel;
-    @FXML
-    private Label descuentoLabel;
-
-    @FXML
-    private ImageView imagenCodigoView;
-
-
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+    }
     @FXML
     private void initialize() throws SQLException {
-        producto.setOnAction(event -> initProductosView());
-        codigoPromocional.setOnAction(event -> initCodigosDescuentoView());
-        initData();
-
-    }
-
-    private void onInsertarAction() throws IOException {
-        System.out.println("Se ha pulsado el botón insertar");
-        Producto producto = new Producto();
-        boolean aceptarClicked = SceneManager.get().initProductoEditar(false, producto);
-        if (aceptarClicked) {
-            salvarImagen(producto);
+        productoButton.setOnAction(event -> {
+            initProductosView();
             try {
-                productosRepository.save(producto);
+                initData();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            setDataInfo(producto);
-        }
+        });
+        codigoPromocionalButton.setOnAction(event ->{
+                    initCodigosDescuentoView();
+            try {
+                initData();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        insertarButton.setOnAction(event -> {
+            try {
+                openInsertar(dialogStage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    private void openInsertar(Stage stageEdicion) throws IOException {
+        System.out.println("Se ha pulsado el botón insertar");
+        Producto producto = new Producto();
+        SceneManager.get().initProductoEditar(false, producto, stageEdicion);
+
     }
 
     private void initCodigosDescuentoView() {
@@ -164,9 +155,9 @@ public class EdicionAdministradorViewController {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            // personasTable.getItems().remove(p);
-        }
 
+        }
+        listaCodigoDescuento.refresh();
     }
 
     private void initProductosView(){
@@ -174,10 +165,6 @@ public class EdicionAdministradorViewController {
             @Override
             public void updateItem(Producto item, boolean empty){
                 super.updateItem(item,empty);
-                if (empty) {
-                    setText(null);
-                    setGraphic(null);
-                } else {
                     HBox hBox = new HBox();
                     hBox.setSpacing(10);
 
@@ -214,7 +201,7 @@ public class EdicionAdministradorViewController {
                     hBox.getChildren().addAll(imageView, vbox, botonActualizar, botonEliminar);
                     setGraphic(hBox);
                 }
-            }
+
         });
         listaProductos.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
@@ -238,6 +225,7 @@ public class EdicionAdministradorViewController {
                 throw new RuntimeException(e);
             }
         }
+        listaProductos.refresh();
     }
 
     private void actualizarProducto(Producto item) {
@@ -250,45 +238,15 @@ public class EdicionAdministradorViewController {
         }
     }
 
-    private void initData() {
-        try {
-            listaProductos.setItems(productosRepository.findAll());
-            listaCodigoDescuento.setItems(codigoDescuentoRepository.findAll());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    private void initData() throws SQLException {
+        listaProductos.setItems(productosRepository.findAll());
+        listaCodigoDescuento.setItems(codigoDescuentoRepository.findAll());
 
     }
 
-    private void setDataInfo(Producto producto) {
-        System.out.println("Se ha seleccionado el producto: " + producto);
-        nombreLabel.setText(producto.getNombre());
-        idLabel.setText(producto.getUuid());
-        precioLabel.setText(Float.toString(producto.getPrecio()));
-        descripcionLabel.setText(producto.getDescripcion());
-        disponibleLabel.setText(String.valueOf(producto.getDisponible()));
-        codigoDescuentoAsociadoLabel.setText(producto.getCodigoDescuento().getCodigo());
-        // La imagen, si no eiste cargamos la de por defecto, si no la que tiene
-        if (!producto.getImagen().isBlank() && Files.exists(Paths.get(producto.getImagen()))) {
-            System.out.println("Cargando imagen: " + producto.getImagen());
-            Image image = new Image(new File(producto.getImagen()).toURI().toString());
-            System.out.println("Imagen cargada: " + image.getUrl());
-            imagenProductoView.setImage(image);
-        } else {
-            System.out.println("No existe la imagen. Usando imagen por defecto");
-            imagenProductoView.setImage(new Image(Resources.get(AppMain.class, "icons/maiz.png")));
-            producto.setImagen(Resources.getPath(AppMain.class, "icons/maiz.png"));
-            System.out.println("Nueva información de imagen: " + producto);
-        }
-    }
 
-    private void salvarImagen(Producto producto) {
-        try {
-            productosRepository.storeImagen(producto);
-        } catch (IOException e) {
-            System.out.println("No se ha podido salvar la imagen del producto: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
+
+
+
 
 }

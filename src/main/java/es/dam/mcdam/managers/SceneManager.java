@@ -24,7 +24,6 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Objects;
 
 
@@ -179,6 +178,7 @@ public class SceneManager {
         stage.getIcons().add(new Image(Resources.get(AppMain.class, Properties.APP_ICON)));
         stage.setTitle(Properties.APP_TITLE);
         stage.initStyle(StageStyle.DECORATED);
+        fxmlLoader.<EdicionAdministradorViewController>getController().setDialogStage(stage);
         //logger.info("Scene Consulta Admin loaded");
         System.out.println("Scene Edicion Admin loaded");
         stage.setScene(scene);
@@ -201,7 +201,7 @@ public class SceneManager {
         stage.showAndWait();
     }
 
-    public boolean initProductoEditar(boolean editarModo, Producto producto) throws IOException {
+    public boolean initProductoEditar(boolean editarModo, Producto producto, Stage stageEdicion) throws IOException {
         System.out.println("Iniciando Actualizar Producto");
         FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.ACTUALIZARPRODUCTO.get()));
         Scene scene = new Scene(fxmlLoader.load(), Properties.ACTUALIZARPRODUCTO_WIDTH, Properties.ACTUALIZARPRODUCTO_HEIGHT);
@@ -217,6 +217,7 @@ public class SceneManager {
         controller.setProducto(producto);
         stage.setScene(scene);
         stage.showAndWait();
+        stageEdicion.close();
         return controller.isAceptarClicked();
     }
 

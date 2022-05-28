@@ -28,6 +28,17 @@ public class Utils {
         String regex = ".{8,}";
         return password.matches(regex);
     }
+
+    public static boolean isYesorNo(String input){
+        String regex = "si|Sí|Si|sí|no|No";
+        return input.matches(regex);
+    }
+    public static boolean isPrecio(String precio){
+        String regex = "^[0-9]([.,][0-9]{1,3})?$";
+        return precio.matches(regex);
+    }
+
+
     public static Optional<String> getFileExtension(String filename) {
         return Optional.ofNullable(filename)
                 .filter(f -> f.contains("."))

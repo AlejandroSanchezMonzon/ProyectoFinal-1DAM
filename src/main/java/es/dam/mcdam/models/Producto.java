@@ -1,21 +1,21 @@
 package es.dam.mcdam.models;
 
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleFloatProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 
 import java.util.UUID;
 
 public class Producto{
     private String uuid = UUID.randomUUID().toString();
-    private SimpleStringProperty nombre;
-    private SimpleFloatProperty precio;
-    private SimpleStringProperty imagen;
-    private SimpleStringProperty descripcion;
-    private SimpleBooleanProperty disponibilidad;
-    private SimpleObjectProperty<CodigoDescuento> codigoDescuento;
+    private final StringProperty nombre;
+    private final FloatProperty precio;
+    private final StringProperty imagen;
+    private final StringProperty descripcion;
+    private final BooleanProperty disponibilidad;
+    private final SimpleObjectProperty<CodigoDescuento> codigoDescuento;
 
+    public Producto() {
+        this(null, null, 0.0f, null, null, true, null);
+    }
     public Producto(String uuid, String nombre, float precio, String imagen, String descripcion, boolean disponibilidad, CodigoDescuento codigoDescuento){
         this.uuid = uuid;
         this.nombre = new SimpleStringProperty(nombre);
@@ -34,10 +34,6 @@ public class Producto{
         this.codigoDescuento = new SimpleObjectProperty(codigoDescuento);
     }
 
-    public Producto() {
-
-    }
-
 
     public String getUuid(){
         return uuid;
@@ -54,7 +50,7 @@ public class Producto{
         this.nombre.set(nombre);
     }
 
-    public SimpleStringProperty nombreProperty() {
+    public StringProperty nombreProperty() {
         return nombre;
     }
 
@@ -66,7 +62,7 @@ public class Producto{
         this.precio.set(precio);
     }
 
-    public SimpleFloatProperty precioProperty() {
+    public FloatProperty precioProperty() {
         return precio;
     }
 
@@ -78,7 +74,7 @@ public class Producto{
         this.imagen.set(imagen);
     }
 
-    public SimpleStringProperty imagenProperty() {
+    public StringProperty imagenProperty() {
         return imagen;
     }
 
@@ -90,7 +86,7 @@ public class Producto{
         this.descripcion.set(descripcion);
     }
 
-    public SimpleStringProperty descripcionProperty() {
+    public StringProperty descripcionProperty() {
         return descripcion;
     }
 
@@ -102,7 +98,7 @@ public class Producto{
         this.disponibilidad.set(disponible);
     }
 
-    public SimpleBooleanProperty disponibleProperty() {
+    public BooleanProperty disponibleProperty() {
         return disponibilidad;
     }
 
