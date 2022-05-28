@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.dam.mcdam.controllers.LoginViewController">
+   <children>
+      <ImageView fitHeight="72.0" fitWidth="85.0" layoutX="263.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="72.0" fitWidth="70.0" layoutX="424.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/user.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="181.0" layoutY="50.0" text="INICIO DE SESIÓN" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="130.0" layoutY="186.0" text="Correo:" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="82.0" layoutY="221.0" text="Contraseña:" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="identificacion" layoutX="230.0" layoutY="185.0" />
+      <TextField fx:id="password" layoutX="229.0" layoutY="222.0" />
+      <Button fx:id="validar" layoutX="226.0" layoutY="277.0" mnemonicParsing="false" prefWidth="157.0" style="-fx-background-color: lightgreen;" text="Validar credenciales">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font></Button>
+      <Label layoutX="184.0" layoutY="333.0" text="¿Aún no estas registrado?" />
+      <Hyperlink fx:id="register" layoutX="324.0" layoutY="330.0" text="Regístrate gratis." />
+   </children>
+</AnchorPane>
