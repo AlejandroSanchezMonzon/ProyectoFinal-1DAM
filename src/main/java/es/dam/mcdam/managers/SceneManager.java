@@ -221,7 +221,7 @@ public class SceneManager {
         return controller.isAceptarClicked();
     }
 
-    public boolean initCodigoDescuentoEditar(boolean editarModo, CodigoDescuento codigoDescuento) throws IOException {
+    public boolean initCodigoDescuentoEditar(boolean editarModo, CodigoDescuento codigoDescuento, Stage stageEdicion) throws IOException {
         System.out.println("Iniciando Actualizar Codigo Descuento");
         FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.ACTUALIZARCODIGO.get()));
         Scene scene = new Scene(fxmlLoader.load(), Properties.ACTUALIZARCODIGO_WIDTH, Properties.ACTUALIZARCODIGO_HEIGHT);
@@ -237,6 +237,7 @@ public class SceneManager {
         controller.setCodigoDescuento(codigoDescuento);
         stage.setScene(scene);
         stage.showAndWait();
+        stageEdicion.close();
         return controller.isAceptarClicked();
     }
 

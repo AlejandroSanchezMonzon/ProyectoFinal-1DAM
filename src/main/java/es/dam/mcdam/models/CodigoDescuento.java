@@ -14,6 +14,10 @@ public class CodigoDescuento {
         this.porcentajeDescuento = new SimpleFloatProperty(porcentajeDescuento);
     }
 
+    public CodigoDescuento() {
+        this(null, 0.0f);
+    }
+
     public String getCodigo(){
         return codigo.get();
     }

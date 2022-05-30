@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -35,41 +38,45 @@
                                         <Font name="Arial Black" size="8.0" />
                                     </font>
                                 </Label>
+                        <ImageView fitHeight="96.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/logo.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="50.0" />
+                           </HBox.margin>
+                        </ImageView>
                             </children>
                         </HBox>
                         <HBox prefHeight="242.0" prefWidth="564.0" style="-fx-border-color: black; -fx-border-style: dotted;">
                             <children>
-                                <VBox prefHeight="220.0" prefWidth="123.0" style="-fx-border-color: black; -fx-border-style: dotted;">
-                                    <opaqueInsets>
-                                        <Insets />
-                                    </opaqueInsets>
-                                    <HBox.margin>
-                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                    </HBox.margin>
-                                    <children>
-                                        <Button fx:id="pedido" mnemonicParsing="false" prefWidth="95.0" style="-fx-background-color: black;" text="Pedido" textFill="WHITE">
-                                            <VBox.margin>
-                                                <Insets left="7.0" right="7.0" top="40.0" />
-                                            </VBox.margin>
-                                 <font>
-                                    <Font name="Arial Bold" size="12.0" />
-                                 </font></Button>
-                                        <Button fx:id="usuariosRegistrados" mnemonicParsing="false" prefHeight="43.0" prefWidth="95.0" style="-fx-background-color: black;" text="Usuarios registrados" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                                            <VBox.margin>
-                                                <Insets bottom="30.0" left="7.0" right="7.0" top="40.0" />
-                                            </VBox.margin>
-                                            <font>
-                                                <Font name="Arial Bold" size="12.0" />
-                                            </font></Button>
-                                    </children>
-                                </VBox>
-                        <AnchorPane prefHeight="220.0" prefWidth="402.0" style="-fx-border-color: black;">
+                        <AnchorPane prefHeight="203.0" prefWidth="535.0" style="-fx-border-color: black;">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                            <children>
-                              <ListView fx:id="listaPedidos" prefHeight="200.0" prefWidth="391.0" visible="false" />
-                              <ListView fx:id="listaPersonas" layoutX="1.0" layoutY="1.0" prefHeight="200.0" prefWidth="393.0" visible="false" />
+                              <MenuBar prefHeight="26.0" prefWidth="522.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                <menus>
+                                  <Menu mnemonicParsing="false" text="Tabla">
+                                    <items>
+                                          <MenuItem fx:id="opcionPedido" mnemonicParsing="false" text="Pedidos" />
+                                      <MenuItem fx:id="opcionUsuario" mnemonicParsing="false" text="Usuarios" />
+                                    </items>
+                                  </Menu>
+                                </menus>
+                              </MenuBar>
+                              <TableView fx:id="pedidoTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="35.0">
+                                <columns>
+                                  <TableColumn fx:id="numColumn" prefWidth="271.1999444961548" text="Número" />
+                                  <TableColumn fx:id="precioColumn" prefWidth="235.99996948242188" text="Precio" />
+                                </columns>
+                              </TableView>
+                              <TableView fx:id="usuariosTable" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="506.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="35.0">
+                                 <columns>
+                                    <TableColumn fx:id="nombreColumn" prefWidth="255.19994449615479" text="Nombre" />
+                                    <TableColumn fx:id="tipoColumn" prefWidth="251.99996948242188" text="Tipo" />
+                                 </columns>
+                              </TableView>
                            </children>
                         </AnchorPane>
                             </children>

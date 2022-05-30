@@ -21,9 +21,12 @@ import java.sql.SQLException;
 import java.util.Optional;
 import es.dam.mcdam.utils.Properties;
 
+import javax.swing.text.LabelView;
+
 public class EdicionAdministradorViewController {
     private final ProductoRepository productosRepository = ProductoRepository.getInstance();
     private final CodigoDescuentoRepository codigoDescuentoRepository = CodigoDescuentoRepository.getInstance();
+    boolean isProductoClicked = true;
     @FXML
     public Button eliminarButton;
     @FXML
@@ -37,13 +40,13 @@ public class EdicionAdministradorViewController {
     @FXML
     public TableColumn<Producto, ImageView> imagenColumnP;
     @FXML
-    public TableColumn descripcionColumnP;
+    public TableColumn<Producto, String> descripcionColumnP;
     @FXML
     public TableView<CodigoDescuento> codigoTable;
     @FXML
-    public TableColumn codigoColumn;
+    public TableColumn<CodigoDescuento, String> codigoColumnC;
     @FXML
-    public TableColumn porcentajeColumn;
+    public TableColumn<CodigoDescuento, String> porcenColumnC;
     private Stage dialogStage;
 
 
@@ -64,7 +67,13 @@ public class EdicionAdministradorViewController {
                 throw new RuntimeException(e);
             }
         });
-        menuItemPromo.setOnAction(event ->{initCodigosDescuentoView();});
+        menuItemPromo.setOnAction(event ->{
+            try {
+                initCodigosDescuentoView();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
         insertarButton.setOnAction(event -> {
             try {
                 openInsertar(dialogStage);
@@ -76,15 +85,25 @@ public class EdicionAdministradorViewController {
 
     private void openInsertar(Stage stageEdicion) throws IOException {
         System.out.println("Se ha pulsado el botón insertar");
-        Producto producto = new Producto();
-        SceneManager.get().initProductoEditar(false, producto, stageEdicion);
+
+        if(isProductoClicked){
+            Producto producto = new Producto();
+            SceneManager.get().initProductoEditar(false, producto, stageEdicion);
+        }else{
+            CodigoDescuento codigoDescuento = new CodigoDescuento();
+            SceneManager.get().initCodigoDescuentoEditar(false, codigoDescuento, stageEdicion);
+        }
+
 
     }
 
-    private void initCodigosDescuentoView() {
+    private void initCodigosDescuentoView() throws SQLException {
+        isProductoClicked = false;
         productosTable.setVisible(false);
         codigoTable.setVisible(true);
-
+        codigoTable.setItems(codigoDescuentoRepository.findAll());
+        codigoColumnC.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+        porcenColumnC.setCellValueFactory(new PropertyValueFactory<>("porcentajeDescuento"));
 
     }
     private void actualizarCodigo(CodigoDescuento item){
@@ -116,6 +135,7 @@ public class EdicionAdministradorViewController {
     }
 
     private void initProductosView() throws SQLException {
+        isProductoClicked = true;
         codigoTable.setVisible(false);
         productosTable.setVisible(true);
         productosTable.setItems(productosRepository.findAll());

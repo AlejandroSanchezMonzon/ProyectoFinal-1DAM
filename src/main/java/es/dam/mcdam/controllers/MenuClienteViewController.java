@@ -177,7 +177,7 @@ public class MenuClienteViewController {
         System.out.println("Inicializando columnas...");
         carritoTable.setEditable(false);
         productoColumn.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
-        precioColumn.setCellValueFactory(cellData -> cellData.getValue().precioProperty().asObject());
+        //precioColumn.setCellValueFactory(cellData -> cellData.getValue().precioProperty().asObject());
         cantidadColumn.setCellValueFactory(cellData -> cellData.getValue().cantidadProperty().asObject());
         setCantidadCell();
         imagenColumn.setCellValueFactory(cellData -> cellData.getValue().imagenProperty());
