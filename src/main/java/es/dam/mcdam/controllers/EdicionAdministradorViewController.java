@@ -6,19 +6,12 @@ import es.dam.mcdam.models.CodigoDescuento;
 import es.dam.mcdam.models.Producto;
 import es.dam.mcdam.repositories.CodigoDescuentoRepository;
 import es.dam.mcdam.repositories.ProductoRepository;
-import es.dam.mcdam.utils.Properties;
-import es.dam.mcdam.utils.Resources;
-import javafx.event.ActionEvent;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -26,19 +19,34 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.Optional;
+import es.dam.mcdam.utils.Properties;
 
 public class EdicionAdministradorViewController {
     private final ProductoRepository productosRepository = ProductoRepository.getInstance();
     private final CodigoDescuentoRepository codigoDescuentoRepository = CodigoDescuentoRepository.getInstance();
+    @FXML
+    public Button eliminarButton;
+    @FXML
+    public Button editarButton;
+    @FXML
+    public MenuItem menuItemProducto;
+    @FXML
+    public MenuItem menuItemPromo;
+    @FXML
+    public TableView<Producto> productosTable;
+    @FXML
+    public TableColumn<Producto, ImageView> imagenColumnP;
+    @FXML
+    public TableColumn descripcionColumnP;
+    @FXML
+    public TableView<CodigoDescuento> codigoTable;
+    @FXML
+    public TableColumn codigoColumn;
+    @FXML
+    public TableColumn porcentajeColumn;
     private Stage dialogStage;
-    @FXML
-    private ListView<Producto> listaProductos;
-    @FXML
-    private ListView<CodigoDescuento> listaCodigoDescuento;
-    @FXML
-    private Button productoButton;
-    @FXML
-    private Button codigoPromocionalButton;
+
+
     @FXML
     private Button insertarButton;
 
@@ -47,22 +55,16 @@ public class EdicionAdministradorViewController {
     }
     @FXML
     private void initialize() throws SQLException {
-        productoButton.setOnAction(event -> {
-            initProductosView();
+        codigoTable.setVisible(false);
+        initData();
+        menuItemProducto.setOnAction(event -> {
             try {
-                initData();
+                initProductosView();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         });
-        codigoPromocionalButton.setOnAction(event ->{
-                    initCodigosDescuentoView();
-            try {
-                initData();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        });
+        menuItemPromo.setOnAction(event ->{initCodigosDescuentoView();});
         insertarButton.setOnAction(event -> {
             try {
                 openInsertar(dialogStage);
@@ -80,57 +82,10 @@ public class EdicionAdministradorViewController {
     }
 
     private void initCodigosDescuentoView() {
-        listaCodigoDescuento.setCellFactory(param -> new ListCell<>() {
-            @Override
-            public void updateItem(CodigoDescuento item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setText(null);
-                    setGraphic(null);
-                } else {
-                    HBox hBox = new HBox();
-                    hBox.setSpacing(10);
+        productosTable.setVisible(false);
+        codigoTable.setVisible(true);
 
-                    VBox vbox = new VBox();
-                    vbox.setSpacing(10);
-                    Label codigo = new Label(item.getCodigo());
-                    Label descuento = new Label(Float.toString(item.getPorcentajeDescuento()) + " %");
-                    vbox.getChildren().addAll(codigo, descuento);
-                    // Imagen
-                    ImageView imageView = new ImageView();
-                    imageView.setFitHeight(75);
-                    imageView.setFitWidth(50);
-                    //System.out.println(dirImage);
-                    imageView.setImage(new Image(Resources.get(AppMain.class, Properties.CODIGODESCUENTO_DEFAULT)));
-                    // Boton eliminar
-                    Button botonEliminar = new Button("Eliminar");
-                    botonEliminar.setOnAction(event -> {
-                        eliminarCodigo(item);
 
-                    });
-                    botonEliminar.setStyle("-fx-background-color: #ef5858");
-                    botonEliminar.setTextFill(Color.WHITE);
-                    // Boton actualizar
-                    Button botonActualizar = new Button("Actualizar");
-                    botonActualizar.setOnAction(event -> {
-                        actualizarCodigo(item);
-                    });
-                    botonActualizar.setStyle("-fx-background-color: black");
-                    botonActualizar.setTextFill(Color.WHITE);
-                    hBox.setAlignment(Pos.CENTER);
-                    hBox.getChildren().addAll(imageView, vbox, botonActualizar, botonEliminar);
-
-                    setGraphic(hBox);
-                }
-            }
-        });
-
-        listaCodigoDescuento.setOnMouseClicked(event -> {
-            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
-                CodigoDescuento codigoDescuento = listaCodigoDescuento.getSelectionModel().getSelectedItem();
-                actualizarCodigo(codigoDescuento);
-            }
-        });
     }
     private void actualizarCodigo(CodigoDescuento item){
         System.out.println("Actualizar código descuento");
@@ -157,58 +112,48 @@ public class EdicionAdministradorViewController {
             }
 
         }
-        listaCodigoDescuento.refresh();
+        //menuItemPromo.refresh();
     }
 
-    private void initProductosView(){
-        listaProductos.setCellFactory(param -> new ListCell<>(){
-            @Override
-            public void updateItem(Producto item, boolean empty){
-                super.updateItem(item,empty);
-                    HBox hBox = new HBox();
-                    hBox.setSpacing(10);
-
-                    VBox vbox = new VBox();
-                    vbox.setSpacing(10);
-                    Label nombre = new Label(item.getNombre());
-                    Label precio = new Label(Float.toString(item.getPrecio()));
-                    Label descripcion = new Label(item.getDescripcion());
-                    Label disponible = new Label(String.valueOf(item.getDisponible()));
-                    Label codigoDescuento = new Label(item.getCodigoDescuento().getCodigo());
-                    vbox.getChildren().addAll(nombre, precio, descripcion, disponible, codigoDescuento);
-                    // Imagen
-                    ImageView imageView = new ImageView();
-                    imageView.setFitHeight(75);
-                    imageView.setFitWidth(50);
-                    var dirImage = Paths.get(System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "es" + File.separator + "dam" + File.separator + "mcdam" + File.separator + "images" + File.separator + item.getImagen());
-                    //System.out.println(dirImage);
-
-                    // Boton eliminar
-                    Button botonEliminar = new Button("Eliminar");
-                    botonEliminar.setOnAction(event -> {
-                        eliminarProducto(item);
-                    });
-                    botonEliminar.setStyle("-fx-background-color: #ef5858");
-                    botonEliminar.setTextFill(Color.WHITE);
-                    // Boton actualizar
-                    Button botonActualizar = new Button("Actualizar");
-                    botonActualizar.setOnAction(event -> {
-                        actualizarProducto(item);
-                    });
-                    botonActualizar.setStyle("-fx-background-color: black");
-                    botonActualizar.setTextFill(Color.WHITE);
-                    hBox.setAlignment(Pos.CENTER);
-                    hBox.getChildren().addAll(imageView, vbox, botonActualizar, botonEliminar);
-                    setGraphic(hBox);
-                }
-
-        });
-        listaProductos.setOnMouseClicked(event -> {
-            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
-                Producto producto =listaProductos.getSelectionModel().getSelectedItem();
-                actualizarProducto(producto);
+    private void initProductosView() throws SQLException {
+        codigoTable.setVisible(false);
+        productosTable.setVisible(true);
+        productosTable.setItems(productosRepository.findAll());
+        imagenColumnP.setCellValueFactory((TableColumn.CellDataFeatures<Producto, ImageView> param) -> {
+            if(param.getValue().getImagen() != null && param.getValue().getImagen().length() > 0) {
+                ImageView imageView = new ImageView(param.getValue().getImagen());
+                imageView.setFitHeight(50);
+                imageView.setFitWidth(50);
+                return new SimpleObjectProperty<>(imageView);
+            }else {
+                var dirImage = Paths.get(System.getProperty("user.dir") + File.separator + "icons" + File.separator + "maiz.png");
+                ImageView imageView = new ImageView(dirImage.toString());
+                return new SimpleObjectProperty<>(imageView);
             }
         });
+        descripcionColumnP.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+        editarButton.setOnMouseClicked(event -> {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                    Producto producto = productosTable.getSelectionModel().getSelectedItem();
+                    try {
+                        openEditar(dialogStage, producto);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+            }
+        });
+        eliminarButton.setOnMouseClicked(event -> {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                Producto producto = productosTable.getSelectionModel().getSelectedItem();
+                eliminarProducto(producto);
+            }
+        });
+    }
+
+    private void openEditar(Stage stageEdicion, Producto producto) throws IOException {
+        System.out.println("Se ha pulsado el botón insertar");
+        SceneManager.get().initProductoEditar(true, producto, stageEdicion);
+
     }
 
     private void eliminarProducto(Producto item) {
@@ -225,7 +170,7 @@ public class EdicionAdministradorViewController {
                 throw new RuntimeException(e);
             }
         }
-        listaProductos.refresh();
+        //listaProductos.refresh();
     }
 
     private void actualizarProducto(Producto item) {
@@ -239,8 +184,8 @@ public class EdicionAdministradorViewController {
     }
 
     private void initData() throws SQLException {
-        listaProductos.setItems(productosRepository.findAll());
-        listaCodigoDescuento.setItems(codigoDescuentoRepository.findAll());
+        productosTable.setItems(productosRepository.findAll());
+        codigoTable.setItems(codigoDescuentoRepository.findAll());
 
     }
 

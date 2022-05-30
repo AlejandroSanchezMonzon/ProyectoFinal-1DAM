@@ -30,7 +30,7 @@ public class Utils {
     }
 
     public static boolean isYesorNo(String input){
-        String regex = "si|Sí|Si|sí|no|No";
+        String regex = "si|Sí|Si|sí|no|No|true|false";
         return input.matches(regex);
     }
     public static boolean isPrecio(String precio){
