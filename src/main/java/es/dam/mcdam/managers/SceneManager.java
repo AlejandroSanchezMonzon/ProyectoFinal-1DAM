@@ -207,7 +207,7 @@ public class SceneManager {
         Scene scene = new Scene(fxmlLoader.load(), Properties.ACTUALIZARPRODUCTO_WIDTH, Properties.ACTUALIZARPRODUCTO_HEIGHT);
         Stage stage =new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        //stage.initOwner(mainStage); // -importante con windows modal
+        stage.initOwner(mainStage); // -importante con windows modal
         stage.setTitle(editarModo ? "Editar Producto" : "Nuevo Producto");
         stage.setResizable(false);
         // Le hacemos los setters a los elementos del controlador
@@ -227,7 +227,7 @@ public class SceneManager {
         Scene scene = new Scene(fxmlLoader.load(), Properties.ACTUALIZARCODIGO_WIDTH, Properties.ACTUALIZARCODIGO_HEIGHT);
         Stage stage =new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        //stage.initOwner(mainStage); // -importante con windows modal
+        stage.initOwner(mainStage); // -importante con windows modal
         stage.setTitle(editarModo ? "Editar Código Descuento" : "Nueva Código Descuento");
         stage.setResizable(false);
         // Le hacemos los setters a los elementos del controlador

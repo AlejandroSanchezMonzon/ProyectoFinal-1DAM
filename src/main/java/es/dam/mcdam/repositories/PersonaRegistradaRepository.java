@@ -110,6 +110,7 @@ public class PersonaRegistradaRepository implements IPersonaRegistradaRepository
         String sql = "DELETE FROM personaRegistrada";
         db.open();
         var rs = db.delete(sql);
+        db.close();
         db.delete(sql);
     }
 

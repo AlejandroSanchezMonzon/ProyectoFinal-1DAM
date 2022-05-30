@@ -121,8 +121,10 @@ public class LoginViewController {
         var result = db.select(sql, usuario).orElseThrow(() -> new SQLException("Error al comprobar los datos."));
         while (result.next()) {
             if (result.getString("tipo").equals("ADMIN")) {
+                db.close();
                 return true;
             } else {
+                db.close();
                return false;
             }
         }

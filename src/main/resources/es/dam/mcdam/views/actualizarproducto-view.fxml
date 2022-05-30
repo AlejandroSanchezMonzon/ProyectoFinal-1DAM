@@ -28,17 +28,17 @@
                 <Label text="Descripción:" GridPane.rowIndex="3" />
                 <Label text="Disponible:" GridPane.rowIndex="4" />
                 <Label text="Código de descuento:" GridPane.rowIndex="5" />
-                <TextField fx:id="nombreTxt" promptText="Crispy Chicken" GridPane.columnIndex="1" />
-                <TextField fx:id="idTxt" promptText="849651784079658jicabhfuhoj" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="nombreTxt" promptText="Crispy Chicken." GridPane.columnIndex="1" />
+                <TextField fx:id="idTxt" editable="false" promptText="Campo automático." GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="precioTxt" promptText="5.8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <TextField fx:id="descripcionTxt" promptText="Hamburguesa de pollo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <TextField fx:id="disponibleTxt" promptText="Si" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <TextField fx:id="descripcionTxt" promptText="Hamburguesa de pollo." GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField fx:id="disponibleTxt" promptText="Sí." GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <TextField fx:id="codigoTxt" promptText="D11" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             </children>
         </GridPane>
         <HBox spacing="8.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
             <children>
-                <Button fx:id="aceptar" mnemonicParsing="false"  text="Aceptar" />
+                <Button fx:id="aceptar" mnemonicParsing="false"  onAction="#onAceptarAction" text="Aceptar" />
                 <Button fx:id="cancelar" mnemonicParsing="false" onAction="#onCancelarAction" text="Cancelar" />
             </children>
         </HBox>

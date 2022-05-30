@@ -119,7 +119,8 @@ public class ProductoRepository implements IProductoRepository {
         String sql = "DELETE FROM producto";
         db.open();
         var rs = db.delete(sql);
-        db.delete(sql);
+        db.close();
+        repository.removeAll();
     }
 
     public void storeImagen(Producto p) throws IOException {

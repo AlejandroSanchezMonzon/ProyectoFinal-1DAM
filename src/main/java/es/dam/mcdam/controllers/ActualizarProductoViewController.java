@@ -7,6 +7,7 @@ import es.dam.mcdam.repositories.CodigoDescuentoRepository;
 import es.dam.mcdam.repositories.ProductoRepository;
 import es.dam.mcdam.utils.Resources;
 import es.dam.mcdam.utils.Utils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.UUID;
 
 public class ActualizarProductoViewController {
 
@@ -52,16 +54,8 @@ public class ActualizarProductoViewController {
 
     @FXML
     private void initialize() throws SQLException {
-        System.out.println("Editar o nuevo producto");
-        aceptar.setOnAction(event ->{
-                    try {
-                        onAceptarAction();
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-                );
     }
+
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
@@ -109,12 +103,13 @@ public class ActualizarProductoViewController {
 
 
 
-    private Producto onAceptarAction() throws SQLException {
+    @FXML
+    private void onAceptarAction() throws SQLException {
         System.out.println("Aceptar");
         System.out.println("Validar datos");
         if (isInputValid()) {
             producto.setNombre(nombreTxt.getText());
-            producto.setUuid(idTxt.getText());
+            producto.setUuid(UUID.randomUUID().toString());
             producto.setPrecio(Float.parseFloat(precioTxt.getText()));
             producto.setDescripcion(descripcionTxt.getText());
             producto.setDisponible(Boolean.parseBoolean(disponibleTxt.getText()));
@@ -126,7 +121,6 @@ public class ActualizarProductoViewController {
         } else {
             System.out.println("Datos no validos");
         }
-        return producto;
     }
 
     @FXML
@@ -140,9 +134,6 @@ public class ActualizarProductoViewController {
         boolean errorMessage = true;
 
         if (nombreTxt.getText() == null || nombreTxt.getText().isBlank()) {
-            errorMessage = false;
-        }else if (idTxt.getText() == null || idTxt.getText().isBlank()) {
-            //errorMessage += "El id no pueden estar en blanco\n";
             errorMessage = false;
         }else if (precioTxt.getText() == null || precioTxt.getText().isBlank() || !Utils.isPrecio(precioTxt.getText())) {
            // errorMessage += "La calle no puede estar en blanco\n";
@@ -179,4 +170,6 @@ public class ActualizarProductoViewController {
             System.out.println("Se ha asignado el avatar a la persona desde: " + producto.getImagen());
         }
     }
+
+
 }
