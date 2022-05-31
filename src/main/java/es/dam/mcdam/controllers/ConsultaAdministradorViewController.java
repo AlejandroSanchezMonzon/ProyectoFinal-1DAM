@@ -1,21 +1,26 @@
 package es.dam.mcdam.controllers;
 
-import es.dam.mcdam.models.Pedido;
+import es.dam.mcdam.models.CodigoDescuento;
 import es.dam.mcdam.models.PersonaRegistrada;
-import es.dam.mcdam.repositories.PedidoRepository;
+import es.dam.mcdam.models.Producto;
+import es.dam.mcdam.repositories.CodigoDescuentoRepository;
 import es.dam.mcdam.repositories.PersonaRegistradaRepository;
+import es.dam.mcdam.repositories.ProductoRepository;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import java.io.File;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 
 public class ConsultaAdministradorViewController {
     private final PersonaRegistradaRepository personaRepository = PersonaRegistradaRepository.getInstance();
-    private final PedidoRepository pedidoRepository = PedidoRepository.getInstance();
-
+    private final ProductoRepository productoRepository = ProductoRepository.getInstance();
+    private final CodigoDescuentoRepository codigoDescuentoRepository = CodigoDescuentoRepository.getInstance();
     @FXML
     private TableView<PersonaRegistrada> usuariosTable;
-
     @FXML
     private TableColumn nombreColumn;
     @FXML
@@ -27,13 +32,15 @@ public class ConsultaAdministradorViewController {
     @FXML
     private TableColumn uuidColumn;
     @FXML
-    private TableView<Pedido> pedidoTable;
+    private TableView<Producto> productosTable;
     @FXML
-    private TableColumn numColumn;
+    public TableColumn<Producto, ImageView> imagenColumnP;
     @FXML
-    private TableColumn precioColumn;
+    public TableColumn<Producto, String> nombreColumnP;
     @FXML
-    private MenuItem opcionPedido;
+    public TableColumn<Producto, String> descripcionColumnP;
+    @FXML
+    private MenuItem opcionProducto;
     @FXML
     private MenuItem opcionUsuario;
 
@@ -41,9 +48,9 @@ public class ConsultaAdministradorViewController {
     @FXML
     private void initialize() throws SQLException {
         initData();
-        opcionPedido.setOnAction(event -> {
+        opcionProducto.setOnAction(event -> {
             try {
-                initPedidosView();
+                initProductosView();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -55,10 +62,12 @@ public class ConsultaAdministradorViewController {
                 throw new RuntimeException(e);
             }
         });
+
     }
 
+
     private void initPersonasView() throws SQLException {
-        usuariosTable.setVisible(false);
+        productosTable.setVisible(false);
         usuariosTable.setVisible(true);
         usuariosTable.setItems(personaRepository.findAll());
         nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -68,17 +77,29 @@ public class ConsultaAdministradorViewController {
         uuidColumn.setCellValueFactory(new PropertyValueFactory<>("uuid"));
     }
 
-    private void initPedidosView() throws SQLException {
-        pedidoTable.setVisible(false);
-        pedidoTable.setVisible(true);
-        pedidoTable.setItems(pedidoRepository.findAll());
-        numColumn.setCellValueFactory(new PropertyValueFactory<>("uuid"));
-        precioColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
+    private void initProductosView() throws SQLException {
+        usuariosTable.setVisible(false);
+        productosTable.setVisible(true);
+        productosTable.setItems(productoRepository.findAll());
+        imagenColumnP.setCellValueFactory((TableColumn.CellDataFeatures<Producto, ImageView> param) -> {
+            if(param.getValue().getImagen() != null && param.getValue().getImagen().length() > 0) {
+                ImageView imageView = new ImageView(param.getValue().getImagen());
+                imageView.setFitHeight(50);
+                imageView.setFitWidth(50);
+                return new SimpleObjectProperty<>(imageView);
+            }else {
+                var dirImage = Paths.get(System.getProperty("user.dir") + File.separator + "icons" + File.separator + "maiz.png");
+                ImageView imageView = new ImageView(dirImage.toString());
+                return new SimpleObjectProperty<>(imageView);
+            }
+        });
+        nombreColumnP.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        descripcionColumnP.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
     }
 
     private void initData() throws SQLException {
         usuariosTable.setItems(personaRepository.findAll());
-        pedidoTable.setItems(pedidoRepository.findAll());
+        productosTable.setItems(productoRepository.findAll());
     }
 
 

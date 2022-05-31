@@ -103,7 +103,7 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="98.0" prefWidth="270.0">
+                        <VBox prefHeight="98.0" prefWidth="270.0" fx:id="camposTarjeta">
                            <children>
                               <TextField fx:id="tarjetaTxt" prefHeight="21.0" prefWidth="155.0">
                                  <VBox.margin>

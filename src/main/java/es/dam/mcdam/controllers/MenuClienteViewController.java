@@ -2,11 +2,14 @@ package es.dam.mcdam.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import es.dam.mcdam.AppMain;
+import es.dam.mcdam.managers.SceneManager;
 import es.dam.mcdam.models.*;
 import es.dam.mcdam.repositories.CarritoRepository;
 import es.dam.mcdam.repositories.PedidoRepository;
 import es.dam.mcdam.repositories.ProductoRepository;
-import javafx.beans.property.SimpleDoubleProperty;
+import es.dam.mcdam.utils.Resources;
+import es.dam.mcdam.utils.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,8 +21,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.List;
@@ -42,9 +47,11 @@ public class MenuClienteViewController {
     @FXML
     private TableColumn<ItemCarrito, String> productoColumn;
     @FXML
-    private TableColumn<ItemCarrito, Float> precioColumn;
+    private TableColumn<ItemCarrito, Double> precioColumn;
     @FXML
     private TableColumn<ItemCarrito, Integer> cantidadColumn;
+
+    private PersonaRegistrada userActual;
 
     @FXML
     private void initialize() {
@@ -74,28 +81,29 @@ public class MenuClienteViewController {
     }
 
     @FXML
-    private void onTerminarAction(ActionEvent actionEvent) throws SQLException {
+    private void onTerminarAction(ActionEvent actionEvent) throws SQLException, IOException {
         if (carritoRepository.findAll().size() > 0) {
             System.out.println("Terminar");
-            PersonaRegistrada cliente = new PersonaRegistrada("Juan","correo@correo.es", "12345", Tipo.USER);
             List<LineaPedido> compra = carritoRepository.findAll().stream()
                     .map(item -> new LineaPedido(item.getNombre(), item.getCantidad(), item.getPrecio(), item.getTotal()))
                     .collect(Collectors.toList());
-            Pedido pedido = new Pedido(UUID.randomUUID().toString(), (float) carritoRepository.getTotal(),"EFECTIVO",compra,cliente);
-                    PedidoRepository.getInstance().save(pedido);
-            if (pedido != null) {
+            Pedido pedido = new Pedido(compra,userActual, "EFECTIVO" );
+            Pedido pedidoAlmacenado = PedidoRepository.getInstance().save(pedido);
+            if (pedidoAlmacenado != null) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Venta realizada");
-                alert.setHeaderText("Venta realizada con éxito. Total " + pedido.getTotal() + " €");
-                alert.setContentText("¿Desea imprimir la factura?");
-                System.out.println("Venta realizada con éxito. Total " + pedido.getTotal() + " €");
+                alert.setTitle("Iniciando proceso pago.");
+                alert.setHeaderText("Total: " + pedidoAlmacenado.getTotal() + " €");
+                System.out.println("Venta realizada con éxito. Total " + pedidoAlmacenado.getTotal() + " €");
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK) {
                     Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                    System.out.println(gson.toJson(pedido));
+                    System.out.println(gson.toJson(pedidoAlmacenado));
                     carritoRepository.deleteAll();
                     carritoTable.refresh();
                     calcularTotal();
+                    SceneManager.get().initProcesoPago();
+                    Stage scene = (Stage) txtTotal.getScene().getWindow();
+                    scene.hide();
                 } else {
                     System.out.println("Cancelado");
                 }
@@ -126,13 +134,13 @@ public class MenuClienteViewController {
                     vbox.setSpacing(10);
                     Label nombre = new Label(item.getNombre());
                     nombre.setStyle("-fx-font-weight: bold");
-                    Label precio = new Label(item.getPrecio() + " €");
+                    Label precio = new Label(Utils.redondeoPrecio(item.getPrecio()) + " €");
                     vbox.getChildren().addAll(nombre, precio);
-                    ImageView imageView = new ImageView();
-                    imageView.setFitHeight(75);
+                    ImageView imageView = new ImageView(new File(Resources.getPath(AppMain.class, "images") + item.getImagen()).toURI().toString());                    imageView.setFitHeight(75);
                     imageView.setFitWidth(50);
-                    var dirImage = Paths.get(System.getProperty("user.dir") + File.separator + "img" + File.separator + item.getImagen());
+                    var dirImage = Paths.get(item.getImagen());
                     imageView.setImage(new Image(dirImage.toUri().toString()));
+
                     Button button = new Button("Añadir");
                     button.setOnAction(event -> {
                         try {
@@ -178,7 +186,7 @@ public class MenuClienteViewController {
         System.out.println("Inicializando columnas...");
         carritoTable.setEditable(false);
         productoColumn.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
-        //precioColumn.setCellValueFactory(cellData -> cellData.getValue().precioProperty());
+        precioColumn.setCellValueFactory(cellData -> cellData.getValue().precioProperty().asObject());
         cantidadColumn.setCellValueFactory(cellData -> cellData.getValue().cantidadProperty().asObject());
         setCantidadCell();
         imagenColumn.setCellValueFactory(cellData -> cellData.getValue().imagenProperty());
@@ -220,4 +228,7 @@ public class MenuClienteViewController {
         });
     }
 
+    public void setClienteActual(PersonaRegistrada userActual) {
+        this.userActual = userActual;
+    }
 }

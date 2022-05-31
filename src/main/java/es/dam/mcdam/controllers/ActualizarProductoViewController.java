@@ -16,6 +16,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
@@ -69,14 +70,14 @@ public class ActualizarProductoViewController {
         System.out.println("SetDataInfo");
         nombreTxt.setText(producto.getNombre());
         idTxt.setText(producto.getUuid());
-        precioTxt.setText(Float.toString(producto.getPrecio()));
+        precioTxt.setText(Utils.redondeoPrecio(producto.getPrecio()));
         descripcionTxt.setText(producto.getDescripcion());
         disponibleTxt.setText(String.valueOf(producto.getDisponible()));
         codigoTxt.setText(producto.getCodigoDescuento().getCodigo());
         // TODO al editar un producto dice que la imagen no existe asigna la de por defecto
         if (!producto.getImagen().isBlank() && Files.exists(Paths.get(producto.getImagen()))) {
             System.out.println("Cargando imagen: " + producto.getImagen());
-            Image image = new Image(new File(producto.getImagen()).toURI().toString());
+            Image image = new Image(new File(Resources.getPath(AppMain.class, "images") + producto.getImagen()).toURI().toString());
             System.out.println("Imagen cargada: " + image.getUrl());
             imageView.setImage(image);
         } else {
@@ -92,27 +93,29 @@ public class ActualizarProductoViewController {
         this.editarModo = editarModo;
         System.out.println("Modo Editar: " + editarModo);
     }
-
     public boolean isAceptarClicked() {
         return aceptarClicked;
     }
 
-
-
     @FXML
-    private void onAceptarAction() throws SQLException {
+    private void onAceptarAction() throws SQLException, IOException {
         System.out.println("Aceptar");
         System.out.println("Validar datos");
         if (isInputValid()) {
             producto.setNombre(nombreTxt.getText());
-            producto.setUuid(UUID.randomUUID().toString());
-            producto.setPrecio(Float.parseFloat(precioTxt.getText()));
+            producto.setPrecio(Double.parseDouble((precioTxt.getText())));
             producto.setDescripcion(descripcionTxt.getText());
-            producto.setDisponible(Boolean.parseBoolean(disponibleTxt.getText()));
+            producto.setDisponible(Utils.probarDisponibilidad(disponibleTxt.getText()));
             producto.setCodigoDescuento(new CodigoDescuento(codigoTxt.getText(), 50f));
-            producto.setImagen(imageView.getImage().getUrl());
+            productoRepository.storeImagen(producto);
             aceptarClicked = true;
-            productoRepository.save(producto);
+            if(editarModo) {
+                producto.setUuid(idTxt.getText());
+                productoRepository.update(producto);
+            } else {
+                producto.setUuid(UUID.randomUUID().toString());
+                productoRepository.save(producto);
+            }
             dialogStage.close();
         } else {
             System.out.println("Datos no validos");
@@ -124,6 +127,7 @@ public class ActualizarProductoViewController {
         System.out.println("Has pulsado Cancelar");
         dialogStage.close();
     }
+
 
     //TODO validar datos mejor
     private boolean isInputValid() {
@@ -162,6 +166,7 @@ public class ActualizarProductoViewController {
             System.out.println("Se ha asignado el avatar a la persona desde: " + producto.getImagen());
         }
     }
+
 
 
 }

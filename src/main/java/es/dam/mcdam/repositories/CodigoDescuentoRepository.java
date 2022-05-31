@@ -79,11 +79,10 @@ public class CodigoDescuentoRepository implements ICodigoDescuentoRepository{
     @Override
     public CodigoDescuento update(CodigoDescuento entity) throws SQLException {
         int index = repository.indexOf(entity);
-        String sql = "UPDATE codigoDescuento SET codigo = ?, porcendesc = ?";
+        String sql = "UPDATE codigoDescuento SET porcendesc = ? WHERE codigo = ?";
         db.open();
         //TODO ¿Problemas con el UUID?
-        var rs = db.update(sql, entity.getCodigo(), entity.getPorcentajeDescuento());
-
+        var rs = db.update(sql, entity.getPorcentajeDescuento(), entity.getCodigo());
         db.close();
         repository.set(index, entity);
         return entity;

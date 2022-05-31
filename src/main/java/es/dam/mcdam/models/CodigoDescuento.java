@@ -1,17 +1,14 @@
 package es.dam.mcdam.models;
 
-import javafx.beans.property.FloatProperty;
-import javafx.beans.property.SimpleFloatProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public class CodigoDescuento {
     private final StringProperty codigo;
-    private final FloatProperty porcentajeDescuento;
+    private final DoubleProperty porcentajeDescuento;
 
-    public CodigoDescuento(String codigo, float porcentajeDescuento) {
+    public CodigoDescuento(String codigo, double porcentajeDescuento) {
         this.codigo = new SimpleStringProperty(codigo);
-        this.porcentajeDescuento = new SimpleFloatProperty(porcentajeDescuento);
+        this.porcentajeDescuento = new SimpleDoubleProperty(porcentajeDescuento);
     }
 
     public CodigoDescuento() {
@@ -26,20 +23,20 @@ public class CodigoDescuento {
         this.codigo.set(codigo);
     }
 
-    public StringProperty  codigoProperty() {
+    public StringProperty codigoProperty() {
         return codigo;
     }
 
 
-    public float getPorcentajeDescuento(){
+    public double getPorcentajeDescuento(){
         return porcentajeDescuento.get()  ;
     }
 
-    public void setPorcentajeDescuento(Float porcentajeDescuento){
+    public void setPorcentajeDescuento(double porcentajeDescuento){
         this.porcentajeDescuento.set(porcentajeDescuento);
     }
 
-    public FloatProperty  porcentajeDescuentoProperty() {
+    public DoubleProperty  porcentajeDescuentoProperty() {
         return porcentajeDescuento;
     }
 }

@@ -7,10 +7,17 @@ import java.util.UUID;
 
 public class PersonaRegistrada {
     private String uuid = UUID.randomUUID().toString();
-    private final String nombre;
-    private final String correo;
-    private final String contraseña;
-    private final Tipo tipo;
+    private String nombre;
+    private String correo;
+    private String contraseña;
+    private Tipo tipo;
+
+    public PersonaRegistrada(){
+        this.nombre = "";
+        this.correo = "";
+        this.contraseña = "";
+        this.tipo = Tipo.USER;
+    }
 
     public PersonaRegistrada(String uuid, String nombre, String correo, String contraseña, Tipo tipo) {
         this.uuid = uuid;
@@ -46,9 +53,23 @@ public class PersonaRegistrada {
         return tipo;
     }
 
-
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
     @Override
     public String toString() {
-        return "Administrador{" + "uuid=" + uuid + ", nombre=" + nombre + ", correo=" + correo + ", contraseña=" + contraseña + '}';
+        return "PersonaRegistrada{" + "uuid=" + uuid + ", nombre=" + nombre + ", correo=" + correo + ", contraseña=" + contraseña + '}';
     }
 }

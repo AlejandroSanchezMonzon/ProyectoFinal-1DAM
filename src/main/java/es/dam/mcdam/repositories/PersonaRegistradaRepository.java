@@ -114,4 +114,20 @@ public class PersonaRegistradaRepository implements IPersonaRegistradaRepository
         db.delete(sql);
     }
 
+    @Override
+    public PersonaRegistrada findByCorreo(String identificacion) throws SQLException {
+        String sql = "SELECT * FROM personaRegistrada WHERE correo = ?";
+        db.open();
+        var rs = db.select(sql, identificacion).orElseThrow(() -> new SQLException("Error al obtener la persona con correo: " + identificacion));
+        PersonaRegistrada persona = new PersonaRegistrada();
+        while (rs.next()) {
+                    persona.setUuid(rs.getString("uuid"));
+                    persona.setNombre(rs.getString("nombre"));
+                    persona.setCorreo(rs.getString("correo"));
+                    persona.setContraseña(rs.getString("contraseña"));
+                    persona.setTipo(Tipo.valueOf(rs.getString("tipo")));
+        }
+        db.close();
+        return persona;
+    }
 }

@@ -21,6 +21,7 @@ import java.sql.SQLException;
 
 public class LoginViewController {
 
+    PersonaRegistradaRepository personaRepository = PersonaRegistradaRepository.getInstance();
     DataBaseManager db = DataBaseManager.getInstance();
     @FXML
     private TextField identificacion;
@@ -78,7 +79,7 @@ public class LoginViewController {
                     }
                 }else{
                     try{
-                        sceneManager.initMenuCliente();
+                        sceneManager.initMenuCliente(personaRepository.findByCorreo(identificacion.getText()));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

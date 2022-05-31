@@ -20,6 +20,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.UUID;
 
 import static es.dam.mcdam.utils.Properties.CODIGODESCUENTO_DEFAULT;
 
@@ -89,7 +90,12 @@ public class ActualizarCodigoDescuentoViewController {
             codigoDescuento.setPorcentajeDescuento(Float.parseFloat(porcentajeDescuentoTxt.getText()));
             aceptarClicked = true;
             dialogStage.close();
-            codigoRepository.save(codigoDescuento);
+
+            if(editarModo) {
+                codigoRepository.update(codigoDescuento);
+            } else {
+                codigoRepository.save(codigoDescuento);
+            }
         } else {
             System.out.println("Datos no validos");
         }

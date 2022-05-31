@@ -1,14 +1,17 @@
 package es.dam.mcdam.controllers;
 
+import es.dam.mcdam.AppMain;
 import es.dam.mcdam.managers.SceneManager;
 import es.dam.mcdam.models.CodigoDescuento;
 import es.dam.mcdam.models.Producto;
 import es.dam.mcdam.repositories.CodigoDescuentoRepository;
 import es.dam.mcdam.repositories.ProductoRepository;
+import es.dam.mcdam.utils.Resources;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
@@ -127,7 +130,7 @@ public class EdicionAdministradorViewController {
         productosTable.setItems(productosRepository.findAll());
         imagenColumnP.setCellValueFactory((TableColumn.CellDataFeatures<Producto, ImageView> param) -> {
             if(param.getValue().getImagen() != null && param.getValue().getImagen().length() > 0) {
-                ImageView imageView = new ImageView(param.getValue().getImagen());
+                ImageView imageView = new ImageView(new File(Resources.getPath(AppMain.class, "images") + param.getValue().getImagen()).toURI().toString());
                 imageView.setFitHeight(50);
                 imageView.setFitWidth(50);
                 return new SimpleObjectProperty<>(imageView);
@@ -142,7 +145,6 @@ public class EdicionAdministradorViewController {
         editarButton.setOnMouseClicked(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                     Producto producto = productosTable.getSelectionModel().getSelectedItem();
-
                     try {
                         openEditarProducto(dialogStage, producto);
                     } catch (IOException e) {

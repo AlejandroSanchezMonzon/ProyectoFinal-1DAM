@@ -7,27 +7,27 @@ import java.util.UUID;
 public class Producto{
     private String uuid = UUID.randomUUID().toString();
     private final StringProperty nombre;
-    private final FloatProperty precio;
+    private final DoubleProperty precio;
     private final StringProperty imagen;
     private final StringProperty descripcion;
     private final BooleanProperty disponibilidad;
     private final SimpleObjectProperty<CodigoDescuento> codigoDescuento;
 
     public Producto() {
-        this(null, null, 0.0f, null, null, true, null);
+        this(null, null, 0.0, null, null, true, null);
     }
-    public Producto(String uuid, String nombre, float precio, String imagen, String descripcion, boolean disponibilidad, CodigoDescuento codigoDescuento){
+    public Producto(String uuid, String nombre, double precio, String imagen, String descripcion, boolean disponibilidad, CodigoDescuento codigoDescuento){
         this.uuid = uuid;
         this.nombre = new SimpleStringProperty(nombre);
-        this.precio = new SimpleFloatProperty(precio);
+        this.precio = new SimpleDoubleProperty(precio);
         this.imagen = new SimpleStringProperty(imagen);
         this.descripcion = new SimpleStringProperty(descripcion);
         this.disponibilidad = new SimpleBooleanProperty(disponibilidad);
         this.codigoDescuento = new SimpleObjectProperty(codigoDescuento);
     }
-    public Producto(String nombre, float precio, String imagen, String descripcion, boolean disponibilidad, CodigoDescuento codigoDescuento){
+    public Producto(String nombre, double precio, String imagen, String descripcion, boolean disponibilidad, CodigoDescuento codigoDescuento){
         this.nombre = new SimpleStringProperty(nombre);
-        this.precio = new SimpleFloatProperty(precio);
+        this.precio = new SimpleDoubleProperty(precio);
         this.imagen = new SimpleStringProperty(imagen);
         this.descripcion = new SimpleStringProperty(descripcion);
         this.disponibilidad = new SimpleBooleanProperty(disponibilidad);
@@ -54,15 +54,15 @@ public class Producto{
         return nombre;
     }
 
-    public float getPrecio(){
+    public double getPrecio(){
         return precio.get();
     }
 
-    public void setPrecio(float precio){
+    public void setPrecio(double precio){
         this.precio.set(precio);
     }
 
-    public FloatProperty precioProperty() {
+    public DoubleProperty precioProperty() {
         return precio;
     }
 

@@ -7,6 +7,8 @@ import es.dam.mcdam.models.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -34,15 +36,15 @@ public class PedidoRepository implements IPedidoRepository{
         ResultSet rs = db.select(sql).orElseThrow(() -> new SQLException("Error al obtener todos los pedidos"));
         repository.clear();
         while (rs.next()) {
+            String lineaPedido = (String) rs.getObject("compra");
             repository.add(
                     new Pedido(
-                            rs.getString("uuid"),
-                            rs.getFloat("total"),
-                            rs.getString("metodoPago"),
-                            (java.util.List<LineaPedido>)rs.getObject("compra"),
-                            (PersonaRegistrada) rs.getObject("cliente")
+                            List.of((LineaPedido)rs.getObject("compra")),
+                            (PersonaRegistrada) rs.getObject("cliente"),
+                            rs.getString("metodoPago")
                     )
             );
+
         }
         db.close();
         if (repository.isEmpty()) {
@@ -58,11 +60,9 @@ public class PedidoRepository implements IPedidoRepository{
         var rs = db.select(sql, uuid).orElseThrow(() -> new SQLException("Error al obtener el pedido con uuid: " + uuid));
         while (rs.next()) {
             var pedido = new Pedido(
-                    rs.getString("uuuid"),
-                    rs.getFloat("total"),
-                    rs.getString("metodoPago"),
-                    (java.util.List<LineaPedido>)rs.getObject("compra"),
-                    (PersonaRegistrada) rs.getObject("cliente")
+                    List.of((LineaPedido)rs.getObject("compra")),
+                    (PersonaRegistrada) rs.getObject("cliente"),
+                    rs.getString("metodoPago")
             );
             return Optional.of(pedido);
         }
@@ -111,5 +111,23 @@ public class PedidoRepository implements IPedidoRepository{
         db.open();
         var rs = db.delete(sql);
         db.delete(sql);
+    }
+
+    public List<String> findAllString() throws SQLException {
+        String sql = "SELECT * FROM pedido";
+        db.open();
+        ResultSet rs = db.select(sql).orElseThrow(() -> new SQLException("Error al obtener todos los pedidos"));
+        List<String> pedido= new ArrayList<>();
+        while (rs.next()) {
+            String lineaPedido = (String) rs.getObject("compra");
+            pedido.add(rs.getString("compra"));
+            pedido.add(rs.getString("cliente"));
+            pedido.add(rs.getString("metodoPago"));
+        }
+        db.close();
+        if (pedido.isEmpty()) {
+            System.out.println("Aún no hay datos de pedidos");
+        }
+        return pedido;
     }
 }

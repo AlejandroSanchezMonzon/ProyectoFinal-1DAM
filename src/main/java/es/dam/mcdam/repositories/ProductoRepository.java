@@ -49,10 +49,9 @@ public class ProductoRepository implements IProductoRepository {
                             rs.getString("imagen"),
                             rs.getString("descripcion"),
                             rs.getBoolean("disponibilidad"),
-                            new CodigoDescuento(rs.getString("coddescuento"),0.0f)
+                            new CodigoDescuento(rs.getString("coddescuento"),10.0f)
                     )
             );
-            System.out.println(repository.size());
 
         }
         db.close();
@@ -97,10 +96,10 @@ public class ProductoRepository implements IProductoRepository {
     @Override
     public Producto update(Producto entity) throws SQLException {
         int index = repository.indexOf(entity);
-        String sql = "UPDATE producto SET uuid = ?, nombre = ?, precio = ?, imagen = ?, descripcion = ?, disponible = ?, codigoDescuento = ?)";
+        String sql = "UPDATE producto SET nombre = ?, precio = ?, imagen = ?, descripcion = ?, disponibilidad = ?, coddescuento = ? WHERE uuid = ?";
         db.open();
         //TODO ¿Problemas con el UUID?
-        var rs = db.update(sql, entity.getUuid(), entity.getNombre(), entity.getPrecio(), entity.getImagen(), entity.getDescripcion(), entity.getDisponible(), entity.getCodigoDescuento().getCodigo());
+        var rs = db.update(sql, entity.getNombre(), entity.getPrecio(), entity.getImagen(), entity.getDescripcion(), entity.getDisponible(), entity.getCodigoDescuento().getCodigo(), entity.getUuid());
 
         db.close();
         repository.set(index, entity);
@@ -127,11 +126,12 @@ public class ProductoRepository implements IProductoRepository {
     }
 
     public void storeImagen(Producto p) throws IOException {
-        String destination = Properties.IMAGES_DIR + File.separator + p.getUuid() + "." + Utils.getFileExtension(p.getImagen()).orElse("png");
+        String[] ruta = p.getImagen().split(File.separator);
+        String destination = ruta[ruta.length - 1];
         String source = p.getImagen().replace("file:", "");
         System.out.println("Origen: " + source);
-        System.out.println("Destino: " + destination);
-        storage.copyFile(source, destination);
+        System.out.println("Destino: " + p.getImagen());
+        storage.copyFile(source, p.getImagen());
         p.setImagen(destination);
     }
 

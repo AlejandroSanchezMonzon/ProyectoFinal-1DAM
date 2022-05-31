@@ -6,17 +6,17 @@ public class ItemCarrito {
     private final StringProperty uuid;
     private final StringProperty nombre;
     private final StringProperty imagen;
-    private final FloatProperty precio;
+    private final DoubleProperty precio;
     private final IntegerProperty cantidad;
-    private final FloatProperty total;
+    private final DoubleProperty total;
 
-    public ItemCarrito(String uuid, String nombre, String imagen, float precio, int cantidad) {
+    public ItemCarrito(String uuid, String nombre, String imagen, double precio, int cantidad) {
         this.uuid = new SimpleStringProperty(uuid);
         this.nombre = new SimpleStringProperty(nombre);
         this.imagen = new SimpleStringProperty(imagen);
-        this.precio = new SimpleFloatProperty(precio);
+        this.precio = new SimpleDoubleProperty(precio);
         this.cantidad = new SimpleIntegerProperty(cantidad);
-        this.total = new SimpleFloatProperty(precio * cantidad);
+        this.total = new SimpleDoubleProperty(precio * cantidad);
     }
 
     public String getUuid() {
@@ -50,11 +50,11 @@ public class ItemCarrito {
         return precio.get();
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(double precio) {
         this.precio.set(precio);
     }
 
-    public FloatProperty precioProperty() {
+    public DoubleProperty precioProperty() {
         return precio;
     }
 

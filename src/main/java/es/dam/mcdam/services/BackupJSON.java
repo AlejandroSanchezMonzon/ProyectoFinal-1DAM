@@ -3,6 +3,7 @@ package es.dam.mcdam.services;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import es.dam.mcdam.models.Pedido;
 import es.dam.mcdam.models.PersonaRegistrada;
 import es.dam.mcdam.utils.LocalDateAdapter;
 import javafx.collections.ObservableList;
@@ -36,13 +37,23 @@ public class BackupJSON implements IBackupJSON{
     }
 
     @Override
-    public void backup(ObservableList<PersonaRegistrada> personas) throws IOException {
+    public void backupPersonas(ObservableList<PersonaRegistrada> personas) throws IOException {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .setPrettyPrinting()
                 .create();
         String json = gson.toJson(personas);
         Files.writeString(new File(BACKUP_FILE +  "personasRegistradas.json").toPath(), json);
+
+    }
+
+    public void backupPedidos(List<String> pedidos) throws IOException {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .setPrettyPrinting()
+                .create();
+        String json = gson.toJson(pedidos);
+        Files.writeString(new File(BACKUP_FILE +  "pedidos.json").toPath(), json);
 
     }
 

@@ -1,0 +1,8 @@
+[
+  "[LineaVenta{producto\u003d\u0027Hamburguesa2\u0027, cantidad\u003d1, precio\u003d1.0, total\u003d1.0}]",
+  "PersonaRegistrada{uuid\u003d47899268-1877-4836-a897-779ca1af9b6b, nombre\u003dPaola, correo\u003dpaola@gmail.com, contraseña\u003dpaola1234}",
+  null,
+  "[LineaVenta{producto\u003d\u0027Hamburguesa2\u0027, cantidad\u003d1, precio\u003d1.0, total\u003d1.0}, LineaVenta{producto\u003d\u0027Hamburguesa2\u0027, cantidad\u003d2, precio\u003d1.0, total\u003d2.0}]",
+  "PersonaRegistrada{uuid\u003d47899268-1877-4836-a897-779ca1af9b6b, nombre\u003dPaola, correo\u003dpaola@gmail.com, contraseña\u003dpaola1234}",
+  null
+]

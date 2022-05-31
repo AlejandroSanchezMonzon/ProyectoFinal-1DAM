@@ -3,7 +3,9 @@ package es.dam.mcdam.managers;
 import es.dam.mcdam.AppMain;
 import es.dam.mcdam.controllers.*;
 import es.dam.mcdam.models.CodigoDescuento;
+import es.dam.mcdam.models.PersonaRegistrada;
 import es.dam.mcdam.models.Producto;
+import es.dam.mcdam.repositories.PedidoRepository;
 import es.dam.mcdam.repositories.PersonaRegistradaRepository;
 import es.dam.mcdam.services.Backup;
 import es.dam.mcdam.services.BackupJSON;
@@ -100,13 +102,15 @@ public class SceneManager {
         stage.show();
     }
 
-    public void initMenuCliente() throws IOException {
+    public void initMenuCliente(PersonaRegistrada userActual) throws IOException {
         //logger.info("Iniciando Menu Cliente");
         System.out.println("Iniciando Menu Cliente");
         FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.MENUCLIENTE.get()));
         Scene scene = new Scene(fxmlLoader.load(), Properties.MENUCLIENTE_WIDTH, Properties.MENUCLIENTE_HEIGHT);
         Stage stage = new Stage();
         stage.setResizable(false);
+        MenuClienteViewController controller = fxmlLoader.getController();
+        controller.setClienteActual(userActual);
         stage.getIcons().add(new Image(Resources.get(AppMain.class, Properties.APP_ICON)));
         stage.setTitle(Properties.APP_TITLE);
         stage.initStyle(StageStyle.DECORATED);
@@ -183,7 +187,7 @@ public class SceneManager {
         stage.showAndWait();
     }
 
-    public void ProcesoPago() throws IOException {
+    public void initProcesoPago() throws IOException {
         //logger.info("Iniciando proceso pago");
         System.out.println("Iniciando proceso pago");
         FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.PROCESOPAGO.get()));
@@ -237,7 +241,6 @@ public class SceneManager {
         return controller.isAceptarClicked();
     }
 
-
     public void initRegisterView() throws IOException {
         //logger.info("Iniciando registro");
         System.out.println("Iniciando Registro");
@@ -252,9 +255,10 @@ public class SceneManager {
 
     public void initBackup() throws SQLException, IOException {
         System.out.println("Iniciando Backup");
-        Backup save = BackupJSON.getInstance();
+        BackupJSON save = BackupJSON.getInstance();
         PersonaRegistradaRepository personaRegistradaRepository = PersonaRegistradaRepository.getInstance();
-        save.backup(personaRegistradaRepository.findAll());
-
+        PedidoRepository pedidoRepository = PedidoRepository.getInstance();
+        save.backupPersonas(personaRegistradaRepository.findAll());
+        save.backupPedidos(pedidoRepository.findAllString());
     }
 }

@@ -15,6 +15,10 @@ public class Utils {
         new ProcessBuilder("x-www-browser", url).start();
     }
 
+    public static boolean probarDisponibilidad(String input){
+        return (input.equalsIgnoreCase("si")||input.equalsIgnoreCase("sí")||input.equalsIgnoreCase("true"));
+    }
+
     public static boolean isEmail(String email){
         String regex = "^([\\w-\\.]+){1,64}@([\\w&&[^_]]+){2,255}.[a-z]{2,}$";
         return email.matches(regex);
@@ -38,6 +42,21 @@ public class Utils {
         String regex = "^[0-9]([.,][0-9]{1,3})?$";
         return precio.matches(regex);
     }
+
+    public static String redondeoPrecio(double precio){
+        String c = Double.toString(precio);
+        char[] aux = c.toCharArray();
+        StringBuilder aux2 = new StringBuilder();
+        if(aux.length>=4){
+            for (int i = 0; i < 4; i++) {
+                aux2.append(aux[i]);
+            }
+            return aux2.toString();
+        }
+        return c;
+    }
+
+
 
 
     public static Optional<String> getFileExtension(String filename) {

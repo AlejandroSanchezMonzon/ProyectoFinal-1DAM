@@ -3,13 +3,12 @@ package es.dam.mcdam.controllers;
 import es.dam.mcdam.utils.Properties;
 import es.dam.mcdam.utils.Utils;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.Optional;
 
 public class ProcesoPagoViewController {
 
@@ -27,20 +26,26 @@ public class ProcesoPagoViewController {
     public Button efectivoButton;
     @FXML
     public VBox datosTarjeta;
+    @FXML
+    public VBox camposTarjeta;
 
     boolean isEfectivo = true;
 
     public void initialize() {
         datosTarjeta.setVisible(false);
+        camposTarjeta.setVisible(false);
+
         efectivoButton.setOnAction(event -> {
             System.out.println("Efectivo");
             isEfectivo = true;
             datosTarjeta.setVisible(false);
+            camposTarjeta.setVisible(false);
         });
         tarjetaButton.setOnAction(event -> {
             System.out.println("Tarjeta");
             isEfectivo = false;
             datosTarjeta.setVisible(true);
+            camposTarjeta.setVisible(true);
         });
         confirmarButton.setOnAction(event -> {
             System.out.println("Confirmar");
@@ -63,14 +68,28 @@ public class ProcesoPagoViewController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Efectivo");
                 alert.setContentText("Acuda a la caja para pagar su pedido.");
-                alert.showAndWait();
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    mostrarFactura();
+                    Stage scene = (Stage) efectivoButton.getScene().getWindow();
+                    scene.hide();
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
             System.out.println("Tarjeta");
             if (comprobarDatos()) {
-                mostrarFactura();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Tarjeta");
+                alert.setContentText("Acuda a la caja para esperar su pedido.");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    mostrarFactura();
+                    Stage scene = (Stage) tarjetaButton.getScene().getWindow();
+                    scene.hide();
+                }
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
