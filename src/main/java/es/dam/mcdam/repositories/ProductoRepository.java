@@ -1,5 +1,6 @@
 package es.dam.mcdam.repositories;
 
+import es.dam.mcdam.models.Tipo;
 import es.dam.mcdam.services.Storage;
 import es.dam.mcdam.utils.Properties;
 import es.dam.mcdam.utils.Utils;
@@ -35,7 +36,7 @@ public class ProductoRepository implements IProductoRepository {
 
     @Override
     public ObservableList<Producto> findAll() throws SQLException {
-        String sql = "SELECT * FROM producto, codigoDescuento";
+        String sql = "SELECT * FROM producto";
         db.open();
         ResultSet rs = db.select(sql).orElseThrow(() -> new SQLException("Error al obtener todos los productos"));
         repository.clear();
@@ -48,9 +49,11 @@ public class ProductoRepository implements IProductoRepository {
                             rs.getString("imagen"),
                             rs.getString("descripcion"),
                             rs.getBoolean("disponibilidad"),
-                            new CodigoDescuento(rs.getString("coddescuento"), rs.getInt("porcendesc"))
+                            new CodigoDescuento(rs.getString("coddescuento"),0.0f)
                     )
             );
+            System.out.println(repository.size());
+
         }
         db.close();
         if (repository.isEmpty()) {

@@ -6,10 +6,26 @@
   <component name="ChangeListManager">
     <list default="true" id="2d705b7f-b2ef-45dd-bff7-00acb68db3d9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/McDAM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/McDAM.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/backup/personasRegistradas.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/backup/personasRegistradas.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/McDAM.db" beforeDir="false" afterPath="$PROJECT_DIR$/db/McDAM.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ActualizarCodigoDescuentoViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ActualizarCodigoDescuentoViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ActualizarProductoViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ActualizarProductoViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ConsultaAdministradorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ConsultaAdministradorViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/EdicionAdministradorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/EdicionAdministradorViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/clientemenu-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/clientemenu-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/LoginViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/LoginViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/MenuAdministradorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/MenuAdministradorViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ProcesoPagoViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ProcesoPagoViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/RegisterViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/RegisterViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/managers/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/managers/SceneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/models/CodigoDescuento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/models/CodigoDescuento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/PedidoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/PedidoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ProductoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ProductoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/utils/Properties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/utils/Properties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/actualizarcodigo-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/actualizarcodigo-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/actualizarcodigo.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/consultaadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/consultaadministrador-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/edicionadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/edicionadministrador-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,11 +86,14 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;DatabaseDriversLRU&quot;: [
@@ -202,6 +221,13 @@
       <workItem from="1653932824726" duration="4363000" />
       <workItem from="1653940643058" duration="3168000" />
       <workItem from="1653946509539" duration="2013000" />
+      <workItem from="1653979790526" duration="5715000" />
+      <workItem from="1653986387259" duration="330000" />
+      <workItem from="1653986749556" duration="270000" />
+      <workItem from="1653987090893" duration="144000" />
+      <workItem from="1653987263051" duration="1084000" />
+      <workItem from="1653988506387" duration="3180000" />
+      <workItem from="1654009809978" duration="1412000" />
     </task>
     <servers />
   </component>
@@ -235,42 +261,42 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ProductoRepository.java</url>
-          <line>88</line>
+          <line>91</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ProductoRepository.java</url>
-          <line>85</line>
+          <line>88</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ProductoRepository.java</url>
-          <line>101</line>
+          <line>104</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ProductoRepository.java</url>
-          <line>97</line>
+          <line>100</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ProductoRepository.java</url>
-          <line>109</line>
+          <line>112</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ProductoRepository.java</url>
-          <line>111</line>
+          <line>114</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ProductoRepository.java</url>
-          <line>119</line>
+          <line>122</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ProductoRepository.java</url>
-          <line>121</line>
+          <line>124</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>

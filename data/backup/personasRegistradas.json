@@ -54,5 +54,33 @@
     "correo": "prueba@prueba.com",
     "contraseña": "12345678",
     "tipo": "USER"
+  },
+  {
+    "uuid": "1f2a08b0-ade0-4b25-abd0-441d843cd858",
+    "nombre": "prueba",
+    "correo": "prueba@prueba.com",
+    "contraseña": "prueba12345",
+    "tipo": "USER"
+  },
+  {
+    "uuid": "8c3d957c-6dd9-4cbd-bf70-b39beed30c73",
+    "nombre": "mireya",
+    "correo": "mireya@gmail.com",
+    "contraseña": "mireya1234",
+    "tipo": "USER"
+  },
+  {
+    "uuid": "335c5c9c-55dc-4280-951c-51f2b7cb8134",
+    "nombre": "mireya",
+    "correo": "mireya@gmail.com",
+    "contraseña": "mireya1234",
+    "tipo": "USER"
+  },
+  {
+    "uuid": "d25f4800-51dd-4430-b702-965fa0ce15f1",
+    "nombre": "ruben",
+    "correo": "ruben@gmail.com",
+    "contraseña": "ruben1234",
+    "tipo": "USER"
   }
 ]

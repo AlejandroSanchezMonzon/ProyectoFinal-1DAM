@@ -22,7 +22,7 @@ public class CodigoDescuento {
         return codigo.get();
     }
 
-    public void setNombre(String codigo){
+    public void setCodigo(String codigo){
         this.codigo.set(codigo);
     }
 

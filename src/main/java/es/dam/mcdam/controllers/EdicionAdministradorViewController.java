@@ -35,6 +35,9 @@ public class EdicionAdministradorViewController {
     public TableView<Producto> productosTable;
     @FXML
     public TableColumn<Producto, ImageView> imagenColumnP;
+
+    @FXML
+    public TableColumn<Producto, String> nombreColumnP;
     @FXML
     public TableColumn<Producto, String> descripcionColumnP;
     @FXML
@@ -116,9 +119,11 @@ public class EdicionAdministradorViewController {
 
     }
     private void initProductosView() throws SQLException {
+        //Controlamos visibilidad de las tablas de codigos y productos
         isProductoClicked = true;
         codigoTable.setVisible(false);
         productosTable.setVisible(true);
+        //Inicializamos las columnas de la tabla de productos
         productosTable.setItems(productosRepository.findAll());
         imagenColumnP.setCellValueFactory((TableColumn.CellDataFeatures<Producto, ImageView> param) -> {
             if(param.getValue().getImagen() != null && param.getValue().getImagen().length() > 0) {
@@ -132,10 +137,12 @@ public class EdicionAdministradorViewController {
                 return new SimpleObjectProperty<>(imageView);
             }
         });
+        nombreColumnP.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         descripcionColumnP.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         editarButton.setOnMouseClicked(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                     Producto producto = productosTable.getSelectionModel().getSelectedItem();
+
                     try {
                         openEditarProducto(dialogStage, producto);
                     } catch (IOException e) {
@@ -194,7 +201,7 @@ public class EdicionAdministradorViewController {
                 throw new RuntimeException(e);
             }
         }
-        //listaProductos.refresh();
+
     }
 
     private void actualizarProducto(Producto item) {

@@ -3,11 +3,9 @@ package es.dam.mcdam.controllers;
 import es.dam.mcdam.AppMain;
 import es.dam.mcdam.models.CodigoDescuento;
 import es.dam.mcdam.models.Producto;
-import es.dam.mcdam.repositories.CodigoDescuentoRepository;
 import es.dam.mcdam.repositories.ProductoRepository;
 import es.dam.mcdam.utils.Resources;
 import es.dam.mcdam.utils.Utils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -18,7 +16,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
@@ -41,10 +38,8 @@ public class ActualizarProductoViewController {
     TextField codigoTxt;
     @FXML
     ImageView imageView;
-
     @FXML
     Button aceptar;
-
     @FXML
     Button cancelar;
     private Stage dialogStage;
@@ -54,6 +49,7 @@ public class ActualizarProductoViewController {
 
     @FXML
     private void initialize() throws SQLException {
+        System.out.println("Editar o nuevo producto");
     }
 
     public void setDialogStage(Stage dialogStage) {
@@ -77,7 +73,7 @@ public class ActualizarProductoViewController {
         descripcionTxt.setText(producto.getDescripcion());
         disponibleTxt.setText(String.valueOf(producto.getDisponible()));
         codigoTxt.setText(producto.getCodigoDescuento().getCodigo());
-        // La imagen
+        // TODO al editar un producto dice que la imagen no existe asigna la de por defecto
         if (!producto.getImagen().isBlank() && Files.exists(Paths.get(producto.getImagen()))) {
             System.out.println("Cargando imagen: " + producto.getImagen());
             Image image = new Image(new File(producto.getImagen()).toURI().toString());
@@ -85,8 +81,8 @@ public class ActualizarProductoViewController {
             imageView.setImage(image);
         } else {
             System.out.println("No existe la imagen. Usando imagen por defecto");
-            imageView.setImage(new Image(Resources.get(AppMain.class, "icons/adduser.png")));
-            producto.setImagen(Resources.getPath(AppMain.class, "icons/adduser.png"));
+            imageView.setImage(new Image(Resources.get(AppMain.class, "icons/maiz.png")));
+            producto.setImagen(Resources.getPath(AppMain.class, "icons/maiz.png"));
             System.out.println("Nueva información de imagen: " + producto);
         }
 
@@ -136,16 +132,12 @@ public class ActualizarProductoViewController {
         if (nombreTxt.getText() == null || nombreTxt.getText().isBlank()) {
             errorMessage = false;
         }else if (precioTxt.getText() == null || precioTxt.getText().isBlank() || !Utils.isPrecio(precioTxt.getText())) {
-           // errorMessage += "La calle no puede estar en blanco\n";
             errorMessage = false;
         }else if (descripcionTxt.getText() == null || descripcionTxt.getText().isBlank()) {
-            //errorMessage += "La ciudad no puede estar en blanco\n";
             errorMessage = false;
         }else if (disponibleTxt.getText() == null || disponibleTxt.getText().isBlank() || !Utils.isYesorNo(disponibleTxt.getText())) {
-            //errorMessage += "El email no puede estar en blanco o no es válido\n";
             errorMessage = false;
         }else if (codigoTxt.getText() == null || codigoTxt.getText().isBlank()) {
-            //errorMessage += "La fecha de cumpleaños no puede ser superior a la actual\n";
             errorMessage = false;
         }
         if(!errorMessage){

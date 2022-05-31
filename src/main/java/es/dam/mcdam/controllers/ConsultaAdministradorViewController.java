@@ -1,20 +1,12 @@
 package es.dam.mcdam.controllers;
 
-import es.dam.mcdam.AppMain;
 import es.dam.mcdam.models.Pedido;
 import es.dam.mcdam.models.PersonaRegistrada;
 import es.dam.mcdam.repositories.PedidoRepository;
 import es.dam.mcdam.repositories.PersonaRegistradaRepository;
-import es.dam.mcdam.utils.Properties;
-import es.dam.mcdam.utils.Resources;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import java.sql.SQLException;
 
 public class ConsultaAdministradorViewController {
@@ -26,22 +18,22 @@ public class ConsultaAdministradorViewController {
 
     @FXML
     private TableColumn nombreColumn;
-
+    @FXML
+    private TableColumn correoColumn;
+    @FXML
+    private TableColumn contraseñaColumn;
     @FXML
     private TableColumn tipoColumn;
-
+    @FXML
+    private TableColumn uuidColumn;
     @FXML
     private TableView<Pedido> pedidoTable;
-
     @FXML
     private TableColumn numColumn;
-
     @FXML
     private TableColumn precioColumn;
-
     @FXML
     private MenuItem opcionPedido;
-
     @FXML
     private MenuItem opcionUsuario;
 
@@ -70,7 +62,10 @@ public class ConsultaAdministradorViewController {
         usuariosTable.setVisible(true);
         usuariosTable.setItems(personaRepository.findAll());
         nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        correoColumn.setCellValueFactory(new PropertyValueFactory<>("correo"));
+        contraseñaColumn.setCellValueFactory(new PropertyValueFactory<>("contraseña"));
         tipoColumn.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        uuidColumn.setCellValueFactory(new PropertyValueFactory<>("uuid"));
     }
 
     private void initPedidosView() throws SQLException {

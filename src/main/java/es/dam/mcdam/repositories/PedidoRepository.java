@@ -36,7 +36,7 @@ public class PedidoRepository implements IPedidoRepository{
         while (rs.next()) {
             repository.add(
                     new Pedido(
-                            rs.getString("uuuid"),
+                            rs.getString("uuid"),
                             rs.getFloat("total"),
                             rs.getString("metodoPago"),
                             (java.util.List<LineaPedido>)rs.getObject("compra"),

@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.sql.SQLException;
 import java.util.UUID;
@@ -46,6 +47,10 @@ public class RegisterViewController {
             alert.setHeaderText("Registro correcto");
             alert.setContentText("Usuario registrado correctamente");
             alert.showAndWait();
+
+            Stage scene = (Stage) validar.getScene().getWindow();
+            scene.hide();
+
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Registro");

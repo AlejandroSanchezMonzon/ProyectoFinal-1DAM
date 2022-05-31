@@ -19,8 +19,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -207,10 +205,9 @@ public class SceneManager {
         Scene scene = new Scene(fxmlLoader.load(), Properties.ACTUALIZARPRODUCTO_WIDTH, Properties.ACTUALIZARPRODUCTO_HEIGHT);
         Stage stage =new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(mainStage); // -importante con windows modal
+        stage.initOwner(mainStage);
         stage.setTitle(editarModo ? "Editar Producto" : "Nuevo Producto");
         stage.setResizable(false);
-        // Le hacemos los setters a los elementos del controlador
         ActualizarProductoViewController controller = fxmlLoader.getController();
         controller.setDialogStage(stage);
         controller.setEditarModo(editarModo);
@@ -227,10 +224,9 @@ public class SceneManager {
         Scene scene = new Scene(fxmlLoader.load(), Properties.ACTUALIZARCODIGO_WIDTH, Properties.ACTUALIZARCODIGO_HEIGHT);
         Stage stage =new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(mainStage); // -importante con windows modal
+        stage.initOwner(mainStage);
         stage.setTitle(editarModo ? "Editar Código Descuento" : "Nueva Código Descuento");
         stage.setResizable(false);
-        // Le hacemos los setters a los elementos del controlador
         ActualizarCodigoDescuentoViewController controller = fxmlLoader.getController();
         controller.setDialogStage(stage);
         controller.setEditarModo(editarModo);
@@ -259,5 +255,6 @@ public class SceneManager {
         Backup save = BackupJSON.getInstance();
         PersonaRegistradaRepository personaRegistradaRepository = PersonaRegistradaRepository.getInstance();
         save.backup(personaRegistradaRepository.findAll());
+
     }
 }

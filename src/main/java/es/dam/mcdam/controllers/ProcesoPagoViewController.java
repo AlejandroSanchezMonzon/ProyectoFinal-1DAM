@@ -1,2 +1,6 @@
-package es.dam.mcdam.controllers;public class ProcesoPagoViewController {
+package es.dam.mcdam.controllers;
+
+public class ProcesoPagoViewController {
+
+
 }

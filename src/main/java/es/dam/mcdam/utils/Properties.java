@@ -56,7 +56,7 @@ public class Properties {
     public static final int ACTUALIZARPRODUCTO_WIDTH = 500;
 
     //Menu actualizar codigo descuento
-    public static final int ACTUALIZARCODIGO_HEIGHT = 350;
+    public static final int ACTUALIZARCODIGO_HEIGHT = 250;
     public static final int ACTUALIZARCODIGO_WIDTH = 500;
 
     //Acerca de
