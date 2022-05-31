@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d705b7f-b2ef-45dd-bff7-00acb68db3d9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/consultaadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/consultaadministrador-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/McDAM.db" beforeDir="false" afterPath="$PROJECT_DIR$/db/McDAM.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ConsultaAdministradorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ConsultaAdministradorViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/EdicionAdministradorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/EdicionAdministradorViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/clientemenu-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/clientemenu-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,6 +201,7 @@
       <workItem from="1653932285407" duration="521000" />
       <workItem from="1653932824726" duration="4363000" />
       <workItem from="1653940643058" duration="3168000" />
+      <workItem from="1653946509539" duration="2013000" />
     </task>
     <servers />
   </component>

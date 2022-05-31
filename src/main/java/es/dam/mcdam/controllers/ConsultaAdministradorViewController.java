@@ -10,6 +10,7 @@ import es.dam.mcdam.utils.Resources;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -21,93 +22,68 @@ public class ConsultaAdministradorViewController {
     private final PedidoRepository pedidoRepository = PedidoRepository.getInstance();
 
     @FXML
-    private ListView<PersonaRegistrada> listaPersonas;
+    private TableView<PersonaRegistrada> usuariosTable;
 
     @FXML
-    private ListView<Pedido> listaPedidos;
+    private TableColumn nombreColumn;
 
     @FXML
-    private Button pedido;
+    private TableColumn tipoColumn;
 
     @FXML
-    private Button usuariosRegistrados;
+    private TableView<Pedido> pedidoTable;
+
+    @FXML
+    private TableColumn numColumn;
+
+    @FXML
+    private TableColumn precioColumn;
+
+    @FXML
+    private MenuItem opcionPedido;
+
+    @FXML
+    private MenuItem opcionUsuario;
+
 
     @FXML
     private void initialize() throws SQLException {
         initData();
-        pedido.setOnAction(event -> initPedidosView());
-        usuariosRegistrados.setOnAction(event -> initPersonasView());
-    }
-
-    private void initPedidosView() {
-        listaPedidos.setCellFactory(param -> new ListCell<>(){
-            @Override
-            public void updateItem(Pedido item, boolean empty){
-                super.updateItem(item,empty);
-                if (empty) {
-                    setText(null);
-                    setGraphic(null);
-                } else {
-                    HBox hBox = new HBox();
-                    hBox.setSpacing(10);
-
-                    VBox vbox = new VBox();
-                    vbox.setSpacing(10);
-                    Label cliente = new Label(item.getCliente().getNombre());
-                    Label compra = new Label(item.getCompra().toString());
-                    Label metodoPago = new Label(item.getMetodoPago());
-                    Label total = new Label(Float.toString(item.getTotal()));
-                    Label id = new Label(item.getUuid());
-                    vbox.getChildren().addAll(cliente, compra, metodoPago, total, id);
-                    // Imagen
-                    ImageView imageView = new ImageView();
-                    imageView.setFitHeight(75);
-                    imageView.setFitWidth(50);
-                    imageView.setImage(new Image(Resources.get(AppMain.class, Properties.PEDIDO_DEFAULT)));
-                    hBox.setAlignment(Pos.CENTER);
-                    hBox.getChildren().addAll(imageView, vbox);
-                    setGraphic(hBox);
-                }
+        opcionPedido.setOnAction(event -> {
+            try {
+                initPedidosView();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        opcionUsuario.setOnAction(event -> {
+            try {
+                initPersonasView();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         });
     }
 
-    private void initPersonasView() {
-        listaPersonas.setCellFactory(param -> new ListCell<>(){
-            @Override
-            public void updateItem(PersonaRegistrada item, boolean empty){
-                super.updateItem(item,empty);
-                if (empty) {
-                    setText(null);
-                    setGraphic(null);
-                } else {
-                    HBox hBox = new HBox();
-                    hBox.setSpacing(10);
+    private void initPersonasView() throws SQLException {
+        usuariosTable.setVisible(false);
+        usuariosTable.setVisible(true);
+        usuariosTable.setItems(personaRepository.findAll());
+        nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        tipoColumn.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+    }
 
-                    VBox vbox = new VBox();
-                    vbox.setSpacing(10);
-                    Label nombre = new Label(item.getNombre());
-                    Label correo = new Label(item.getCorreo());
-                    Label contraseña = new Label(item.getContraseña());
-                    Label tipo = new Label(item.getTipo().toString());
-                    Label id = new Label(item.getUuid());
-                    vbox.getChildren().addAll(nombre, correo, contraseña, tipo, id);
-                    // Imagen
-                    ImageView imageView = new ImageView();
-                    imageView.setFitHeight(75);
-                    imageView.setFitWidth(50);
-                    imageView.setImage(new Image(Resources.get(AppMain.class, Properties.USER_DEFAULT)));
-                    hBox.setAlignment(Pos.CENTER);
-                    hBox.getChildren().addAll(imageView, vbox);
-                    setGraphic(hBox);
-                }
-            }
-        });
+    private void initPedidosView() throws SQLException {
+        pedidoTable.setVisible(false);
+        pedidoTable.setVisible(true);
+        pedidoTable.setItems(pedidoRepository.findAll());
+        numColumn.setCellValueFactory(new PropertyValueFactory<>("uuid"));
+        precioColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
     }
 
     private void initData() throws SQLException {
-        listaPersonas.setItems(personaRepository.findAll());
-        listaPedidos.setItems(pedidoRepository.findAll());
+        usuariosTable.setItems(personaRepository.findAll());
+        pedidoTable.setItems(pedidoRepository.findAll());
     }
 
 

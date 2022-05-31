@@ -1,6 +1,5 @@
 package es.dam.mcdam.controllers;
 
-import es.dam.mcdam.AppMain;
 import es.dam.mcdam.managers.SceneManager;
 import es.dam.mcdam.models.CodigoDescuento;
 import es.dam.mcdam.models.Producto;
@@ -19,9 +18,6 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.Optional;
-import es.dam.mcdam.utils.Properties;
-
-import javax.swing.text.LabelView;
 
 public class EdicionAdministradorViewController {
     private final ProductoRepository productosRepository = ProductoRepository.getInstance();
@@ -48,8 +44,6 @@ public class EdicionAdministradorViewController {
     @FXML
     public TableColumn<CodigoDescuento, String> porcenColumnC;
     private Stage dialogStage;
-
-
     @FXML
     private Button insertarButton;
 
@@ -85,7 +79,6 @@ public class EdicionAdministradorViewController {
 
     private void openInsertar(Stage stageEdicion) throws IOException {
         System.out.println("Se ha pulsado el botón insertar");
-
         if(isProductoClicked){
             Producto producto = new Producto();
             SceneManager.get().initProductoEditar(false, producto, stageEdicion);
@@ -104,36 +97,24 @@ public class EdicionAdministradorViewController {
         codigoTable.setItems(codigoDescuentoRepository.findAll());
         codigoColumnC.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         porcenColumnC.setCellValueFactory(new PropertyValueFactory<>("porcentajeDescuento"));
-
-    }
-    private void actualizarCodigo(CodigoDescuento item){
-        System.out.println("Actualizar código descuento");
-        System.out.println(item);
-        try {
-            codigoDescuentoRepository.update(item);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void eliminarCodigo(CodigoDescuento item){
-        System.out.println("Eliminar código descuento");
-        System.out.println(item);
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Borrar");
-        alert.setContentText("¿Está seguro/a? Esta opción no se puede deshacer.");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            try {
-                codigoDescuentoRepository.delete(item);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+        editarButton.setOnMouseClicked(event -> {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                CodigoDescuento codigoDescuento = codigoTable.getSelectionModel().getSelectedItem();
+                try {
+                    openEditarCodigo(dialogStage, codigoDescuento);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
+        });
+        eliminarButton.setOnMouseClicked(event -> {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                CodigoDescuento codigoDescuento = codigoTable.getSelectionModel().getSelectedItem();
+                eliminarCodigo(codigoDescuento);
+            }
+        });
 
-        }
-        //menuItemPromo.refresh();
     }
-
     private void initProductosView() throws SQLException {
         isProductoClicked = true;
         codigoTable.setVisible(false);
@@ -156,7 +137,7 @@ public class EdicionAdministradorViewController {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                     Producto producto = productosTable.getSelectionModel().getSelectedItem();
                     try {
-                        openEditar(dialogStage, producto);
+                        openEditarProducto(dialogStage, producto);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -170,9 +151,15 @@ public class EdicionAdministradorViewController {
         });
     }
 
-    private void openEditar(Stage stageEdicion, Producto producto) throws IOException {
+    private void openEditarProducto(Stage stageEdicion, Producto producto) throws IOException {
         System.out.println("Se ha pulsado el botón insertar");
         SceneManager.get().initProductoEditar(true, producto, stageEdicion);
+
+    }
+
+    private void openEditarCodigo(Stage stageEdicion, CodigoDescuento codigo) throws IOException {
+        System.out.println("Se ha pulsado el botón insertar");
+        SceneManager.get().initCodigoDescuentoEditar(true, codigo, stageEdicion);
 
     }
 
@@ -186,6 +173,23 @@ public class EdicionAdministradorViewController {
         if (result.get() == ButtonType.OK) {
             try {
                 productosRepository.delete(item);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        //listaProductos.refresh();
+    }
+
+    private void eliminarCodigo(CodigoDescuento item) {
+        System.out.println("Eliminar producto");
+        System.out.println(item);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Borrar");
+        alert.setContentText("¿Está seguro/a? Esta opción no se puede deshacer.");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            try {
+                codigoDescuentoRepository.delete(item);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
