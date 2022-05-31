@@ -8,6 +8,7 @@ import es.dam.mcdam.models.Tipo;
 import es.dam.mcdam.repositories.PersonaRegistradaRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -145,5 +146,13 @@ public class LoginViewController {
 
     public void onSalirAction() {
         System.exit(0);
+    }
+
+    public void onMenuModoOscuroAction(ActionEvent actionEvent) {
+        System.out.println("Se ha pulsado accion Modena");
+        Temas.set(this.avatarImageView, Themes.MODENA.get());
+    }
+
+    public void onMenuLimpiarAction(ActionEvent actionEvent) {
     }
 }

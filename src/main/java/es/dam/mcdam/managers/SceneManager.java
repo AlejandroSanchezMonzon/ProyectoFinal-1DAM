@@ -3,6 +3,7 @@ package es.dam.mcdam.managers;
 import es.dam.mcdam.AppMain;
 import es.dam.mcdam.controllers.*;
 import es.dam.mcdam.models.CodigoDescuento;
+import es.dam.mcdam.models.Pedido;
 import es.dam.mcdam.models.PersonaRegistrada;
 import es.dam.mcdam.models.Producto;
 import es.dam.mcdam.repositories.PedidoRepository;
@@ -187,13 +188,15 @@ public class SceneManager {
         stage.showAndWait();
     }
 
-    public void initProcesoPago() throws IOException {
+    public void initProcesoPago(Pedido pedido) throws IOException {
         //logger.info("Iniciando proceso pago");
         System.out.println("Iniciando proceso pago");
         FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.PROCESOPAGO.get()));
         Scene scene = new Scene(fxmlLoader.load(), Properties.PROCESOPAGO_WIDTH, Properties.PROCESOPAGO_HEIGHT);
         Stage stage = new Stage();
         stage.setResizable(false);
+        ProcesoPagoViewController controller = fxmlLoader.getController();
+        controller.setPedido(pedido);
         stage.getIcons().add(new Image(Resources.get(AppMain.class, Properties.APP_ICON)));
         stage.setTitle(Properties.APP_TITLE);
         stage.initStyle(StageStyle.DECORATED);

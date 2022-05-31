@@ -30,6 +30,10 @@ public class Pedido {
         return metodoPago;
     }
 
+    public void setMetodoPago(String metodoPago) {
+        this.metodoPago = metodoPago;
+    }
+
     public List<LineaPedido> getCompra() {
 
         return compra;
@@ -41,6 +45,6 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" + "uuid=" + uuid + ", total=" + total + ", metodoPago=" + metodoPago + ", compra=" + compra + ", cliente=" + cliente + '}';
+        return "- PEDIDO:" + "<br>" + " PAGO REALIZADO MEDIANTE : " + metodoPago + "<br>" +"- COMPRA : " + "<br>" + compra + "<br>"+"- CLIENTE : " + cliente ;
     }
 }

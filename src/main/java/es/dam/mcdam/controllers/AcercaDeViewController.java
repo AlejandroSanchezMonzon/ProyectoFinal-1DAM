@@ -1,7 +1,10 @@
+/**
+@author Información mostrada en la documentación.
+*/
+
 package es.dam.mcdam.controllers;
 
 import es.dam.mcdam.utils.Properties;
-import es.dam.mcdam.utils.Utils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -17,8 +20,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class AcercaDeViewController {
+    //ESTADO
     private Stage dialogStage;
-
     @FXML
     private Label version;
     @FXML
@@ -31,17 +34,21 @@ public class AcercaDeViewController {
     private Hyperlink githubLink;
     @FXML
     private Button aceptar;
-
+    //COMPORTAMIENTO
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
+    /**
+     * Carga la información de la aplicación.
+     */
     @FXML
     private void initialize() {
         titulo.setText(Properties.APP_TITLE);
         version.setText("Version: " + Properties.APP_VERSION);
         autor.setText("Autores: " + Properties.APP_AUTHOR);
 
+        //Evento para hacer click con el ratón.
         githubIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -53,11 +60,13 @@ public class AcercaDeViewController {
         aceptar.setOnAction(event -> aceptarOnClick());
     }
 
+    /**
+     * Abre la página de GitHub.
+     */
     private void openGitHub() {
         try {
             URI uri = new URI(Properties.ACERCADE_LINK);
             java.awt.Desktop.getDesktop().browse(uri);
-            //Utils.openBrowser(Properties.ACERCADE_LINK);
         } catch (URISyntaxException | IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -67,7 +76,9 @@ public class AcercaDeViewController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Cierra la ventana.
+     */
     @FXML
     private void aceptarOnClick() {
         dialogStage.close();

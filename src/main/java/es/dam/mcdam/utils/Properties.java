@@ -20,6 +20,7 @@ public class Properties {
 
     public static final String CSS_FILE = "../src/main/resources/es/dam/mcdam/estilos.css";
     public static final String HTML_IMAGE = "../src/main/resources/es/dam/mcdam/images/McDAMNoFondo1.png";
+    public static final String HTML_IMAGE2 = "../src/main/resources/es/dam/mcdam/images/barcode.png";
     public static final String APP_ICON = "icons" + File.separator + "logo.png";
     public static final int APP_WIDTH = 600;
     public static final int APP_HEIGHT = 400;
@@ -59,7 +60,7 @@ public class Properties {
     public static final int ACTUALIZARPRODUCTO_WIDTH = 500;
 
     //Menu actualizar codigo descuento
-    public static final int ACTUALIZARCODIGO_HEIGHT = 250;
+    public static final int ACTUALIZARCODIGO_HEIGHT = 350;
     public static final int ACTUALIZARCODIGO_WIDTH = 500;
 
     //Acerca de

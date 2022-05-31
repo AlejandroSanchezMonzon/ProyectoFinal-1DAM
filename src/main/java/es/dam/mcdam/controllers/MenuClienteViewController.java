@@ -101,7 +101,7 @@ public class MenuClienteViewController {
                     carritoRepository.deleteAll();
                     carritoTable.refresh();
                     calcularTotal();
-                    SceneManager.get().initProcesoPago();
+                    SceneManager.get().initProcesoPago(pedido);
                     Stage scene = (Stage) txtTotal.getScene().getWindow();
                     scene.hide();
                 } else {

@@ -1,3 +1,7 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.controllers;
 
 import es.dam.mcdam.AppMain;
@@ -23,7 +27,7 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 public class ActualizarProductoViewController {
-
+    //ESTADO
     ProductoRepository productoRepository = ProductoRepository.getInstance();
     @FXML
     TextField nombreTxt;
@@ -48,24 +52,38 @@ public class ActualizarProductoViewController {
     private boolean aceptarClicked = false;
     private boolean editarModo = false;
 
+    //COMPORTAMIENTO
+
+    /**
+     * Inicializa el controlador.
+     */
     @FXML
     private void initialize() throws SQLException {
         System.out.println("Editar o nuevo producto");
     }
 
+    /**
+     * Establece el stage del dialogo.
+     */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
+    /**
+     * Establece el producto a editar.
+     */
     public void setProducto(Producto producto) {
         this.producto = producto;
         System.out.println("Producto asociado: " + producto);
         if (editarModo) {
             setDataInfo();
         }
-        nombreTxt.requestFocus();
+        nombreTxt.requestFocus(); //Para que se ponga el foco en el primer campo.
     }
 
+    /**
+     *
+     */
     private void setDataInfo() {
         System.out.println("SetDataInfo");
         nombreTxt.setText(producto.getNombre());

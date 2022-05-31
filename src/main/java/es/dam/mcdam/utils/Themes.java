@@ -1,6 +1,7 @@
 package es.dam.mcdam.utils;
 
-public class Themes {
+public enum Themes {
+    OSCURO("styles/modena.css");
     private final String view;
 
     Themes(String view) {

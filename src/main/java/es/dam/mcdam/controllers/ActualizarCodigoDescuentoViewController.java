@@ -1,10 +1,12 @@
+/**
+@author Información mostrada en la documentación.
+*/
+
 package es.dam.mcdam.controllers;
 
 import es.dam.mcdam.AppMain;
 import es.dam.mcdam.models.CodigoDescuento;
-import es.dam.mcdam.models.Producto;
 import es.dam.mcdam.repositories.CodigoDescuentoRepository;
-import es.dam.mcdam.repositories.ProductoRepository;
 import es.dam.mcdam.utils.Resources;
 import es.dam.mcdam.utils.Utils;
 import javafx.fxml.FXML;
@@ -13,19 +15,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.util.UUID;
-
-import static es.dam.mcdam.utils.Properties.CODIGODESCUENTO_DEFAULT;
 
 public class ActualizarCodigoDescuentoViewController {
-
+    //ESTADO
     CodigoDescuentoRepository codigoRepository = CodigoDescuentoRepository.getInstance();
     @FXML
     TextField codigoTxt;
@@ -42,14 +37,26 @@ public class ActualizarCodigoDescuentoViewController {
     private boolean aceptarClicked = false;
     private boolean editarModo = false;
 
+    //COMPORTAMIENTO
+
+    /**
+     * Inicializa el controlador.
+     */
     @FXML
     private void initialize() {
         System.out.println("Editar o nuevo código de descuento");
     }
+
+    /**
+     * Establece el stage del dialogo.
+     */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
+    /**
+     * Establece el codigo de descuento a editar.
+     */
     public void setCodigoDescuento(CodigoDescuento codigoDescuento) {
         this.codigoDescuento = codigoDescuento;
         System.out.println("Codigo Descuento asociado: " + codigoDescuento);
@@ -59,6 +66,9 @@ public class ActualizarCodigoDescuentoViewController {
         codigoTxt.requestFocus();
     }
 
+    /**
+     * Obtiene el codigo de descuento y establece una imagen por defecto.
+     */
     private void setDataInfo() {
         System.out.println("SetDataInfo");
         codigoTxt.setText(codigoDescuento.getCodigo());
@@ -70,17 +80,25 @@ public class ActualizarCodigoDescuentoViewController {
 
     }
 
+    /**
+     * Ajusta el modo edición activandolo o desactivandolo.
+     */
     public void setEditarModo(boolean editarModo) {
         this.editarModo = editarModo;
         System.out.println("Modo Editar: " + editarModo);
     }
 
+    /**
+     * Controla que "Aceptar" se ha pulsado.
+     */
     public boolean isAceptarClicked() {
         return aceptarClicked;
     }
 
-
-
+    /**
+     * Al pulsar aceptar se comprueba que los datos son correctos.
+     * Dependiendo del modo de editar se realizan las acciones necesarias.
+     */
     @FXML
     private void onAceptarAction() throws SQLException {
         System.out.println("Aceptar");
@@ -101,13 +119,20 @@ public class ActualizarCodigoDescuentoViewController {
         }
     }
 
+    /**
+     * Controla que "Cancelar" se ha pulsado.
+     */
     @FXML
     private void onCancelarAction() {
         System.out.println("Has pulsado Cancelar");
         dialogStage.close();
     }
 
-    //TODO validar datos mejor
+    /**
+     * Valida los datos introducidos por el usuario.
+     *
+     * @return true si los datos son correctos, false en caso contrario.
+     */
     private boolean isInputValid() {
         boolean errorMessage = true;
 

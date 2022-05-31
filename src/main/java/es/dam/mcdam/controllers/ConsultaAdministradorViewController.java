@@ -1,11 +1,13 @@
 package es.dam.mcdam.controllers;
 
+import es.dam.mcdam.AppMain;
 import es.dam.mcdam.models.CodigoDescuento;
 import es.dam.mcdam.models.PersonaRegistrada;
 import es.dam.mcdam.models.Producto;
 import es.dam.mcdam.repositories.CodigoDescuentoRepository;
 import es.dam.mcdam.repositories.PersonaRegistradaRepository;
 import es.dam.mcdam.repositories.ProductoRepository;
+import es.dam.mcdam.utils.Resources;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -83,7 +85,7 @@ public class ConsultaAdministradorViewController {
         productosTable.setItems(productoRepository.findAll());
         imagenColumnP.setCellValueFactory((TableColumn.CellDataFeatures<Producto, ImageView> param) -> {
             if(param.getValue().getImagen() != null && param.getValue().getImagen().length() > 0) {
-                ImageView imageView = new ImageView(param.getValue().getImagen());
+                ImageView imageView =new ImageView(new File(Resources.getPath(AppMain.class, "images") + param.getValue().getImagen()).toURI().toString());
                 imageView.setFitHeight(50);
                 imageView.setFitWidth(50);
                 return new SimpleObjectProperty<>(imageView);

@@ -1,5 +1,6 @@
 package es.dam.mcdam.controllers;
 
+import es.dam.mcdam.models.Pedido;
 import es.dam.mcdam.utils.Properties;
 import es.dam.mcdam.utils.Utils;
 import javafx.fxml.FXML;
@@ -30,6 +31,7 @@ public class ProcesoPagoViewController {
     public VBox camposTarjeta;
 
     boolean isEfectivo = true;
+    private static Pedido pedido;
 
     public void initialize() {
         datosTarjeta.setVisible(false);
@@ -40,12 +42,14 @@ public class ProcesoPagoViewController {
             isEfectivo = true;
             datosTarjeta.setVisible(false);
             camposTarjeta.setVisible(false);
+            pedido.setMetodoPago("Efectivo");
         });
         tarjetaButton.setOnAction(event -> {
             System.out.println("Tarjeta");
             isEfectivo = false;
             datosTarjeta.setVisible(true);
             camposTarjeta.setVisible(true);
+            pedido.setMetodoPago("Tarjeta");
         });
         confirmarButton.setOnAction(event -> {
             System.out.println("Confirmar");
@@ -89,6 +93,7 @@ public class ProcesoPagoViewController {
                     mostrarFactura();
                     Stage scene = (Stage) tarjetaButton.getScene().getWindow();
                     scene.hide();
+
                 }
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -99,10 +104,12 @@ public class ProcesoPagoViewController {
         }
     }
 
-    private void mostrarFactura() {
+    private static void mostrarFactura() {
         String str = "";
         String h = "";
         String t = "";
+        String factura = pedido.toString();
+        String total = Utils.redondeoPrecio(pedido.getTotal());
         try {
             FileOutputStream fos = new FileOutputStream( Properties.DATA_DIR+ File.separator + "factura.html");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -112,7 +119,7 @@ public class ProcesoPagoViewController {
                     "    <head> \n" +
                     "            <title>Recibo mcdam</title>\n" +
                     "            <meta charset=\"utf-8\">\n" +
-                    "            <link rel=\"stylesheet\" href=" + Properties.DATA_DIR + File.separator + "estilos.css\">\n" +
+                    "            <link rel=\"stylesheet\" href=\"" + Properties.CSS_FILE +"\">\n" +
                     "\n" +
                     "    </head>\n" +
                     "    <body>  \n" +
@@ -120,7 +127,7 @@ public class ProcesoPagoViewController {
                     "\n" +
                     "            <div id=\"cabecera\">\n" +
                     "\n" +
-                    "            <img src=" + Properties.IMAGES_DIR + File.separator + "McDAMNoFondo1.png\" height=\"200\" width=\"200\">\n" +
+                    "            <img src=\"" + Properties.HTML_IMAGE + "\" height=\"200\" width=\"200\">\n" +
                     "\n" +
                     "            <p>McDam</p>\n" +
                     "\n" +
@@ -139,22 +146,7 @@ public class ProcesoPagoViewController {
                     "            <div id=\"contenido2\">\n" +
                     "                <table class=\"venta\">\n" +
                     "                    <tr>\n" +
-                    "                        <td>\n" +
-                    "                            <p>Producto1</p> \n" +
-                    "                            <p>Producto2</p>\n" +
-                    "                            <p>Producto3</p>\n" +
-                    "                            <p>Producto4</p>\n" +
-                    "                            <p>Producto5</p>\n" +
-                    "                            <p>Producto6</p>\n" +
-                    "                        </td>\n" +
-                    "                        <td>\n" +
-                    "                            <p class=\"derecha\"> 5 €</p>\n" +
-                    "                            <p class=\"derecha\"> 3 €</p>\n" +
-                    "                            <p class=\"derecha\"> 2 €</p>\n" +
-                    "                            <p class=\"derecha\"> 1.99 €</p>\n" +
-                    "                            <p class=\"derecha\"> 7.50 €</p>\n" +
-                    "                            <p class=\"derecha\"> 4 €</p>\n" +
-                    "                        </td>\n" +
+                                                 factura + "\n" +
                     "                    </tr>\n" +
                     "                    <tr>\n" +
                     "                        <td>\n" +
@@ -162,8 +154,8 @@ public class ProcesoPagoViewController {
                     "                            <h2>TOTAL: </h2>\n" +
                     "                        </td>\n" +
                     "                        <td>\n" +
-                    "                            <p class=\"derecha\"> 23,49€</p>\n" +
-                    "                            <h2 class=\"derecha\"> 23,49€</h2>\n" +
+                    "                            <p class=\"derecha\"> " + total +"</p>\n" +
+                    "                            <h2 class=\"derecha\"> "+ total +"</h2>\n" +
                     "                        </td>\n" +
                     "                    </tr>\n" +
                     "                </table>\n" +
@@ -172,7 +164,7 @@ public class ProcesoPagoViewController {
                     "                <p>Para gestionar la emisión de su factura envíe un e-mail a: facturacion@mcdam.com</p>\n" +
                     "                <br>\n" +
                     "                <br>\n" +
-                    "                <img src=" + Properties.IMAGES_DIR + File.separator + "barcode.png\" style=\"text-align: center;\">\n" +
+                    "                <img src=\"" + Properties.HTML_IMAGE2 + "\" style=\"text-align: center;\">\n" +
                     "                <br>\n" +
                     "                <br>\n" +
                     "                <br>\n" +
@@ -192,5 +184,9 @@ public class ProcesoPagoViewController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 }

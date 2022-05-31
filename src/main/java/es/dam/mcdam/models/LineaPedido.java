@@ -31,11 +31,8 @@ public class LineaPedido {
 
     @Override
     public String toString() {
-        return "LineaVenta{" +
-                "producto='" + producto + '\'' +
-                ", cantidad=" + cantidad +
-                ", precio=" + precio +
-                ", total=" + total +
-                '}';
+        return " PRODUCTO : " + producto + "<br>" +
+                " CANTIDAD : " + cantidad +"<br>" +
+                " PRECIO : " + precio + "€"+"<br>";
     }
 }

@@ -70,6 +70,6 @@ public class PersonaRegistrada {
     }
     @Override
     public String toString() {
-        return "PersonaRegistrada{" + "uuid=" + uuid + ", nombre=" + nombre + ", correo=" + correo + ", contraseña=" + contraseña + '}';
+        return  "<br>" +" NOMBRE : " + nombre + "<br>" + " CORREO : " + correo ;
     }
 }
