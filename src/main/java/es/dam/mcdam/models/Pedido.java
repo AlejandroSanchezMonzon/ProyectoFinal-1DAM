@@ -7,7 +7,7 @@ public class Pedido {
     private String uuid = UUID.randomUUID().toString();
     private final float total;
     private final String metodoPago;
-    private final List<LineaPedido> compra;
+    private List<LineaPedido> compra = null;
     private final PersonaRegistrada cliente;
 
     public Pedido(String uuid, float total, String metodoPago, List<LineaPedido> compra, PersonaRegistrada cliente) {
@@ -30,11 +30,7 @@ public class Pedido {
     }
 
     public float getTotal() {
-        float total = 0;
-        for (LineaPedido lineaPedido : compra) {
-            total += lineaPedido.getPrecio();
-        }
-        return total;
+        return (float) compra.stream().mapToDouble(LineaPedido::getTotal).sum();
     }
 
     public String getMetodoPago() {

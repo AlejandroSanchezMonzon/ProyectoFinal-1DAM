@@ -4,29 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d705b7f-b2ef-45dd-bff7-00acb68db3d9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/McDAM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/McDAM.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/backup/personasRegistradas.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/backup/personasRegistradas.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/McDAM.db" beforeDir="false" afterPath="$PROJECT_DIR$/db/McDAM.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ActualizarCodigoDescuentoViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ActualizarCodigoDescuentoViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ActualizarProductoViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ActualizarProductoViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ConsultaAdministradorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ConsultaAdministradorViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/EdicionAdministradorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/EdicionAdministradorViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/LoginViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/LoginViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/MenuAdministradorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/MenuAdministradorViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ProcesoPagoViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/ProcesoPagoViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/RegisterViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/controllers/RegisterViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/managers/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/managers/SceneManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/models/CodigoDescuento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/models/CodigoDescuento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/PedidoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/PedidoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ProductoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/repositories/ProductoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/utils/Properties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/dam/mcdam/utils/Properties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/actualizarcodigo-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/actualizarcodigo-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/actualizarcodigo.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/consultaadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/consultaadministrador-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/edicionadministrador-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/es/dam/mcdam/views/edicionadministrador-view.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="2d705b7f-b2ef-45dd-bff7-00acb68db3d9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,6 +25,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="Git.Stage.Ui.Settings">
+    <option name="ignoredFilesShown" value="true" />
   </component>
   <component name="GitToolBoxStore">
     <option name="recentBranches">
@@ -221,13 +202,8 @@
       <workItem from="1653932824726" duration="4363000" />
       <workItem from="1653940643058" duration="3168000" />
       <workItem from="1653946509539" duration="2013000" />
-      <workItem from="1653979790526" duration="5715000" />
-      <workItem from="1653986387259" duration="330000" />
-      <workItem from="1653986749556" duration="270000" />
-      <workItem from="1653987090893" duration="144000" />
-      <workItem from="1653987263051" duration="1084000" />
-      <workItem from="1653988506387" duration="3180000" />
-      <workItem from="1654009809978" duration="1412000" />
+      <workItem from="1653981269152" duration="7600000" />
+      <workItem from="1654011155864" duration="850000" />
     </task>
     <servers />
   </component>

@@ -7,6 +7,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Optional;
 
 public class Utils {
@@ -70,5 +71,14 @@ public class Utils {
             alert.getDialogPane().setExpandableContent(expContent);
             return alert;
 
+    }
+
+    public static boolean isCaducidad(LocalDate value) {
+        return value.isAfter(LocalDate.now());
+    }
+
+    public static boolean isCvs(String text) {
+        String regex = "[0-9]{3}";
+        return text.matches(regex);
     }
 }
