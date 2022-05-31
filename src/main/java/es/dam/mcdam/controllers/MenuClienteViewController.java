@@ -6,6 +6,7 @@ import es.dam.mcdam.models.*;
 import es.dam.mcdam.repositories.CarritoRepository;
 import es.dam.mcdam.repositories.PedidoRepository;
 import es.dam.mcdam.repositories.ProductoRepository;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -41,7 +42,7 @@ public class MenuClienteViewController {
     @FXML
     private TableColumn<ItemCarrito, String> productoColumn;
     @FXML
-    private TableColumn<ItemCarrito, Double> precioColumn;
+    private TableColumn<ItemCarrito, Float> precioColumn;
     @FXML
     private TableColumn<ItemCarrito, Integer> cantidadColumn;
 
@@ -177,7 +178,7 @@ public class MenuClienteViewController {
         System.out.println("Inicializando columnas...");
         carritoTable.setEditable(false);
         productoColumn.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
-        //precioColumn.setCellValueFactory(cellData -> cellData.getValue().precioProperty().asObject());
+        //precioColumn.setCellValueFactory(cellData -> cellData.getValue().precioProperty());
         cantidadColumn.setCellValueFactory(cellData -> cellData.getValue().cantidadProperty().asObject());
         setCantidadCell();
         imagenColumn.setCellValueFactory(cellData -> cellData.getValue().imagenProperty());

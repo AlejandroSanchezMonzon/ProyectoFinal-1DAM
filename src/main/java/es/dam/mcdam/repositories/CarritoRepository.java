@@ -62,10 +62,6 @@ public class CarritoRepository implements ICarritoRepository {
 
     @Override
     public double getTotal() {
-        var total = 0.0f;
-        for(ItemCarrito carrito: items){
-            total += carrito.getPrecio();
-        }
-        return total;
+        return items.stream().mapToDouble(ItemCarrito::getTotal).sum();
     }
 }
