@@ -1,8 +1,13 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.models;
 
 import javafx.beans.property.*;
 
 public class ItemCarrito {
+    //ESTADO
     private final StringProperty uuid;
     private final StringProperty nombre;
     private final StringProperty imagen;
@@ -10,6 +15,9 @@ public class ItemCarrito {
     private final IntegerProperty cantidad;
     private final DoubleProperty total;
 
+    //COMPORTAMIENTO
+
+    //CONSTRUCTOR
     public ItemCarrito(String uuid, String nombre, String imagen, double precio, int cantidad) {
         this.uuid = new SimpleStringProperty(uuid);
         this.nombre = new SimpleStringProperty(nombre);
@@ -19,6 +27,8 @@ public class ItemCarrito {
         this.total = new SimpleDoubleProperty(precio * cantidad);
     }
 
+
+    //GETTERS, SETTERS y PROPERTY
     public String getUuid() {
         return uuid.get();
     }
@@ -76,6 +86,10 @@ public class ItemCarrito {
     }
 
 
+    /**
+     * Método que devuelve una cadena con la información del objeto.
+     * @return
+     */
     @Override
     public String toString() {
         return "CarritoItem{" +

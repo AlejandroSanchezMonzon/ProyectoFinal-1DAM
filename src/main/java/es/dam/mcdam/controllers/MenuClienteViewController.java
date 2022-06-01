@@ -1,3 +1,7 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.controllers;
 
 import com.google.gson.Gson;
@@ -10,6 +14,7 @@ import es.dam.mcdam.repositories.PedidoRepository;
 import es.dam.mcdam.repositories.ProductoRepository;
 import es.dam.mcdam.utils.Resources;
 import es.dam.mcdam.utils.Utils;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,6 +38,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class MenuClienteViewController {
+    //ESTADO
     private final ProductoRepository productosRepository = ProductoRepository.getInstance();
     private final CarritoRepository carritoRepository = CarritoRepository.getInstance();
     private final ObservableList<Integer> cantidadList = FXCollections.observableArrayList();
@@ -43,7 +49,7 @@ public class MenuClienteViewController {
     @FXML
     private TextField txtTotal;
     @FXML
-    private TableColumn<ItemCarrito, String> imagenColumn;
+    private TableColumn<ItemCarrito, ImageView> imagenColumn;
     @FXML
     private TableColumn<ItemCarrito, String> productoColumn;
     @FXML
@@ -53,11 +59,20 @@ public class MenuClienteViewController {
 
     private PersonaRegistrada userActual;
 
+    //COMPORTAMIENTO
+
+    /**
+     * Inicializa la vista del menú del cliente.
+     */
     @FXML
     private void initialize() {
         cantidadList.addAll(1, 2, 3, 4, 5);
         initProductosView();
-        initTableView();
+        try {
+            initTableView();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         try {
             initData();
         } catch (SQLException e) {
@@ -65,11 +80,20 @@ public class MenuClienteViewController {
         }
     }
 
+    /**
+     * Inicializa con los datos de ka base de datos.
+     * @throws SQLException
+     */
     private void initData() throws SQLException {
         listProductos.setItems(productosRepository.findAll());
         carritoTable.setItems(carritoRepository.findAll());
     }
 
+    /**
+     * Elimina un producto del carrito.
+     * @param actionEvent
+     * @throws SQLException
+     */
     @FXML
     private void onEliminarAction(ActionEvent actionEvent) throws SQLException {
         ItemCarrito item = carritoTable.getSelectionModel().getSelectedItem();
@@ -80,6 +104,12 @@ public class MenuClienteViewController {
         }
     }
 
+    /**
+     * Al pulsar el boton de terminar, se abre la ventana de pago.
+     * @param actionEvent
+     * @throws SQLException
+     * @throws IOException
+     */
     @FXML
     private void onTerminarAction(ActionEvent actionEvent) throws SQLException, IOException {
         if (carritoRepository.findAll().size() > 0) {
@@ -107,7 +137,6 @@ public class MenuClienteViewController {
                 } else {
                     System.out.println("Cancelado");
                 }
-
             }
         } else {
             System.out.println("No hay productos en el carrito");
@@ -118,6 +147,10 @@ public class MenuClienteViewController {
             alert.showAndWait();
         }
     }
+
+    /**
+     * Se inicializa la tabla de productos.
+     */
     private void initProductosView() {
         listProductos.setCellFactory(param -> new ListCell<>() {
             @Override
@@ -136,7 +169,8 @@ public class MenuClienteViewController {
                     nombre.setStyle("-fx-font-weight: bold");
                     Label precio = new Label(Utils.redondeoPrecio(item.getPrecio()) + " €");
                     vbox.getChildren().addAll(nombre, precio);
-                    ImageView imageView = new ImageView(new File(Resources.getPath(AppMain.class, "images") + item.getImagen()).toURI().toString());                    imageView.setFitHeight(75);
+                    ImageView imageView = new ImageView(new File(Resources.getPath(AppMain.class, "images") + item.getImagen()).toURI().toString());
+                    imageView.setFitHeight(75);
                     imageView.setFitWidth(50);
                     var dirImage = Paths.get(item.getImagen());
                     imageView.setImage(new Image(dirImage.toUri().toString()));
@@ -169,6 +203,11 @@ public class MenuClienteViewController {
         });
     }
 
+    /**
+     * Método que añade un producto al carrito.
+     * @param item
+     * @throws SQLException
+     */
     private void añadirProducto(Producto item) throws SQLException {
         System.out.println("Añadir producto");
         System.out.println(item);
@@ -178,37 +217,42 @@ public class MenuClienteViewController {
         carritoTable.getSelectionModel().select(carritoItem);
         calcularTotal();
     }
+
+     /**
+     * Método que calcula el total del carrito.
+     */
     private void calcularTotal() {
         txtTotal.setText(carritoRepository.getTotal() + " €");
     }
 
-    private void initTableView() {
+    /**
+     * Método que inicializa la tabla de carrito.
+     */
+    private void initTableView() throws SQLException {
         System.out.println("Inicializando columnas...");
-        carritoTable.setEditable(false);
+        carritoTable.setItems(carritoRepository.findAll());
         productoColumn.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
         precioColumn.setCellValueFactory(cellData -> cellData.getValue().precioProperty().asObject());
         cantidadColumn.setCellValueFactory(cellData -> cellData.getValue().cantidadProperty().asObject());
         setCantidadCell();
-        imagenColumn.setCellValueFactory(cellData -> cellData.getValue().imagenProperty());
-        setImageCell();
-    }
-
-    private void setImageCell() {
-        imagenColumn.setCellFactory(param -> new TableCell<>() {
-            @Override
-            public void updateItem(String item, boolean empty) {
-                if (item != null) {
-                    ImageView imageView = new ImageView();
-                    imageView.setFitHeight(50);
-                    imageView.setFitWidth(50);
-                    var dirImage = Paths.get(System.getProperty("user.dir") + File.separator + "img" + File.separator + item);
-                    imageView.setImage(new Image(dirImage.toUri().toString()));
-                    setGraphic(imageView);
-                }
+        imagenColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemCarrito, ImageView> param) -> {
+            if(param.getValue().getImagen() != null && param.getValue().getImagen().length() > 0) {
+                ImageView imageView =new ImageView(new File(Resources.getPath(AppMain.class, "images") + param.getValue().getImagen()).toURI().toString());
+                imageView.setFitHeight(50);
+                imageView.setFitWidth(50);
+                return new SimpleObjectProperty<>(imageView);
+            }else {
+                var dirImage = Paths.get(System.getProperty("user.dir") + File.separator + "icons" + File.separator + "maiz.png");
+                ImageView imageView = new ImageView(dirImage.toString());
+                return new SimpleObjectProperty<>(imageView);
             }
         });
     }
 
+
+    /**
+     * Método que establece la celda de la cantidad.
+     */
     private void setCantidadCell() {
         cantidadColumn.setCellFactory(param -> new TableCell<>() {
             @Override
@@ -228,6 +272,10 @@ public class MenuClienteViewController {
         });
     }
 
+    /**
+     * Método que establece el cliente de la sesión.
+     * @param userActual
+     */
     public void setClienteActual(PersonaRegistrada userActual) {
         this.userActual = userActual;
     }

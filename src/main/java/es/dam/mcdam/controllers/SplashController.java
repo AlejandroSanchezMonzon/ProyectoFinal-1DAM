@@ -1,3 +1,7 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.controllers;
 
 import es.dam.mcdam.AppMain;
@@ -14,6 +18,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SplashController implements Initializable {
+    //ESTADO
     @FXML
     private ImageView fondo;
 
@@ -21,6 +26,13 @@ public class SplashController implements Initializable {
     private ImageView gifCarga;
     SceneManager sceneManager = SceneManager.getInstance(AppMain.class);
 
+    //COMPORTAMIENTO
+
+    /**
+     * Inicializa la ventana de carga.
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         FadeTransition transition = new FadeTransition(Duration.seconds(3), fondo);

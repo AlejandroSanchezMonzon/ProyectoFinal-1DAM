@@ -1,3 +1,7 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.managers;
 
 import es.dam.mcdam.AppMain;
@@ -8,7 +12,6 @@ import es.dam.mcdam.models.PersonaRegistrada;
 import es.dam.mcdam.models.Producto;
 import es.dam.mcdam.repositories.PedidoRepository;
 import es.dam.mcdam.repositories.PersonaRegistradaRepository;
-import es.dam.mcdam.services.Backup;
 import es.dam.mcdam.services.BackupJSON;
 import es.dam.mcdam.utils.Properties;
 import es.dam.mcdam.utils.Resources;
@@ -29,17 +32,29 @@ import java.util.Objects;
 
 
 public class SceneManager {
+    //ESTADO
     private static SceneManager instance;
     private final Class<?> appClass;
 //    Logger logger = LogManager.getLogger(SceneManager.class);
 
     private Stage mainStage;
 
+    //COMPORTAMIENTO
+
+    /**
+     * Crea una instancia de la clase.
+     * @param appClass
+     */
     private SceneManager(Class<?> appClass) {
         this.appClass = appClass;
         System.out.println("SceneManager created");
     }
 
+    /**
+     * Método que devuelve la instancia de la clase.
+     * @param appClass
+     * @return
+     */
     public static SceneManager getInstance(Class<?> appClass) {
         if (instance == null) {
             instance = new SceneManager(appClass);
@@ -47,23 +62,18 @@ public class SceneManager {
         return instance;
     }
 
+    /**
+     * Método que sirve de lanzadera para llamar al resto de ventanas.
+     * @return
+     */
     public static SceneManager get() {
         return instance;
     }
 
-    public void changeScene(Node node, Views view) throws IOException {
-        //logger.info("Loading scene " + view.get());
-        System.out.println("Loading scene " + view.get());
-        Stage stage = (Stage) node.getScene().getWindow();
-        //oldStage.hide(); // Oculto la anterior
-        Parent root = FXMLLoader.load(Objects.requireNonNull(appClass.getResource(view.get())));
-        Scene newScene = new Scene(root, Properties.APP_WIDTH, Properties.APP_HEIGHT);
-        //logger.info("Scene " + view.get() + " loaded");
-        System.out.println("Scene " + view.get() + " loaded");
-        stage.setScene(newScene);
-        stage.show();
-    }
-
+    /**
+     * Método que carga la ventana principal
+     * @throws IOException
+     */
     public void initMain() throws IOException {
         //logger.info("Iniciando Main");
         System.out.println("Iniciando Main");
@@ -78,7 +88,7 @@ public class SceneManager {
         stage.initStyle(StageStyle.DECORATED);
         //logger.info("Scene Main loaded");
         System.out.println("Scene Main loaded");
-        // Por si salimos
+        // Para salir.
         stage.setOnCloseRequest(event -> {
             fxmlLoader.<LoginViewController>getController().onSalirAction();
         });
@@ -87,6 +97,12 @@ public class SceneManager {
         stage.show();
     }
 
+    /**
+     * Método que carga la ventana de carga del inicio.
+     * @param stage
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public void initSplash(Stage stage) throws IOException, InterruptedException {
         Platform.setImplicitExit(false);
         //logger.info("Iniciando Splash");
@@ -103,6 +119,11 @@ public class SceneManager {
         stage.show();
     }
 
+    /**
+     * Método que carga la ventana de carga del carrito de compra.
+     * @param userActual
+     * @throws IOException
+     */
     public void initMenuCliente(PersonaRegistrada userActual) throws IOException {
         //logger.info("Iniciando Menu Cliente");
         System.out.println("Iniciando Menu Cliente");
@@ -121,6 +142,10 @@ public class SceneManager {
         stage.show();
     }
 
+    /**
+     * Método que carga la ventana del menú de administrador.
+     * @throws IOException
+     */
     public void initMenuAdmin() throws IOException {
         //logger.info("Iniciando Menu Admin");
         System.out.println("Iniciando Menu Admin");
@@ -137,6 +162,10 @@ public class SceneManager {
         stage.show();
     }
 
+    /**
+     * Método que carga la ventana de acerca de.
+     * @throws IOException
+     */
     public void initAcercaDe() throws IOException {
         //logger.info("Iniciando AcercaDe");
         System.out.println("Iniciando AcercaDe");
@@ -147,7 +176,6 @@ public class SceneManager {
         //stage.initOwner(mainStage);
         stage.setTitle("Acerca de");
         stage.setResizable(false);
-        // Le hacemos los setters a los elementos del controlador
         fxmlLoader.<AcercaDeViewController>getController().setDialogStage(stage);
         stage.setScene(scene);
         //logger.info("Scene AcercaDe loaded");
@@ -155,6 +183,10 @@ public class SceneManager {
         stage.showAndWait();
     }
 
+    /**
+     * Método que carga la ventana del menú de consulta..
+     * @throws IOException
+     */
     public void initConsultaAdministrador() throws IOException {
         //logger.info("Iniciando consulta administrador");
         System.out.println("Iniciando consulta administrador");
@@ -169,8 +201,12 @@ public class SceneManager {
         System.out.println("Scene Consulta Admin loaded");
         stage.setScene(scene);
         stage.showAndWait();
-
     }
+
+    /**
+     * Metodo que carga la ventana de edición del encargado de la aplicación.
+     * @throws IOException
+     */
     public void initEdicionAdministrador() throws IOException {
         //logger.info("Iniciando edicion administrador");
         System.out.println("Iniciando edicion administrador");
@@ -188,6 +224,11 @@ public class SceneManager {
         stage.showAndWait();
     }
 
+    /**
+     * Método que carga la ventana de proceso de pago.
+     * @param pedido
+     * @throws IOException
+     */
     public void initProcesoPago(Pedido pedido) throws IOException {
         //logger.info("Iniciando proceso pago");
         System.out.println("Iniciando proceso pago");
@@ -206,6 +247,14 @@ public class SceneManager {
         stage.showAndWait();
     }
 
+    /**
+     * Método que carga la ventana de edición de productos.
+     * @param editarModo
+     * @param producto
+     * @param stageEdicion
+     * @return
+     * @throws IOException
+     */
     public boolean initProductoEditar(boolean editarModo, Producto producto, Stage stageEdicion) throws IOException {
         System.out.println("Iniciando Actualizar Producto");
         FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.ACTUALIZARPRODUCTO.get()));
@@ -225,6 +274,14 @@ public class SceneManager {
         return controller.isAceptarClicked();
     }
 
+    /**
+     * Método que carga la ventana de edición de códigos de descuento.
+     * @param editarModo
+     * @param codigoDescuento
+     * @param stageEdicion
+     * @return
+     * @throws IOException
+     */
     public boolean initCodigoDescuentoEditar(boolean editarModo, CodigoDescuento codigoDescuento, Stage stageEdicion) throws IOException {
         System.out.println("Iniciando Actualizar Codigo Descuento");
         FXMLLoader fxmlLoader = new FXMLLoader(AppMain.class.getResource(Views.ACTUALIZARCODIGO.get()));
@@ -244,6 +301,10 @@ public class SceneManager {
         return controller.isAceptarClicked();
     }
 
+    /**
+     * Método que carga la ventana de registro de usuarios.
+     * @throws IOException
+     */
     public void initRegisterView() throws IOException {
         //logger.info("Iniciando registro");
         System.out.println("Iniciando Registro");
@@ -256,6 +317,11 @@ public class SceneManager {
         stage.showAndWait();
     }
 
+    /**
+     * Médoto que carga la ventana de creación de copia de seguridad.
+     * @throws SQLException
+     * @throws IOException
+     */
     public void initBackup() throws SQLException, IOException {
         System.out.println("Iniciando Backup");
         BackupJSON save = BackupJSON.getInstance();

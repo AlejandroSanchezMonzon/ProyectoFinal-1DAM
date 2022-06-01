@@ -1,3 +1,7 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.controllers;
 
 import es.dam.mcdam.AppMain;
@@ -6,6 +10,8 @@ import es.dam.mcdam.managers.SceneManager;
 import es.dam.mcdam.models.PersonaRegistrada;
 import es.dam.mcdam.models.Tipo;
 import es.dam.mcdam.repositories.PersonaRegistradaRepository;
+import es.dam.mcdam.utils.Temas;
+import es.dam.mcdam.utils.Themes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,7 +27,7 @@ import java.sql.SQLException;
 
 
 public class LoginViewController {
-
+    //ESTADO
     PersonaRegistradaRepository personaRepository = PersonaRegistradaRepository.getInstance();
     DataBaseManager db = DataBaseManager.getInstance();
     @FXML
@@ -37,6 +43,11 @@ public class LoginViewController {
 
     SceneManager sceneManager = SceneManager.getInstance(AppMain.class);
 
+    //COMPORTAMIENTO
+
+    /**
+     * Inicializa la ventana de login.
+     */
     @FXML
     public void initialize() {
         register.setOnAction(event -> {
@@ -64,6 +75,10 @@ public class LoginViewController {
         });
     }
 
+    /**
+     * Comprueba que el usuario y la contraseña introducidos son correctos y en base al tipo de usuario, abre una ventana u otra.
+     * @throws SQLException
+     */
     @FXML
     private void validarOnClick() throws SQLException {
         try{
@@ -101,6 +116,13 @@ public class LoginViewController {
             }
     }
 
+    /**
+     * Comprueba que los datos introducidos son correctos.
+     * @param usuario
+     * @param contraseña
+     * @return
+     * @throws SQLException
+     */
     private boolean comprobarDatos(String usuario, String contraseña) throws SQLException {
         String sql = "SELECT * FROM personaRegistrada WHERE correo = ? AND contraseña = ?";
         PersonaRegistradaRepository rep = PersonaRegistradaRepository.getInstance();
@@ -127,6 +149,12 @@ public class LoginViewController {
         return true;
     }
 
+    /**
+     * Comprueba que el usuario es de tipo administrador.
+     * @param usuario
+     * @return
+     * @throws SQLException
+     */
     private boolean comprobarTipoUsuario(String usuario) throws SQLException {
         String sql = "SELECT tipo FROM personaRegistrada WHERE correo = ?";
         db.open();
@@ -144,15 +172,26 @@ public class LoginViewController {
         return false;
     }
 
+    /**
+     * Salir de la aplicación.
+     */
     public void onSalirAction() {
         System.exit(0);
     }
 
+    /**
+     * Activa el modo oscuro.
+     * @param actionEvent
+     */
     public void onMenuModoOscuroAction(ActionEvent actionEvent) {
         System.out.println("Se ha pulsado accion Modena");
-        Temas.set(this.avatarImageView, Themes.MODENA.get());
+        Temas.set(this.acercaDe, Themes.OSCURO.get());
     }
 
+    /**
+     * Reeestablece el tema por defecto.
+     * @param actionEvent
+     */
     public void onMenuLimpiarAction(ActionEvent actionEvent) {
     }
 }

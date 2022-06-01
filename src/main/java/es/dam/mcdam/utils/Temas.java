@@ -1,3 +1,7 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.utils;
 
 import es.dam.mcdam.AppMain;

@@ -1,14 +1,17 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.repositories;
 
-import es.dam.mcdam.models.Tipo;
+import es.dam.mcdam.managers.DataBaseManager;
+import es.dam.mcdam.models.CodigoDescuento;
+import es.dam.mcdam.models.Producto;
 import es.dam.mcdam.services.Storage;
 import es.dam.mcdam.utils.Properties;
 import es.dam.mcdam.utils.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import es.dam.mcdam.managers.DataBaseManager;
-import es.dam.mcdam.models.CodigoDescuento;
-import es.dam.mcdam.models.Producto;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,15 +21,16 @@ import java.util.Optional;
 
 
 public class ProductoRepository implements IProductoRepository {
+    //ESTADO
     private static ProductoRepository instance;
     private final ObservableList<Producto> repository = FXCollections.observableArrayList();
-    //TODO: Añadir backup
     private final Storage storage = Storage.getInstance();
-    //TODO usar Logger
     DataBaseManager db = DataBaseManager.getInstance();
 
+    //CONSTRUCTOR
     private ProductoRepository() {}
 
+    //SINGLETON
     public static ProductoRepository getInstance() {
         if (instance == null) {
             instance = new ProductoRepository();
@@ -34,6 +38,11 @@ public class ProductoRepository implements IProductoRepository {
         return instance;
     }
 
+    /**
+     * Método que devuelve una lista de productos.
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ObservableList<Producto> findAll() throws SQLException {
         String sql = "SELECT * FROM producto";
@@ -61,6 +70,12 @@ public class ProductoRepository implements IProductoRepository {
         return repository;
     }
 
+    /**
+     * Método que devuelve un producto con un ID específico.
+     * @param uuid Id del elemento
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Optional<Producto> findById(String uuid) throws SQLException {
         String sql = "SELECT * FROM producto, codigoDescuento WHERE producto.uuid = ?";
@@ -82,6 +97,12 @@ public class ProductoRepository implements IProductoRepository {
         return Optional.empty();
     }
 
+    /**
+     * Método que guarda un producto en la base de datos.
+     * @param entity Elemento a insertar
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Producto save(Producto entity) throws SQLException {
         String sql = "INSERT INTO producto (uuid, nombre, precio, imagen, descripcion, disponibilidad, coddescuento) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -93,6 +114,12 @@ public class ProductoRepository implements IProductoRepository {
         return entity;
     }
 
+    /**
+     * Método que actualiza un producto en la base de datos.
+     * @param entity Elemento a actualizar
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Producto update(Producto entity) throws SQLException {
         int index = repository.indexOf(entity);
@@ -106,6 +133,12 @@ public class ProductoRepository implements IProductoRepository {
         return entity;
     }
 
+    /**
+     * Método que elimina un producto de la base de datos.
+     * @param entity
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Producto delete(Producto entity) throws SQLException {
         String sql = "DELETE FROM producto WHERE uuid = ?";
@@ -116,6 +149,10 @@ public class ProductoRepository implements IProductoRepository {
         return entity;
     }
 
+    /**
+     * Método que elimina todos los productos de la base de datos.
+     * @throws SQLException
+     */
     @Override
     public void deleteAll() throws SQLException {
         String sql = "DELETE FROM producto";
@@ -125,6 +162,11 @@ public class ProductoRepository implements IProductoRepository {
         repository.removeAll();
     }
 
+    /**
+     * Método que almacena la imagen de un producto específico en la base de datos.
+     * @param p
+     * @throws IOException
+     */
     public void storeImagen(Producto p) throws IOException {
         String[] ruta = p.getImagen().split(File.separator);
         String destination = ruta[ruta.length - 1];
@@ -133,10 +175,5 @@ public class ProductoRepository implements IProductoRepository {
         System.out.println("Destino: " + p.getImagen());
         storage.copyFile(source, p.getImagen());
         p.setImagen(destination);
-    }
-
-    public void deleteImagen(Producto p) throws IOException {
-        String source = Properties.IMAGES_DIR + File.separator + p.getUuid() + "." + Utils.getFileExtension(p.getImagen()).orElse("png");
-        storage.deleteFile(source);
     }
 }

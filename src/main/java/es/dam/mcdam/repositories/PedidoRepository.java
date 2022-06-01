@@ -1,27 +1,33 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.repositories;
 
+import es.dam.mcdam.managers.DataBaseManager;
+import es.dam.mcdam.models.LineaPedido;
+import es.dam.mcdam.models.Pedido;
+import es.dam.mcdam.models.PersonaRegistrada;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import es.dam.mcdam.managers.DataBaseManager;
-import es.dam.mcdam.models.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public class PedidoRepository implements IPedidoRepository{
+    //ESTADO
     private static PedidoRepository instance;
     private final ObservableList<Pedido> repository = FXCollections.observableArrayList();
-    //TODO: Añadir backup
     //private final Storage storage = Storage.getInstance();
-    //TODO usar Logger
     DataBaseManager db = DataBaseManager.getInstance();
 
+    //CONSTRUCTOR
     private PedidoRepository() {}
 
+    //SINGLETON
     public static PedidoRepository getInstance() {
         if (instance == null) {
             instance = new PedidoRepository();
@@ -29,6 +35,11 @@ public class PedidoRepository implements IPedidoRepository{
         return instance;
     }
 
+    /**
+     * Método que devuelve una lista de pedidos.
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ObservableList<Pedido> findAll() throws SQLException {
         String sql = "SELECT * FROM pedido";
@@ -53,6 +64,12 @@ public class PedidoRepository implements IPedidoRepository{
         return repository;
     }
 
+    /**
+     * Método que devuelve los pedidos de un cliente concreto.
+     * @param uuid Id del elemento
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Optional<Pedido> findById(String uuid) throws SQLException {
         String sql = "SELECT * FROM pedido WHERE uuid = ?";
@@ -70,6 +87,12 @@ public class PedidoRepository implements IPedidoRepository{
         return Optional.empty();
     }
 
+    /**
+     * Método que sirve para salvar un pedido.
+     * @param entity Elemento a insertar
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Pedido save(Pedido entity) throws SQLException {
         String sql = "INSERT INTO pedido (uuid, total, metodoPago, compra, cliente) VALUES (?, ?, ?, ?, ?)";
@@ -82,6 +105,12 @@ public class PedidoRepository implements IPedidoRepository{
         return entity;
     }
 
+    /**
+     * Método que sirve para actualizar un pedido.
+     * @param entity Elemento a actualizar
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Pedido update(Pedido entity) throws SQLException {
         int index = repository.indexOf(entity);
@@ -95,6 +124,12 @@ public class PedidoRepository implements IPedidoRepository{
         return entity;
     }
 
+    /**
+     * Método que sirve para eliminar un pedido.
+     * @param entity
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Pedido delete(Pedido entity) throws SQLException {
         String sql = "DELETE FROM pedido WHERE uuid = ?";
@@ -105,6 +140,10 @@ public class PedidoRepository implements IPedidoRepository{
         return entity;
     }
 
+    /**
+     * Método que elimina todos los pedidos.
+     * @throws SQLException
+     */
     @Override
     public void deleteAll() throws SQLException {
         String sql = "DELETE FROM pedido";
@@ -113,6 +152,11 @@ public class PedidoRepository implements IPedidoRepository{
         db.delete(sql);
     }
 
+    /**
+     * Método que devuelve una lista de elementos que sean Strings.
+     * @return
+     * @throws SQLException
+     */
     public List<String> findAllString() throws SQLException {
         String sql = "SELECT * FROM pedido";
         db.open();

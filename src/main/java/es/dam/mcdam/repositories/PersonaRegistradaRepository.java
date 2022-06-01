@@ -1,3 +1,7 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.repositories;
 
 import javafx.collections.FXCollections;
@@ -11,15 +15,17 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class PersonaRegistradaRepository implements IPersonaRegistradaRepository {
+
+    //ESTADO
     private static PersonaRegistradaRepository instance;
     private final ObservableList<PersonaRegistrada> repository = FXCollections.observableArrayList();
-    //TODO: Añadir backup
     //private final Storage storage = Storage.getInstance();
-    //TODO usar Logger
     DataBaseManager db = DataBaseManager.getInstance();
 
+    //CONSTRUCTOR
     private PersonaRegistradaRepository() {}
 
+    //SINGLETON
     public static PersonaRegistradaRepository getInstance() {
         if (instance == null) {
             instance = new PersonaRegistradaRepository();
@@ -27,6 +33,11 @@ public class PersonaRegistradaRepository implements IPersonaRegistradaRepository
         return instance;
     }
 
+    /**
+     * Método que devuelve una lista de usuarios.
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ObservableList<PersonaRegistrada> findAll() throws SQLException {
         String sql = "SELECT * FROM personaRegistrada";
@@ -51,6 +62,12 @@ public class PersonaRegistradaRepository implements IPersonaRegistradaRepository
         return repository;
     }
 
+    /**
+     * Método que devuelve el usuario de un ID concreto.
+     * @param uuid Id del elemento
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Optional<PersonaRegistrada> findById(String uuid) throws SQLException {
         String sql = "SELECT * FROM personaRegistrada WHERE uuid = ?";
@@ -70,6 +87,12 @@ public class PersonaRegistradaRepository implements IPersonaRegistradaRepository
         return Optional.empty();
     }
 
+    /**
+     * Método que guarda un usuario en la base de datos.
+     * @param entity Elemento a insertar
+     * @return
+     * @throws SQLException
+     */
     @Override
     public PersonaRegistrada save(PersonaRegistrada entity) throws SQLException {
         String sql = "INSERT INTO personaRegistrada (uuid, nombre, correo, contraseña, tipo) VALUES (?, ?, ?, ?, ?)";
@@ -82,6 +105,12 @@ public class PersonaRegistradaRepository implements IPersonaRegistradaRepository
         return entity;
     }
 
+    /**
+     * Método que actualiza un usuario en la base de datos.
+     * @param entity Elemento a actualizar
+     * @return
+     * @throws SQLException
+     */
     @Override
     public PersonaRegistrada update(PersonaRegistrada entity) throws SQLException {
         int index = repository.indexOf(entity);
@@ -95,6 +124,12 @@ public class PersonaRegistradaRepository implements IPersonaRegistradaRepository
         return entity;
     }
 
+    /**
+     * Método que elimina un usuario de la base de datos.
+     * @param entity
+     * @return
+     * @throws SQLException
+     */
     @Override
     public PersonaRegistrada delete(PersonaRegistrada entity) throws SQLException {
         String sql = "DELETE FROM personaRegistrada WHERE uuid = ?";
@@ -105,6 +140,10 @@ public class PersonaRegistradaRepository implements IPersonaRegistradaRepository
         return entity;
     }
 
+    /**
+     * Método que elimina todos los usuarios de la base de datos.
+     * @throws SQLException
+     */
     @Override
     public void deleteAll() throws SQLException {
         String sql = "DELETE FROM personaRegistrada";
@@ -114,6 +153,12 @@ public class PersonaRegistradaRepository implements IPersonaRegistradaRepository
         db.delete(sql);
     }
 
+    /**
+     * Método que devuelve el usuario con el correo especificado.
+     * @param identificacion
+     * @return
+     * @throws SQLException
+     */
     @Override
     public PersonaRegistrada findByCorreo(String identificacion) throws SQLException {
         String sql = "SELECT * FROM personaRegistrada WHERE correo = ?";

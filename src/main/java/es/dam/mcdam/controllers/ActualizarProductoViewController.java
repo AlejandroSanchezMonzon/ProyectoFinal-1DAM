@@ -82,7 +82,7 @@ public class ActualizarProductoViewController {
     }
 
     /**
-     *
+     * Rellena los campos con la información del producto, incluyendo un control de la representación de la imagen.
      */
     private void setDataInfo() {
         System.out.println("SetDataInfo");
@@ -92,7 +92,6 @@ public class ActualizarProductoViewController {
         descripcionTxt.setText(producto.getDescripcion());
         disponibleTxt.setText(String.valueOf(producto.getDisponible()));
         codigoTxt.setText(producto.getCodigoDescuento().getCodigo());
-        // TODO al editar un producto dice que la imagen no existe asigna la de por defecto
         if (!producto.getImagen().isBlank() && Files.exists(Paths.get(producto.getImagen()))) {
             System.out.println("Cargando imagen: " + producto.getImagen());
             Image image = new Image(new File(Resources.getPath(AppMain.class, "images") + producto.getImagen()).toURI().toString());
@@ -107,14 +106,24 @@ public class ActualizarProductoViewController {
 
     }
 
+    /**
+     * Determina el modo de edición.
+     */
     public void setEditarModo(boolean editarModo) {
         this.editarModo = editarModo;
         System.out.println("Modo Editar: " + editarModo);
     }
+
+    /**
+     * Retorna true si el usuario hizo click en aceptar.
+     */
     public boolean isAceptarClicked() {
         return aceptarClicked;
     }
 
+    /**
+     * Maneja el evento de click en el botón aceptar. También hace un control de datos introducidos.
+     */
     @FXML
     private void onAceptarAction() throws SQLException, IOException {
         System.out.println("Aceptar");
@@ -140,6 +149,9 @@ public class ActualizarProductoViewController {
         }
     }
 
+    /**
+     * Maneja el evento de click en el botón cancelar.
+     */
     @FXML
     private void onCancelarAction() {
         System.out.println("Has pulsado Cancelar");
@@ -147,7 +159,11 @@ public class ActualizarProductoViewController {
     }
 
 
-    //TODO validar datos mejor
+    /**
+     * Valida los datos introducidos en el formulario.
+     *
+     * @return true si los datos son correctos, false en caso contrario.
+     */
     private boolean isInputValid() {
         boolean errorMessage = true;
 
@@ -169,6 +185,9 @@ public class ActualizarProductoViewController {
         return errorMessage;
     }
 
+    /**
+     * Al pulsar el avatar se abre una ventana para seleccionar una imagen.
+     */
     @FXML
     private void onAvatarAction() {
         FileChooser filechooser = new FileChooser();
@@ -184,7 +203,4 @@ public class ActualizarProductoViewController {
             System.out.println("Se ha asignado el avatar a la persona desde: " + producto.getImagen());
         }
     }
-
-
-
 }

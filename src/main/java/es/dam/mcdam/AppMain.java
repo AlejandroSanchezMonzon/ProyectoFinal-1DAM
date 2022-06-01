@@ -1,33 +1,33 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam;
 
-import es.dam.mcdam.controllers.SplashController;
 import es.dam.mcdam.managers.DataBaseManager;
 import es.dam.mcdam.managers.SceneManager;
-import es.dam.mcdam.utils.Properties;
 import javafx.application.Application;
 import javafx.stage.Stage;
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
-
+/**
+ * Método encargado de iniciar la aplicación.
+ */
 public class AppMain extends Application {
     //static Logger logger = LogManager.getLogger(AppMain.class);
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
         SceneManager sceneManager = SceneManager.getInstance(AppMain.class);
         sceneManager.initSplash(stage);
-
-
     }
 
+    /**
+     * Método encargado de revisar que la base de datos funcione correctamente.
+     */
     private static void checkServer() {
         System.out.println("Comprobamos la conexión al Servidor BD");
         DataBaseManager controller = DataBaseManager.getInstance();
@@ -47,14 +47,12 @@ public class AppMain extends Application {
         }
     }
 
+    /**
+     * Método MAIN de la aplicaicón.
+     * @param args
+     */
     public static void main(String[] args) {
-
         checkServer();
         launch();
-    }
-
-
-    public void onSalirAction() {
-        System.exit(0);
     }
 }

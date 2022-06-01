@@ -1,7 +1,10 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.controllers;
 
 import es.dam.mcdam.AppMain;
-import es.dam.mcdam.models.CodigoDescuento;
 import es.dam.mcdam.models.PersonaRegistrada;
 import es.dam.mcdam.models.Producto;
 import es.dam.mcdam.repositories.CodigoDescuentoRepository;
@@ -10,14 +13,18 @@ import es.dam.mcdam.repositories.ProductoRepository;
 import es.dam.mcdam.utils.Resources;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+
 import java.io.File;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 
 public class ConsultaAdministradorViewController {
+    //ESTADO
     private final PersonaRegistradaRepository personaRepository = PersonaRegistradaRepository.getInstance();
     private final ProductoRepository productoRepository = ProductoRepository.getInstance();
     private final CodigoDescuentoRepository codigoDescuentoRepository = CodigoDescuentoRepository.getInstance();
@@ -46,7 +53,11 @@ public class ConsultaAdministradorViewController {
     @FXML
     private MenuItem opcionUsuario;
 
+    //COMPORTAMIENTO
 
+    /**
+     * Método que inicializa la vista.
+     */
     @FXML
     private void initialize() throws SQLException {
         initData();
@@ -67,7 +78,9 @@ public class ConsultaAdministradorViewController {
 
     }
 
-
+    /**
+     * Método que inicializa la vista de productos con los campos en activo.
+     */
     private void initPersonasView() throws SQLException {
         productosTable.setVisible(false);
         usuariosTable.setVisible(true);
@@ -79,6 +92,9 @@ public class ConsultaAdministradorViewController {
         uuidColumn.setCellValueFactory(new PropertyValueFactory<>("uuid"));
     }
 
+    /**
+     * Método que inicializa la vista de productos con los campos en activo.
+     */
     private void initProductosView() throws SQLException {
         usuariosTable.setVisible(false);
         productosTable.setVisible(true);
@@ -99,10 +115,11 @@ public class ConsultaAdministradorViewController {
         descripcionColumnP.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
     }
 
+    /**
+     * Método que inicializa los datos de la vista.
+     */
     private void initData() throws SQLException {
         usuariosTable.setItems(personaRepository.findAll());
         productosTable.setItems(productoRepository.findAll());
     }
-
-
 }

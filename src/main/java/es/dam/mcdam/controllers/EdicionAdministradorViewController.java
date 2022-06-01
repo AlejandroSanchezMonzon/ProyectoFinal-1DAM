@@ -1,3 +1,7 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.controllers;
 
 import es.dam.mcdam.AppMain;
@@ -11,7 +15,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
@@ -23,6 +26,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class EdicionAdministradorViewController {
+    //ESTADO
     private final ProductoRepository productosRepository = ProductoRepository.getInstance();
     private final CodigoDescuentoRepository codigoDescuentoRepository = CodigoDescuentoRepository.getInstance();
     boolean isProductoClicked = true;
@@ -53,9 +57,19 @@ public class EdicionAdministradorViewController {
     @FXML
     private Button insertarButton;
 
+    //COMPORTAMIENTO
+
+    /**
+     * Setter del Stage.
+     */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
+
+    /**
+     * Inicializa la clase controladora.
+     * Esta funcion se ejecuta automaticamente tras cargar la vista.
+     */
     @FXML
     private void initialize() throws SQLException {
         codigoTable.setVisible(false);
@@ -83,6 +97,9 @@ public class EdicionAdministradorViewController {
         });
     }
 
+    /**
+     * Abre el pop-up para insertar un producto.
+     */
     private void openInsertar(Stage stageEdicion) throws IOException {
         System.out.println("Se ha pulsado el botón insertar");
         if(isProductoClicked){
@@ -96,6 +113,9 @@ public class EdicionAdministradorViewController {
 
     }
 
+    /**
+     * Inicializa la tabla de códigos de descuento.
+     */
     private void initCodigosDescuentoView() throws SQLException {
         isProductoClicked = false;
         productosTable.setVisible(false);
@@ -121,6 +141,10 @@ public class EdicionAdministradorViewController {
         });
 
     }
+
+    /**
+     * Inicializa la tabla de productos.
+     */
     private void initProductosView() throws SQLException {
         //Controlamos visibilidad de las tablas de codigos y productos
         isProductoClicked = true;
@@ -160,18 +184,31 @@ public class EdicionAdministradorViewController {
         });
     }
 
+    /**
+     * Abre el pop-up de edición de un producto.
+     */
     private void openEditarProducto(Stage stageEdicion, Producto producto) throws IOException {
         System.out.println("Se ha pulsado el botón insertar");
         SceneManager.get().initProductoEditar(true, producto, stageEdicion);
 
     }
 
+    /**
+     * Abre el pop-up de edición de un codigo.
+     * @param stageEdicion
+     * @param codigo
+     * @throws IOException
+     */
     private void openEditarCodigo(Stage stageEdicion, CodigoDescuento codigo) throws IOException {
         System.out.println("Se ha pulsado el botón insertar");
         SceneManager.get().initCodigoDescuentoEditar(true, codigo, stageEdicion);
 
     }
 
+    /**
+     * Elimina un producto de la base de datos.
+     * @param item
+     */
     private void eliminarProducto(Producto item) {
         System.out.println("Eliminar producto");
         System.out.println(item);
@@ -186,9 +223,12 @@ public class EdicionAdministradorViewController {
                 throw new RuntimeException(e);
             }
         }
-        //listaProductos.refresh();
     }
 
+    /**
+     * Elimina un codigo de la base de datos.
+     * @param item
+     */
     private void eliminarCodigo(CodigoDescuento item) {
         System.out.println("Eliminar producto");
         System.out.println(item);
@@ -203,28 +243,14 @@ public class EdicionAdministradorViewController {
                 throw new RuntimeException(e);
             }
         }
-
     }
 
-    private void actualizarProducto(Producto item) {
-        System.out.println("Actualizar producto");
-        System.out.println(item);
-        try {
-            productosRepository.update(item);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+    /**
+     * Inicializa las tablas con sus respectivos datos.
+     * @throws SQLException
+     */
     private void initData() throws SQLException {
         productosTable.setItems(productosRepository.findAll());
         codigoTable.setItems(codigoDescuentoRepository.findAll());
-
     }
-
-
-
-
-
-
 }

@@ -1,17 +1,22 @@
-package es.dam.mcdam.models;
+/**
+ @author Información mostrada en la documentación.
+ */
 
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
+package es.dam.mcdam.models;
 
 import java.util.UUID;
 
 public class PersonaRegistrada {
+    //ESTADO
     private String uuid = UUID.randomUUID().toString();
     private String nombre;
     private String correo;
     private String contraseña;
     private Tipo tipo;
 
+    //COMPORTAMIENTO
+
+    //CONSTRUCTORES
     public PersonaRegistrada(){
         this.nombre = "";
         this.correo = "";
@@ -33,6 +38,7 @@ public class PersonaRegistrada {
         this.tipo = tipo;
     }
 
+    //GETTERS Y SETTERS
     public String getUuid() {
         return uuid;
     }
@@ -68,6 +74,11 @@ public class PersonaRegistrada {
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
+
+    /**
+     * Método que devuelve una cadena con la información de la persona registrada.
+     * @return
+     */
     @Override
     public String toString() {
         return  "<br>" +" NOMBRE : " + nombre + "<br>" + " CORREO : " + correo ;

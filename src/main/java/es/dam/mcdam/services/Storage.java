@@ -1,3 +1,7 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.services;
 
 import es.dam.mcdam.utils.Properties;
@@ -8,12 +12,15 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class Storage {
+    //ESTADO
     private static Storage instance;
 
+    //CONSTRUCTOR
     private Storage() {
         makeDirectory();
     }
 
+    //SINGLETON
     public static Storage getInstance() {
         if (instance == null) {
             instance = new Storage();
@@ -21,6 +28,9 @@ public class Storage {
         return instance;
     }
 
+    /**
+     * Método que crea el directorio de almacenamiento de las imágenes.
+     */
     private void makeDirectory() {
         if (!Files.exists(Paths.get(Properties.DATA_DIR))) {
             try {
@@ -33,6 +43,12 @@ public class Storage {
             }
         }
     }
+
+    /**
+     * Método que elimina un fichero específico.
+     * @param file
+     * @throws IOException
+     */
     public void deleteFile(String file) throws IOException {
         System.out.println("Borrando " + file);
         if (Files.exists(Paths.get(file))) {
@@ -41,6 +57,13 @@ public class Storage {
             System.out.println("No existe el archivo " + file);
         }
     }
+
+    /**
+     * Método que copia un fichero específico.
+     * @param source
+     * @param destination
+     * @throws IOException
+     */
     public void copyFile(String source, String destination) throws IOException {
         System.out.println("Copiando " + source + " a " + destination);
         if (Files.exists(Paths.get(source))) {

@@ -1,3 +1,7 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.repositories;
 
 import javafx.collections.FXCollections;
@@ -10,16 +14,17 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class CodigoDescuentoRepository implements ICodigoDescuentoRepository{
+    //ESTADO
     private static CodigoDescuentoRepository instance;
     private final ObservableList<CodigoDescuento> repository = FXCollections.observableArrayList();
-    //TODO: Añadir backup
     //private final Storage storage = Storage.getInstance();
-    //TODO usar Logger
     DataBaseManager db = DataBaseManager.getInstance();
 
+    //CONSTRUCTOR
     private CodigoDescuentoRepository() {
     }
 
+    //SINGLETON
     public static CodigoDescuentoRepository getInstance() {
         if (instance == null) {
             instance = new CodigoDescuentoRepository();
@@ -27,6 +32,11 @@ public class CodigoDescuentoRepository implements ICodigoDescuentoRepository{
         return instance;
     }
 
+    /**
+     * Método que devuelve el listado de códigos de descuento.
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ObservableList<CodigoDescuento> findAll() throws SQLException {
         String sql = "SELECT * FROM codigoDescuento";
@@ -48,6 +58,12 @@ public class CodigoDescuentoRepository implements ICodigoDescuentoRepository{
         return repository;
     }
 
+    /**
+     * Método que devuelve el código de descuento que se le pasa como parámetro (ID).
+     * @param uuid Id del elemento
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Optional<CodigoDescuento> findById(String uuid) throws SQLException {
         String sql = "SELECT * FROM codigoDescuento WHERE codigo = ?";
@@ -64,6 +80,12 @@ public class CodigoDescuentoRepository implements ICodigoDescuentoRepository{
         return Optional.empty();
     }
 
+    /**
+     * Método que guarda un código de descuento en la base de datos.
+     * @param entity Elemento a insertar
+     * @return
+     * @throws SQLException
+     */
     @Override
     public CodigoDescuento save(CodigoDescuento entity) throws SQLException {
         String sql = "INSERT INTO codigoDescuento (codigo, porcendesc) VALUES (?, ?)";
@@ -76,6 +98,12 @@ public class CodigoDescuentoRepository implements ICodigoDescuentoRepository{
         return entity;
     }
 
+    /**
+     * Método que actualiza un código de descuento en la base de datos.
+     * @param entity Elemento a actualizar
+     * @return
+     * @throws SQLException
+     */
     @Override
     public CodigoDescuento update(CodigoDescuento entity) throws SQLException {
         int index = repository.indexOf(entity);
@@ -88,6 +116,12 @@ public class CodigoDescuentoRepository implements ICodigoDescuentoRepository{
         return entity;
     }
 
+    /**
+     * Método que elimina un código de descuento de la base de datos.
+     * @param entity
+     * @return
+     * @throws SQLException
+     */
     @Override
     public CodigoDescuento delete(CodigoDescuento entity) throws SQLException {
         String sql = "DELETE FROM CodigoDescuento WHERE codigo = ?";
@@ -98,6 +132,10 @@ public class CodigoDescuentoRepository implements ICodigoDescuentoRepository{
         return entity;
     }
 
+    /**
+     * Método que elimina todos los códigos de descuento de la base de datos.
+     * @throws SQLException
+     */
     @Override
     public void deleteAll() throws SQLException {
         String sql = "DELETE FROM codigoDescuento";

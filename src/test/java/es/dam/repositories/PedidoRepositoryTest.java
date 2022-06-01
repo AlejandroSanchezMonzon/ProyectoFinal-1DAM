@@ -12,7 +12,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PedidoRepositoryTest {
-    private final PedidoRepository pedidoRepository = PedidoRepository.getInstance();
+    private static final PedidoRepository pedidoRepository = PedidoRepository.getInstance();
 
     private final List<LineaPedido> compra1 = List.of(
             new LineaPedido("hamburguesa", 2, 1.00f, 2.00f),
@@ -35,21 +35,20 @@ class PedidoRepositoryTest {
             UUID.randomUUID().toString(), "Maria", "maria@gmail.com", "maria1234", Tipo.USER
     );
 
-    private final Pedido pTest1 = new Pedido(UUID.randomUUID().toString(),4.50f,"CRÉDITO", compra1, cliente1);
-    private final Pedido pTest1V2 = new Pedido(UUID.randomUUID().toString(),3.50f,"CRÉDITO", compra1V2, cliente1);
-    private final Pedido pTest2 = new Pedido(UUID.randomUUID().toString(),5.50f,"METÁLICO", compra2, cliente1);
-    private final Pedido pTest3 = new Pedido(UUID.randomUUID().toString(),5.50f,"CRÉDITO", compra1, cliente2);
+    private final Pedido pTest1 = new Pedido(compra1, cliente1,"CRÉDITO");
+    private final Pedido pTest1V2 = new Pedido(compra1V2, cliente1,"CRÉDITO");
+    private final Pedido pTest2 = new Pedido(compra2, cliente1,"METALICO");
+    private final Pedido pTest3 = new Pedido(compra1, cliente2,"CRÉDITO");
 
 
     @BeforeAll
-    void setUp() throws SQLException {
+    static void setUp() throws SQLException {
         pedidoRepository.deleteAll();
     }
 
     @Test
     void findAll() {
         try {
-            var resVacio = pedidoRepository.findAll();
             pedidoRepository.save(pTest1);
             pedidoRepository.save(pTest2);
             pedidoRepository.save(pTest3);

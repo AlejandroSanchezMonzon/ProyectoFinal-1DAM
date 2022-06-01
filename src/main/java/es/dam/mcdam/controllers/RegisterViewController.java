@@ -1,3 +1,7 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.controllers;
 
 import es.dam.mcdam.managers.DataBaseManager;
@@ -12,8 +16,7 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 public class RegisterViewController {
-
-
+    //ESTADO
     DataBaseManager db = DataBaseManager.getInstance();
     @FXML
     private TextField nombre;
@@ -24,6 +27,11 @@ public class RegisterViewController {
     @FXML
     private Button validar;
 
+    //COMPORTAMIENTO
+
+    /**
+     * Inicializa la ventana de registro.
+     */
     @FXML
     private void initialize() {
         validar.setOnAction(event -> {
@@ -35,6 +43,10 @@ public class RegisterViewController {
         });
     }
 
+    /**
+     * Comprueba que los datos introducidos en la ventana de registro son correctos.
+     * @throws SQLException
+     */
     @FXML
     private void validarOnClick() throws SQLException {
         if (comprobarDatos(identificacion.getText(), password.getText())){
@@ -60,6 +72,12 @@ public class RegisterViewController {
         }
     }
 
+    /**
+     * Comprueba los datos introducidos en la ventana de registro.
+     * @param usuario
+     * @param contraseña
+     * @return
+     */
     private boolean comprobarDatos(String usuario, String contraseña){
         if(Utils.isEmail(usuario) && Utils.isPassword(contraseña)){
             return true;
@@ -67,5 +85,4 @@ public class RegisterViewController {
             return false;
         }
     }
-
 }

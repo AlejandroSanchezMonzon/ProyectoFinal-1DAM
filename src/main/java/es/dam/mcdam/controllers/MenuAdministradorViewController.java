@@ -1,3 +1,7 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.controllers;
 
 import es.dam.mcdam.AppMain;
@@ -12,6 +16,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class MenuAdministradorViewController {
+    //ESTADO
     SceneManager sceneManager = SceneManager.getInstance(AppMain.class);
     @FXML
     private Button consultar;
@@ -20,6 +25,11 @@ public class MenuAdministradorViewController {
     @FXML
     private Button backup;
 
+    //COMPORTAMIENTO
+
+    /**
+     * Inicializa la vista.
+     */
     @FXML
     public void initialize(){
         consultar.setOnAction(event -> {
@@ -48,13 +58,27 @@ public class MenuAdministradorViewController {
         });
     }
 
+    /**
+     * Abre la vista de consultar.
+     * @throws IOException
+     */
     private void openConsultar() throws IOException {
         sceneManager.initConsultaAdministrador();
     }
+
+    /**
+     * Abre la vista de editar.
+     * @throws IOException
+     */
     private void openEditar() throws IOException {
         sceneManager.initEdicionAdministrador();
     }
 
+    /**
+     * Abre la vista de backup.
+     * @throws SQLException
+     * @throws IOException
+     */
     private void openBackup() throws SQLException, IOException {
         sceneManager.initBackup();
         //TODO alert de aviso
@@ -66,8 +90,4 @@ public class MenuAdministradorViewController {
             System.out.println("Backup realizado con éxito");
         }
     }
-
-
-
-
 }

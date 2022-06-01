@@ -1,3 +1,7 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.utils;
 
 import com.google.gson.TypeAdapter;
@@ -17,6 +21,5 @@ public class LocalDateAdapter extends TypeAdapter<LocalDate> {
     @Override
     public void write(JsonWriter jsonWriter, LocalDate localDate) throws IOException {
         jsonWriter.value(localDate.toString());
-
     }
 }

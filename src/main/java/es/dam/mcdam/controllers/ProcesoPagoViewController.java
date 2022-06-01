@@ -1,3 +1,7 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.controllers;
 
 import es.dam.mcdam.models.Pedido;
@@ -12,7 +16,7 @@ import java.io.*;
 import java.util.Optional;
 
 public class ProcesoPagoViewController {
-
+    //ESTADO
     @FXML
     public Button confirmarButton;
     @FXML
@@ -33,6 +37,11 @@ public class ProcesoPagoViewController {
     boolean isEfectivo = true;
     private static Pedido pedido;
 
+    //COMPORTAMIENTO
+
+    /**
+     * Inicializa el controlador.
+     */
     public void initialize() {
         datosTarjeta.setVisible(false);
         camposTarjeta.setVisible(false);
@@ -61,10 +70,18 @@ public class ProcesoPagoViewController {
         });
     }
 
+    /**
+     * Comprueba que los datos introducidos son correctos.
+     * @return
+     */
     private boolean comprobarDatos() {
         return (Utils.isTarjetaCredito(tarjetaTxt.getText()) && Utils.isCaducidad(caducidadPick.getValue()) && Utils.isCvs(cvsTxt.getText()));
     }
 
+    /**
+     * Confirma el pago.
+     * @param isEfectivo
+     */
     private void confirmar(boolean isEfectivo) {
         if (isEfectivo) {
             System.out.println("Efectivo");
@@ -104,6 +121,9 @@ public class ProcesoPagoViewController {
         }
     }
 
+    /**
+     * Crea el html con la factura.
+     */
     private static void mostrarFactura() {
         String str = "";
         String h = "";
@@ -186,6 +206,10 @@ public class ProcesoPagoViewController {
         }
     }
 
+    /**
+     * Establece el pedido.
+     * @param pedido
+     */
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }

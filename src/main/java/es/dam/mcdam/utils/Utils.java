@@ -1,3 +1,7 @@
+/**
+ @author Información mostrada en la documentación.
+ */
+
 package es.dam.mcdam.utils;
 
 import javafx.scene.control.Alert;
@@ -56,15 +60,11 @@ public class Utils {
         return c;
     }
 
-
-
-
     public static Optional<String> getFileExtension(String filename) {
         return Optional.ofNullable(filename)
                 .filter(f -> f.contains("."))
                 .map(f -> f.substring(filename.lastIndexOf(".") + 1));
     }
-
 
     public static Alert getAlertErrorDetails(String title, String header, String content, String details) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -89,7 +89,6 @@ public class Utils {
 
             alert.getDialogPane().setExpandableContent(expContent);
             return alert;
-
     }
 
     public static boolean isCaducidad(LocalDate value) {
