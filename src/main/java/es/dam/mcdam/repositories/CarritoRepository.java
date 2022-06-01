@@ -14,10 +14,11 @@ public class CarritoRepository implements ICarritoRepository {
     //ESTADO
     private static CarritoRepository instance;
 
-    private final ObservableList<ItemCarrito> items = FXCollections.observableArrayList();
+    private final ObservableList<ItemCarrito> items ;
 
     //CONSTRUCTOR
     private CarritoRepository() {
+        this.items = FXCollections.observableArrayList();
     }
 
     //SINGLETON

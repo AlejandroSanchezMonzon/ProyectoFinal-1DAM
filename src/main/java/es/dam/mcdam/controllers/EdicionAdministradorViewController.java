@@ -5,11 +5,15 @@
 package es.dam.mcdam.controllers;
 
 import es.dam.mcdam.AppMain;
+import es.dam.mcdam.managers.DataBaseManager;
 import es.dam.mcdam.managers.SceneManager;
 import es.dam.mcdam.models.CodigoDescuento;
 import es.dam.mcdam.models.Producto;
 import es.dam.mcdam.repositories.CodigoDescuentoRepository;
+import es.dam.mcdam.repositories.ICodigoDescuentoRepository;
+import es.dam.mcdam.repositories.IProductoRepository;
 import es.dam.mcdam.repositories.ProductoRepository;
+import es.dam.mcdam.services.Storage;
 import es.dam.mcdam.utils.Resources;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
@@ -27,8 +31,14 @@ import java.util.Optional;
 
 public class EdicionAdministradorViewController {
     //ESTADO
-    private final ProductoRepository productosRepository = ProductoRepository.getInstance();
-    private final CodigoDescuentoRepository codigoDescuentoRepository = CodigoDescuentoRepository.getInstance();
+    private final DataBaseManager db = DataBaseManager.getInstance();
+
+    private final Storage storage = Storage.getInstance();
+    private final ProductoRepository productosRepository = ProductoRepository.getInstance(db, storage);
+    private final CodigoDescuentoRepository codigoDescuentoRepository = CodigoDescuentoRepository.getInstance(db);
+
+
+
     boolean isProductoClicked = true;
     @FXML
     public Button eliminarButton;

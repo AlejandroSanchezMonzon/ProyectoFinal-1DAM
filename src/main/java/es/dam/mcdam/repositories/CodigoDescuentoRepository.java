@@ -16,18 +16,20 @@ import java.util.Optional;
 public class CodigoDescuentoRepository implements ICodigoDescuentoRepository{
     //ESTADO
     private static CodigoDescuentoRepository instance;
-    private final ObservableList<CodigoDescuento> repository = FXCollections.observableArrayList();
-    //private final Storage storage = Storage.getInstance();
-    DataBaseManager db = DataBaseManager.getInstance();
+    private final DataBaseManager db;
+    private final ObservableList<CodigoDescuento> repository;
+
 
     //CONSTRUCTOR
-    private CodigoDescuentoRepository() {
+    private CodigoDescuentoRepository(DataBaseManager db) {
+        this.db = DataBaseManager.getInstance();
+        this.repository = FXCollections.observableArrayList();
     }
 
     //SINGLETON
-    public static CodigoDescuentoRepository getInstance() {
+    public static CodigoDescuentoRepository getInstance(DataBaseManager db) {
         if (instance == null) {
-            instance = new CodigoDescuentoRepository();
+            instance = new CodigoDescuentoRepository(db);
         }
         return instance;
     }

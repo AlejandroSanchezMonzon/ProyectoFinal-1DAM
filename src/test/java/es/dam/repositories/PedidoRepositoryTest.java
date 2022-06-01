@@ -1,5 +1,6 @@
 package es.dam.repositories;
 
+import es.dam.mcdam.managers.DataBaseManager;
 import es.dam.mcdam.models.*;
 import es.dam.mcdam.repositories.PedidoRepository;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,7 +13,8 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PedidoRepositoryTest {
-    private static final PedidoRepository pedidoRepository = PedidoRepository.getInstance();
+    private static final DataBaseManager db = DataBaseManager.getInstance();
+    private static final PedidoRepository pedidoRepository = PedidoRepository.getInstance(db);
 
     private final List<LineaPedido> compra1 = List.of(
             new LineaPedido("hamburguesa", 2, 1.00f, 2.00f),

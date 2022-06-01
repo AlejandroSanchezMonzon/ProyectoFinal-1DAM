@@ -18,17 +18,19 @@ public class PersonaRegistradaRepository implements IPersonaRegistradaRepository
 
     //ESTADO
     private static PersonaRegistradaRepository instance;
-    private final ObservableList<PersonaRegistrada> repository = FXCollections.observableArrayList();
-    //private final Storage storage = Storage.getInstance();
-    DataBaseManager db = DataBaseManager.getInstance();
+    private final ObservableList<PersonaRegistrada> repository;
+    DataBaseManager db;
 
     //CONSTRUCTOR
-    private PersonaRegistradaRepository() {}
+    private PersonaRegistradaRepository(DataBaseManager db) {
+        this.db = DataBaseManager.getInstance();
+        this.repository = FXCollections.observableArrayList();
+    }
 
     //SINGLETON
-    public static PersonaRegistradaRepository getInstance() {
+    public static PersonaRegistradaRepository getInstance(DataBaseManager db) {
         if (instance == null) {
-            instance = new PersonaRegistradaRepository();
+            instance = new PersonaRegistradaRepository(db);
         }
         return instance;
     }

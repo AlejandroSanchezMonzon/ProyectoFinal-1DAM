@@ -1,5 +1,6 @@
 package es.dam.repositories;
 
+import es.dam.mcdam.managers.DataBaseManager;
 import es.dam.mcdam.models.PersonaRegistrada;
 import es.dam.mcdam.models.Tipo;
 import es.dam.mcdam.repositories.PersonaRegistradaRepository;
@@ -12,7 +13,8 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PersonaRegistradaRepositoryTest {
-    private static final PersonaRegistradaRepository personaRepository = PersonaRegistradaRepository.getInstance();
+    private static final DataBaseManager db = DataBaseManager.getInstance();
+    private static final PersonaRegistradaRepository personaRepository = PersonaRegistradaRepository.getInstance(db);
 
     private final PersonaRegistrada pTest1 = new PersonaRegistrada(
             UUID.randomUUID().toString(), "Antonio", "antonio@gmail.com", "antonio1234", Tipo.USER

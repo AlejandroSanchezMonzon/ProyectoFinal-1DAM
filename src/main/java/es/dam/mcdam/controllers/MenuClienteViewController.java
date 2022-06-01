@@ -7,11 +7,11 @@ package es.dam.mcdam.controllers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import es.dam.mcdam.AppMain;
+import es.dam.mcdam.managers.DataBaseManager;
 import es.dam.mcdam.managers.SceneManager;
 import es.dam.mcdam.models.*;
-import es.dam.mcdam.repositories.CarritoRepository;
-import es.dam.mcdam.repositories.PedidoRepository;
-import es.dam.mcdam.repositories.ProductoRepository;
+import es.dam.mcdam.repositories.*;
+import es.dam.mcdam.services.Storage;
 import es.dam.mcdam.utils.Resources;
 import es.dam.mcdam.utils.Utils;
 import javafx.beans.property.SimpleObjectProperty;
@@ -21,9 +21,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -39,11 +41,25 @@ import java.util.stream.Collectors;
 
 public class MenuClienteViewController {
     //ESTADO
-    private final ProductoRepository productosRepository = ProductoRepository.getInstance();
+    private final DataBaseManager db = DataBaseManager.getInstance();
+    private final Storage storage = Storage.getInstance();
+    private final ProductoRepository productosRepository = ProductoRepository.getInstance(db, storage);
     private final CarritoRepository carritoRepository = CarritoRepository.getInstance();
+    private final PedidoRepository pedidoRepository = PedidoRepository.getInstance(db);
     private final ObservableList<Integer> cantidadList = FXCollections.observableArrayList();
+
+
+
     @FXML
-    private ListView<Producto> listProductos;
+    private TableView<Producto> productoTable;
+    @FXML
+    private TableColumn<Producto, ImageView> imagenPColumn;
+    @FXML
+    private TableColumn<Producto, String> productoPColumn;
+    @FXML
+    private TableColumn<Producto, Double> precioPColumn;
+    @FXML
+    private TableColumn<Producto, Button> botonColumn;
     @FXML
     private TableView<ItemCarrito> carritoTable;
     @FXML
@@ -67,7 +83,11 @@ public class MenuClienteViewController {
     @FXML
     private void initialize() {
         cantidadList.addAll(1, 2, 3, 4, 5);
-        initProductosView();
+        try {
+            initProductosView();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         try {
             initTableView();
         } catch (SQLException e) {
@@ -85,7 +105,7 @@ public class MenuClienteViewController {
      * @throws SQLException
      */
     private void initData() throws SQLException {
-        listProductos.setItems(productosRepository.findAll());
+        productoTable.setItems(productosRepository.findAll());
         carritoTable.setItems(carritoRepository.findAll());
     }
 
@@ -118,7 +138,7 @@ public class MenuClienteViewController {
                     .map(item -> new LineaPedido(item.getNombre(), item.getCantidad(), item.getPrecio(), item.getTotal()))
                     .collect(Collectors.toList());
             Pedido pedido = new Pedido(compra,userActual, "EFECTIVO" );
-            Pedido pedidoAlmacenado = PedidoRepository.getInstance().save(pedido);
+            Pedido pedidoAlmacenado = pedidoRepository.save(pedido);
             if (pedidoAlmacenado != null) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Iniciando proceso pago.");
@@ -151,56 +171,38 @@ public class MenuClienteViewController {
     /**
      * Se inicializa la tabla de productos.
      */
-    private void initProductosView() {
-        listProductos.setCellFactory(param -> new ListCell<>() {
-            @Override
-            public void updateItem(Producto item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setText(null);
-                    setGraphic(null);
-                } else {
-                    HBox hBox = new HBox();
-                    hBox.setSpacing(10);
-
-                    VBox vbox = new VBox();
-                    vbox.setSpacing(10);
-                    Label nombre = new Label(item.getNombre());
-                    nombre.setStyle("-fx-font-weight: bold");
-                    Label precio = new Label(Utils.redondeoPrecio(item.getPrecio()) + " €");
-                    vbox.getChildren().addAll(nombre, precio);
-                    ImageView imageView = new ImageView(new File(Resources.getPath(AppMain.class, "images") + item.getImagen()).toURI().toString());
-                    imageView.setFitHeight(75);
-                    imageView.setFitWidth(50);
-                    var dirImage = Paths.get(item.getImagen());
-                    imageView.setImage(new Image(dirImage.toUri().toString()));
-
-                    Button button = new Button("Añadir");
-                    button.setOnAction(event -> {
-                        try {
-                            añadirProducto(item);
-                        } catch (SQLException e) {
-                            throw new RuntimeException(e);
-                        }
-                    });
-                    hBox.setAlignment(Pos.CENTER);
-                    hBox.getChildren().addAll(imageView, vbox, button);
-
-                    setGraphic(hBox);
-                }
+    private void initProductosView() throws SQLException {
+        productoTable.setItems(productosRepository.findAll());
+        imagenPColumn.setCellValueFactory((TableColumn.CellDataFeatures<Producto, ImageView> param) -> {
+            if(param.getValue().getImagen() != null && param.getValue().getImagen().length() > 0) {
+                ImageView imageView =new ImageView(new File(Resources.getPath(AppMain.class, "images") + param.getValue().getImagen()).toURI().toString());
+                imageView.setFitHeight(50);
+                imageView.setFitWidth(50);
+                return new SimpleObjectProperty<>(imageView);
+            }else {
+                var dirImage = Paths.get(System.getProperty("user.dir") + File.separator + "icons" + File.separator + "maiz.png");
+                ImageView imageView = new ImageView(dirImage.toString());
+                return new SimpleObjectProperty<>(imageView);
             }
         });
-
-        listProductos.setOnMouseClicked(event -> {
-            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
-                Producto producto = listProductos.getSelectionModel().getSelectedItem();
+        productoPColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        precioPColumn.setCellValueFactory(new PropertyValueFactory<>("precio"));
+        botonColumn.setCellValueFactory(param -> {
+            Button button = new Button("Añadir");
+            button.setStyle("-fx-background-color: #9cb7e5");
+            button.setOnAction(event -> {
                 try {
+                    Producto producto = productosRepository.findAll().stream()
+                            .filter(p -> p.getNombre().equals(param.getValue().getNombre()))
+                            .findFirst().get();
                     añadirProducto(producto);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-            }
+            });
+            return new SimpleObjectProperty<>(button);
         });
+
     }
 
     /**

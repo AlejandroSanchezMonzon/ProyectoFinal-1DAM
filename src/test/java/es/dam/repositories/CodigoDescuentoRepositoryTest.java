@@ -1,5 +1,6 @@
 package es.dam.repositories;
 
+import es.dam.mcdam.managers.DataBaseManager;
 import es.dam.mcdam.models.CodigoDescuento;
 import es.dam.mcdam.repositories.CodigoDescuentoRepository;
 import org.junit.jupiter.api.*;
@@ -11,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Código de descuento Test")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CodigoDescuentoRepositoryTest {
-
-    private final CodigoDescuentoRepository codigoDescuentoRepository = CodigoDescuentoRepository.getInstance();
+    private final DataBaseManager db = DataBaseManager.getInstance();
+    private final CodigoDescuentoRepository codigoDescuentoRepository = CodigoDescuentoRepository.getInstance(db);
     private final CodigoDescuento pTest1 = new CodigoDescuento("A111",30.00f);
     private final CodigoDescuento pTest1V2 = new CodigoDescuento("A111",60.00f);
     private final CodigoDescuento pTest2 = new CodigoDescuento("B222",40.00f);
@@ -20,7 +21,8 @@ class CodigoDescuentoRepositoryTest {
 
     @BeforeAll
     static void setUp() throws SQLException {
-        final CodigoDescuentoRepository codigoDescuentoRepository = CodigoDescuentoRepository.getInstance();
+        final DataBaseManager db = DataBaseManager.getInstance();
+        final CodigoDescuentoRepository codigoDescuentoRepository = CodigoDescuentoRepository.getInstance(db);
         codigoDescuentoRepository.deleteAll();
     }
 

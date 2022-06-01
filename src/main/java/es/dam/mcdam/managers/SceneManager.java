@@ -10,6 +10,7 @@ import es.dam.mcdam.models.CodigoDescuento;
 import es.dam.mcdam.models.Pedido;
 import es.dam.mcdam.models.PersonaRegistrada;
 import es.dam.mcdam.models.Producto;
+import es.dam.mcdam.repositories.IPedidoRepository;
 import es.dam.mcdam.repositories.PedidoRepository;
 import es.dam.mcdam.repositories.PersonaRegistradaRepository;
 import es.dam.mcdam.services.BackupJSON;
@@ -32,10 +33,12 @@ import java.util.Objects;
 
 
 public class SceneManager {
+
     //ESTADO
+    private final DataBaseManager db = DataBaseManager.getInstance();
     private static SceneManager instance;
     private final Class<?> appClass;
-//    Logger logger = LogManager.getLogger(SceneManager.class);
+
 
     private Stage mainStage;
 
@@ -325,8 +328,8 @@ public class SceneManager {
     public void initBackup() throws SQLException, IOException {
         System.out.println("Iniciando Backup");
         BackupJSON save = BackupJSON.getInstance();
-        PersonaRegistradaRepository personaRegistradaRepository = PersonaRegistradaRepository.getInstance();
-        PedidoRepository pedidoRepository = PedidoRepository.getInstance();
+        PersonaRegistradaRepository personaRegistradaRepository = PersonaRegistradaRepository.getInstance(db);
+        PedidoRepository pedidoRepository = PedidoRepository.getInstance(db);
         save.backupPersonas(personaRegistradaRepository.findAll());
         save.backupPedidos(pedidoRepository.findAllString());
     }

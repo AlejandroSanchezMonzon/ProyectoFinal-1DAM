@@ -20,17 +20,19 @@ import java.util.Optional;
 public class PedidoRepository implements IPedidoRepository{
     //ESTADO
     private static PedidoRepository instance;
-    private final ObservableList<Pedido> repository = FXCollections.observableArrayList();
-    //private final Storage storage = Storage.getInstance();
-    DataBaseManager db = DataBaseManager.getInstance();
+    private final ObservableList<Pedido> repository;
+    DataBaseManager db;
 
     //CONSTRUCTOR
-    private PedidoRepository() {}
+    private PedidoRepository(DataBaseManager db) {
+        this.db = DataBaseManager.getInstance();
+        this.repository = FXCollections.observableArrayList();
+    }
 
     //SINGLETON
-    public static PedidoRepository getInstance() {
+    public static PedidoRepository getInstance(DataBaseManager db) {
         if (instance == null) {
-            instance = new PedidoRepository();
+            instance = new PedidoRepository(db);
         }
         return instance;
     }

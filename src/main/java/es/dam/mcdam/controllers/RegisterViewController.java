@@ -17,7 +17,8 @@ import java.util.UUID;
 
 public class RegisterViewController {
     //ESTADO
-    DataBaseManager db = DataBaseManager.getInstance();
+    private final DataBaseManager db = DataBaseManager.getInstance();
+
     @FXML
     private TextField nombre;
     @FXML

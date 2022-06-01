@@ -1,8 +1,10 @@
 package es.dam.repositories;
 
+import es.dam.mcdam.managers.DataBaseManager;
 import es.dam.mcdam.models.CodigoDescuento;
 import es.dam.mcdam.models.Producto;
 import es.dam.mcdam.repositories.ProductoRepository;
+import es.dam.mcdam.services.Storage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +14,9 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductoRepositoryTest {
-    private static final ProductoRepository productoRepository = ProductoRepository.getInstance();
+    private static final DataBaseManager db = DataBaseManager.getInstance();
+    private static final Storage storage = Storage.getInstance();
+    private static final ProductoRepository productoRepository = ProductoRepository.getInstance(db, storage);
 
     private final CodigoDescuento codigo1 = new CodigoDescuento("A111",30.00f);
     private final CodigoDescuento codigo2 = new CodigoDescuento("B222",40.00f);

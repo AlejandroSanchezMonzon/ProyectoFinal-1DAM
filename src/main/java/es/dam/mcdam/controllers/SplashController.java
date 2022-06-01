@@ -19,12 +19,14 @@ import java.util.ResourceBundle;
 
 public class SplashController implements Initializable {
     //ESTADO
+    private final SceneManager sceneManager = SceneManager.getInstance(AppMain.class);
+
     @FXML
     private ImageView fondo;
 
     @FXML
     private ImageView gifCarga;
-    SceneManager sceneManager = SceneManager.getInstance(AppMain.class);
+
 
     //COMPORTAMIENTO
 

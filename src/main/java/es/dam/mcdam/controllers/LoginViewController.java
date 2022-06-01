@@ -9,6 +9,7 @@ import es.dam.mcdam.managers.DataBaseManager;
 import es.dam.mcdam.managers.SceneManager;
 import es.dam.mcdam.models.PersonaRegistrada;
 import es.dam.mcdam.models.Tipo;
+import es.dam.mcdam.repositories.IPersonaRegistradaRepository;
 import es.dam.mcdam.repositories.PersonaRegistradaRepository;
 import es.dam.mcdam.utils.Temas;
 import es.dam.mcdam.utils.Themes;
@@ -28,8 +29,12 @@ import java.sql.SQLException;
 
 public class LoginViewController {
     //ESTADO
-    PersonaRegistradaRepository personaRepository = PersonaRegistradaRepository.getInstance();
-    DataBaseManager db = DataBaseManager.getInstance();
+    private final DataBaseManager db = DataBaseManager.getInstance();
+    private final PersonaRegistradaRepository personaRepository = PersonaRegistradaRepository.getInstance(db);
+
+
+    SceneManager sceneManager = SceneManager.getInstance(AppMain.class);
+
     @FXML
     private TextField identificacion;
     @FXML
@@ -41,7 +46,7 @@ public class LoginViewController {
     @FXML
     private ImageView acercaDe;
 
-    SceneManager sceneManager = SceneManager.getInstance(AppMain.class);
+
 
     //COMPORTAMIENTO
 
@@ -125,7 +130,7 @@ public class LoginViewController {
      */
     private boolean comprobarDatos(String usuario, String contraseña) throws SQLException {
         String sql = "SELECT * FROM personaRegistrada WHERE correo = ? AND contraseña = ?";
-        PersonaRegistradaRepository rep = PersonaRegistradaRepository.getInstance();
+        PersonaRegistradaRepository rep = PersonaRegistradaRepository.getInstance(db);
         final ObservableList<PersonaRegistrada> repository = FXCollections.observableArrayList();
         db.open();
         var result = db.select(sql, usuario, contraseña).orElseThrow(() -> new SQLException("Error al comprobar los datos. El usuario o la contaseña no son válidos."));

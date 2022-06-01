@@ -5,9 +5,11 @@
 package es.dam.mcdam.controllers;
 
 import es.dam.mcdam.AppMain;
+import es.dam.mcdam.managers.DataBaseManager;
 import es.dam.mcdam.models.CodigoDescuento;
 import es.dam.mcdam.models.Producto;
 import es.dam.mcdam.repositories.ProductoRepository;
+import es.dam.mcdam.services.Storage;
 import es.dam.mcdam.utils.Resources;
 import es.dam.mcdam.utils.Utils;
 import javafx.fxml.FXML;
@@ -28,7 +30,9 @@ import java.util.UUID;
 
 public class ActualizarProductoViewController {
     //ESTADO
-    ProductoRepository productoRepository = ProductoRepository.getInstance();
+    private final DataBaseManager db = DataBaseManager.getInstance();
+    private final Storage storage = Storage.getInstance();
+    ProductoRepository productoRepository = ProductoRepository.getInstance(db, storage);
     @FXML
     TextField nombreTxt;
     @FXML

@@ -23,17 +23,24 @@ import java.util.Optional;
 public class ProductoRepository implements IProductoRepository {
     //ESTADO
     private static ProductoRepository instance;
-    private final ObservableList<Producto> repository = FXCollections.observableArrayList();
-    private final Storage storage = Storage.getInstance();
-    DataBaseManager db = DataBaseManager.getInstance();
+    private final ObservableList<Producto> repository;
+    private final Storage storage;
+    DataBaseManager db;
+
 
     //CONSTRUCTOR
-    private ProductoRepository() {}
+    private ProductoRepository(DataBaseManager db, Storage storage) {
+        this.db = db;
+        this.storage = storage;
+        this.repository = FXCollections.observableArrayList();
+    }
+
+
 
     //SINGLETON
-    public static ProductoRepository getInstance() {
+    public static ProductoRepository getInstance(DataBaseManager db, Storage storage) {
         if (instance == null) {
-            instance = new ProductoRepository();
+            instance = new ProductoRepository(db, storage);
         }
         return instance;
     }

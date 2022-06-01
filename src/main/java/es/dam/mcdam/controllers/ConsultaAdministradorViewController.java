@@ -5,11 +5,11 @@
 package es.dam.mcdam.controllers;
 
 import es.dam.mcdam.AppMain;
+import es.dam.mcdam.managers.DataBaseManager;
 import es.dam.mcdam.models.PersonaRegistrada;
 import es.dam.mcdam.models.Producto;
-import es.dam.mcdam.repositories.CodigoDescuentoRepository;
-import es.dam.mcdam.repositories.PersonaRegistradaRepository;
-import es.dam.mcdam.repositories.ProductoRepository;
+import es.dam.mcdam.repositories.*;
+import es.dam.mcdam.services.Storage;
 import es.dam.mcdam.utils.Resources;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
@@ -25,9 +25,11 @@ import java.sql.SQLException;
 
 public class ConsultaAdministradorViewController {
     //ESTADO
-    private final PersonaRegistradaRepository personaRepository = PersonaRegistradaRepository.getInstance();
-    private final ProductoRepository productoRepository = ProductoRepository.getInstance();
-    private final CodigoDescuentoRepository codigoDescuentoRepository = CodigoDescuentoRepository.getInstance();
+    private final DataBaseManager db = DataBaseManager.getInstance();
+    private final Storage storage = Storage.getInstance();
+    private final PersonaRegistradaRepository personaRepository = PersonaRegistradaRepository.getInstance(db);
+    private final ProductoRepository productoRepository = ProductoRepository.getInstance(db, storage);
+
     @FXML
     private TableView<PersonaRegistrada> usuariosTable;
     @FXML
