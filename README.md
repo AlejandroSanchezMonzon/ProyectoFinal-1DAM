@@ -25,7 +25,7 @@ Si conseguimos “conectarnos” en el programa como administradores/ encargados
   <hr>
   
 ### ◅ Vídeo Explicativo ▻
-
+  https://we.tl/t-OqJCFQ8k5s
   <hr>
   
 ### ◅ Contacto ▻
